@@ -7,7 +7,7 @@ public class EnemyBaseController : MonoBehaviour {
     public Rigidbody2D rb;
 
 	// Use this for initialization
-	void Start () {
+	public virtual void Start () {
 
         rb = GetComponent<Rigidbody2D>();	
 	}
