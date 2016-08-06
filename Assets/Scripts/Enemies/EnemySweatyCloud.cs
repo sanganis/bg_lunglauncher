@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyDustController : EnemyBaseController {
+public class EnemySweatyCloud : EnemyBaseController {
 
-    public float randomHorizontalMovementMax = 1;
-    public float randomVerticalMovementMax = 1;
-    public float changeDirectionTime = 1f;
+    public float randomHorizontalMovementMax = 0.5f;
+    public float randomVerticalMovementMax = 0.5f;
+    public float changeDirectionTime = 10f;
 
     float currentHorizontalMovement;
     float currentVerticalMovement;
@@ -35,7 +35,4 @@ public class EnemyDustController : EnemyBaseController {
         yield return new WaitForSeconds(changeDirectionTime);
         StartCoroutine("RandomMovement");
     }
-
-
-
 }
