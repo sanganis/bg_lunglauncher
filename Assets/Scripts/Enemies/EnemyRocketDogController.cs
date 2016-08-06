@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyWingedCleaner : EnemyBaseController {
+public class EnemyRocketDogController : EnemyBaseController {
 
     // x movement speed
-    public float horizontalMovement = -2;
+    public float horizontalMovement = -3;
 
     // temporary y movement speed, which is randomly set on initialization
     float verticalMovement;
@@ -15,7 +15,7 @@ public class EnemyWingedCleaner : EnemyBaseController {
         base.Start();
         verticalMovement = Random.Range(-1f, 1f);
     }
-
+        
     void Update()
     {
         Movement();

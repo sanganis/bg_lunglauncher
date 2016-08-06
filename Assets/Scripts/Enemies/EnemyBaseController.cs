@@ -3,10 +3,12 @@ using System.Collections;
 
 public class EnemyBaseController : MonoBehaviour {
 
+    // a base controller for all enemies. not fully utilized yet but eventually could be useful
+
     [HideInInspector]
     public Rigidbody2D rb;
 
-	// Use this for initialization
+	
 	public virtual void Start () {
 
         rb = GetComponent<Rigidbody2D>();	

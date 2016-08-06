@@ -3,10 +3,11 @@ using System.Collections;
 
 public class EnemyDumbellController : EnemyBaseController {
 
+    // x and y movement speeds
     public float horizontalMovement = 0;
     public float verticalMovement = -3;
 
-    // Update is called once per frame
+    
     void Update()
     {
         Movement();

@@ -3,11 +3,19 @@ using System.Collections;
 
 public class EnemyCatController : EnemyBaseController {
 
-    public float horizontalMovement = -0.5f;
+    // y movement speed    
     public float verticalMovement = 1;
 
+    // temporary x movement speed, which is randomly set on initialization
+    float horizontalMovement;
 
-    // Update is called once per frame
+    public override void Start()
+    {
+        base.Start();
+        horizontalMovement = Random.Range(-0.5f, 0.5f);
+    }
+
+
     void Update () {
         Movement();
 	}

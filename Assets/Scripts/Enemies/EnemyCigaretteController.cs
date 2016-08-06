@@ -1,19 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyRocketDog : EnemyBaseController {
+public class EnemyCigaretteController : EnemyBaseController {
 
-    public float horizontalMovement = -3;
-    float verticalMovement;
+    // y movement speed    
+    public float verticalMovement = 1;
 
+    // temporary x movement speed, which is randomly set on initialization
+    float horizontalMovement;
 
     public override void Start()
     {
         base.Start();
-        verticalMovement = Random.Range(-1f, 1f);
+        horizontalMovement = Random.Range(-2f, 0f);
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         Movement();
