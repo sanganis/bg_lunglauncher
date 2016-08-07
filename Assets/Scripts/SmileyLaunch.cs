@@ -3,11 +3,11 @@ using System.Collections;
 
 public class SmileyLaunch : MonoBehaviour {
 
-    float speed = 100f;
+
+    float speed = 100f; // launch speed
     Rigidbody2D rb2D;
-    Camera cameraFollow;
-    public GameObject cannon;
     bool launchedYet = false;
+
     public float launchSpeed = 5f;
     // Use this for initialization
     void Start () {
@@ -28,14 +28,11 @@ public class SmileyLaunch : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             launchedYet = true;
-
-           
-
+            
             gameObject.transform.parent = null;
             rb2D.isKinematic = false;
             rb2D.velocity = new Vector2(0, launchSpeed);
             
-
         }
     }
 }

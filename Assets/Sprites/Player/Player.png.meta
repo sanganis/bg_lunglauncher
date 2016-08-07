@@ -1,11 +1,9 @@
 fileFormatVersion: 2
-guid: 5bd421342803eed47af035f1ff87f944
-timeCreated: 1470506604
+guid: b48d4a6b075d8bd4380ca91319579573
+timeCreated: 1470578460
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: Cannon_0
-    21300002: Cannon_1
+  fileIDToRecycleName: {}
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -32,7 +30,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     filterMode: -1
-    aniso: 16
+    aniso: -1
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
@@ -40,7 +38,7 @@ TextureImporter:
   rGBM: 0
   compressionQuality: 50
   allowsAlphaSplitting: 0
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -51,35 +49,7 @@ TextureImporter:
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites:
-    - name: Cannon_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 70
-        width: 88
-        height: 32
-      alignment: 9
-      pivot: {x: 0.07646391, y: 0.52055407}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 0.27117538, y: 15.34227}
-        - {x: -6.7288246, y: 9.34227}
-        - {x: -6.7288246, y: -12.65773}
-        - {x: 1.2711754, y: -16.65773}
-        - {x: 81.27118, y: -16.65773}
-        - {x: 81.27118, y: 15.34227}
-    - name: Cannon_1
-      rect:
-        serializedVersion: 2
-        x: 3
-        y: 0
-        width: 88
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+    sprites: []
     outline: []
   spritePackingTag: 
   userData: 
