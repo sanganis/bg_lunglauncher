@@ -19,9 +19,8 @@ public class CannonAimShoot : MonoBehaviour {
 
 
         shotYet = false;
-        aimStrengthSlider = GetComponentInChildren<Slider>();
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerLaunch>();
-        aimStrengthSlider.value = player.GetLaunchVariable();
+        /*player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerLaunch>();
+        aimStrengthSlider.value = player.GetLaunchVariable();*/
     }
 	
 	// Update is called once per frame
@@ -29,7 +28,7 @@ public class CannonAimShoot : MonoBehaviour {
     {
         if (!shotYet && (Input.GetKey(KeyCode.Space)))
         {
-            LaunchSpeed();
+            //LaunchSpeed();
         }
 
         /*if (Input.GetKeyDown(KeyCode.R) && shotYet)
@@ -41,8 +40,8 @@ public class CannonAimShoot : MonoBehaviour {
 
     void LaunchSpeed()
     {
+        //Causes the slider to change
         aimStrengthSlider.value = player.GetLaunchVariable();
-        print("I am ready to launch! " + aimStrengthSlider.value);
     }
     //This is deprecated for now
     void RotateCannon()

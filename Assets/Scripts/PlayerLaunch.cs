@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+using UnityEngine.UI;
 public class PlayerLaunch : MonoBehaviour {
 
     
@@ -11,8 +12,12 @@ public class PlayerLaunch : MonoBehaviour {
     private float launchSpeedVariable = 0f;
     private float initTime;
     public float maxLaunchSpeed = 100f;
+
+    private Slider aimStrengthSlider;
     // Use this for initialization
     void Start () {
+
+        aimStrengthSlider = GameObject.FindGameObjectWithTag("Power Slider").GetComponent<Slider>();
         rb2D = GetComponent<Rigidbody2D>();
 	}
 	
@@ -28,20 +33,21 @@ public class PlayerLaunch : MonoBehaviour {
     {
         return launchSpeedVariable;
     }
-
+    
     void CheckLaunch()
     {
-        if (!clickedYet && Input.GetKeyDown(KeyCode.Space))
+        if (!clickedYet && (Input.GetKeyDown(KeyCode.Space)) || Input.GetButtonDown("Fire1"))
         {
             clickedYet = true;
             initTime = Time.time;
         }
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space) || Input.GetButton("Fire1"))
         {
             launchSpeedVariable = Mathf.Abs( Mathf.Sin(Time.time - initTime));
+            aimStrengthSlider.value = launchSpeedVariable;
             //print("I am ready to launch! " + launchSpeedVariable);
         }
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (Input.GetKeyUp(KeyCode.Space) || Input.GetButtonUp("Fire1"))
         {
             
             launchedYet = true;
