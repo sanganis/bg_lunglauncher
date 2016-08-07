@@ -4,6 +4,12 @@ using System.Collections.Generic;
 
 public class SpawnerController : MonoBehaviour
 {
+    float _height;
+    public float height
+    {
+        get { return _height; }
+        set { _height = 50f; }
+    }
 
     public Transform[] allSpawners;
 
