@@ -1,11 +1,12 @@
 fileFormatVersion: 2
 guid: 5bd421342803eed47af035f1ff87f944
-timeCreated: 1470506604
+timeCreated: 1470576930
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: Cannon_0
     21300002: Cannon_1
+    21300004: Cannon_2
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -60,16 +61,27 @@ TextureImporter:
         width: 88
         height: 32
       alignment: 9
-      pivot: {x: 0.07646391, y: 0.52055407}
+      pivot: {x: 0.07148113, y: 0.4931488}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 0.27117538, y: 15.34227}
-        - {x: -6.7288246, y: 9.34227}
-        - {x: -6.7288246, y: -12.65773}
-        - {x: 1.2711754, y: -16.65773}
-        - {x: 81.27118, y: -16.65773}
-        - {x: 81.27118, y: 15.34227}
+      - - {x: 0.7096596, y: 16.219238}
+        - {x: -6.2903404, y: 10.219238}
+        - {x: -6.2903404, y: -11.780762}
+        - {x: 1.7096596, y: -15.780762}
+        - {x: 81.709656, y: -15.780762}
+        - {x: 81.709656, y: 16.219238}
     - name: Cannon_1
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 35
+        width: 29
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Cannon_2
       rect:
         serializedVersion: 2
         x: 3
