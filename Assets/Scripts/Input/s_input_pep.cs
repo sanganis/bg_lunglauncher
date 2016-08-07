@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.IO.Ports;
+//using System.IO.Ports;
 
 public class s_input_pep : MonoBehaviour
 {
-
+    /*
     SerialPort stream = new SerialPort("/dev/tty.usbmodem621", 9600);   // open serial Mac = /dev/tty.usbmodem621, PC = COM3 or COM4 ; baud = 9600
 
     private float f_pressure_init = 0f;
@@ -41,6 +41,6 @@ public class s_input_pep : MonoBehaviour
             {
             }
         }
-    }
+    }*/
 }
 
