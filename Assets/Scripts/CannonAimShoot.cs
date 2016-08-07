@@ -1,32 +1,46 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class CannonAimShoot : MonoBehaviour {
+      
     bool shotYet;
     float currentZRot;
     Rigidbody2D rb2D;
     public float speed = 150;
-	// Use this for initialization
-	void Start () {
+
+    private PlayerLaunch player;
+
+
+    private Slider aimStrengthSlider;
+    // Use this for initialization
+    void Start () {
         shotYet = false;
         rb2D = GetComponent<Rigidbody2D>();
-}
+        aimStrengthSlider = GetComponentInChildren<Slider>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerLaunch>();
+        aimStrengthSlider.value = player.GetLaunchVariable();
+    }
 	
 	// Update is called once per frame
 	void Update ()
     {
-        if (!shotYet)
+        if (!shotYet && (Input.GetKey(KeyCode.Space)))
         {
-            //RotateCannon();
+            LaunchSpeed();
         }
-        
-        if (Input.GetKeyDown(KeyCode.R) && shotYet)
+
+        /*if (Input.GetKeyDown(KeyCode.R) && shotYet)
         {
             shotYet = !shotYet;
-        }
+        }*/
             
     }
 
+    void LaunchSpeed()
+    {
+        aimStrengthSlider.value = player.GetLaunchVariable();
+    }
     //This is deprecated for now
     void RotateCannon()
     {
