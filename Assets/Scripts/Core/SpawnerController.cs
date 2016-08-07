@@ -11,8 +11,10 @@ public class SpawnerController : MonoBehaviour
 
     public GameObject player;
 
+
+
     public float startSpawningHeight = 3f;
-    public float firstEnemySpawnIncreaseHeight = 10f, secondEnemySpawnIncreaseHeight = 20f, thirdEnemySpawnIncreaseHeight = 30f, fourthEnemySpawnIncreaseHeight = 40f;
+    public float firstEnemySpawnIncreaseHeight = 100f, secondEnemySpawnIncreaseHeight = 200f, thirdEnemySpawnIncreaseHeight = 300f, fourthEnemySpawnIncreaseHeight = 400f;
     float currentPlayerHeight = 0;
     float currentSpawnTime = 0;
 

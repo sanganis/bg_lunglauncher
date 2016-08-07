@@ -16,6 +16,6 @@ public class EnemyDumbellController : EnemyBaseController {
     public override void Movement()
     {
         base.Movement();
-        rb.velocity = new Vector2(horizontalMovement, verticalMovement);
+        rb.velocity = new Vector2(horizontalMovement, verticalMovement + playerRb.velocity.y);
     }
 }

@@ -27,14 +27,14 @@ public class EnemyDustController : EnemyBaseController {
     public override void Movement()
     {
         base.Movement();
-        rb.velocity = new Vector2(currentHorizontalMovement, currentVerticalMovement);
+        rb.velocity = new Vector2(currentHorizontalMovement, currentVerticalMovement + playerRb.velocity.y);
     }
 
     // randomly chooses an x and y movement speed, then resets after chaingeDirectionTime
     IEnumerator RandomMovement()
     {
         currentHorizontalMovement = Random.Range(-randomHorizontalMovementMax, randomHorizontalMovementMax);
-        currentVerticalMovement = Random.Range(-randomVerticalMovementMax, randomVerticalMovementMax);
+        currentVerticalMovement = Random.Range(-randomVerticalMovementMax, randomVerticalMovementMax);        
         yield return new WaitForSeconds(changeDirectionTime);
         StartCoroutine("RandomMovement");
     }

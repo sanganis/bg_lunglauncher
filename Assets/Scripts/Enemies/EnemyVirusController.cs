@@ -13,8 +13,8 @@ public class EnemyVirusController : EnemyBaseController {
     public float waitBeforeMoveTime = 2f;
 
     // temporary variables, used to set the random movement
-    int currentHorizontalMovement;
-    int currentVerticalMovement;
+    float currentHorizontalMovement;
+    float currentVerticalMovement;
 
     public override void Start()
     {
@@ -31,14 +31,14 @@ public class EnemyVirusController : EnemyBaseController {
     public override void Movement()
     {
         base.Movement();
-        rb.velocity = new Vector2(currentHorizontalMovement, currentVerticalMovement);
+        rb.velocity = new Vector2(currentHorizontalMovement, currentVerticalMovement + playerRb.velocity.y);
     }
 
     // moves at a random x and y direction until stopTime, then waits for waitBeforeMoveTime before resetting
     IEnumerator RandomMovement()
     {
         currentHorizontalMovement = Random.Range(-randomHorizontalMovementMax, randomHorizontalMovementMax);
-        currentVerticalMovement = Random.Range(-randomVerticalMovementMax, randomVerticalMovementMax);
+        currentVerticalMovement = Random.Range(-randomVerticalMovementMax, randomVerticalMovementMax);                
         yield return new WaitForSeconds(stopTime);
         currentHorizontalMovement = 0;
         currentVerticalMovement = 0;

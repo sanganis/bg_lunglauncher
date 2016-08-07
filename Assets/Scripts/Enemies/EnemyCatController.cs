@@ -4,7 +4,7 @@ using System.Collections;
 public class EnemyCatController : EnemyBaseController {
 
     // y movement speed    
-    public float verticalMovement = 1;
+    public float verticalMovement = 1f;
 
     // temporary x movement speed, which is randomly set on initialization
     float horizontalMovement;
@@ -23,7 +23,7 @@ public class EnemyCatController : EnemyBaseController {
     public override void Movement()
     {
         base.Movement();
-        rb.velocity = new Vector2(horizontalMovement, verticalMovement);
+        rb.velocity = new Vector2(horizontalMovement, verticalMovement + playerRb.velocity.y);
     }
 
 }
