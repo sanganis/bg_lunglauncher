@@ -9,10 +9,12 @@ public class SpawnerController : MonoBehaviour
 
     public EnemyBaseController[] allEnemies;
 
+    public PowerupBaseController[] allPowerups;
+
     public GameObject player;
 
 
-
+    public float powerupSpawnChance = 0.1f;
     public float startSpawningHeight = 3f;
     public float firstEnemySpawnIncreaseHeight = 100f, secondEnemySpawnIncreaseHeight = 200f, thirdEnemySpawnIncreaseHeight = 300f, fourthEnemySpawnIncreaseHeight = 400f;
     float currentPlayerHeight = 0;
@@ -67,7 +69,12 @@ public class SpawnerController : MonoBehaviour
         {
             Transform newSpawnLocation = allSpawners[Random.Range(0, allSpawners.Length)];
             Instantiate(ChooseRandomEnemyToSpawn(newSpawnLocation), newSpawnLocation.position, newSpawnLocation.rotation);
-        }
+            if (powerupSpawnChance > Random.Range(0f, 1f))
+            {
+                Transform newPowerupSpawnLocation = allSpawners[Random.Range(0, allSpawners.Length)];
+                Instantiate(allPowerups[Random.Range(0,allPowerups.Length)], newSpawnLocation.position, newSpawnLocation.rotation);
+            }
+        }        
         StartCoroutine("SpawnRandomEnemy");
     }
 
