@@ -13,12 +13,17 @@ public class PlayerLaunch : MonoBehaviour {
     private float initTime;
     public float maxLaunchSpeed = 100f;
 
+	private float movementY;
+	public float maxSpeed =50f;
+	private bool goingDown;
+
     private Slider aimStrengthSlider;
     // Use this for initialization
     void Start () {
 
         aimStrengthSlider = GameObject.FindGameObjectWithTag("Power Slider").GetComponent<Slider>();
         rb2D = GetComponent<Rigidbody2D>();
+		goingDown = false;
 	}
 	
 	// Update is called once per frame
@@ -28,6 +33,21 @@ public class PlayerLaunch : MonoBehaviour {
             CheckLaunch();
         }
         
+	}
+	void FixedUpdate(){
+		if (launchedYet && goingDown) {
+			if(Input.GetKey("up")){
+				movementY = Input.GetAxis ("Vertical");
+				GetComponent<Rigidbody2D> ().velocity = new Vector2 (0, movementY * maxSpeed);
+			}else{
+				movementY = -20.0f;
+				GetComponent<Rigidbody2D> ().velocity = new Vector2 (0, movementY);
+			}
+
+
+
+			Debug.Log (GetComponent<Rigidbody2D> ().velocity.y);
+		}
 	}
     public float GetLaunchVariable()
     {
@@ -55,7 +75,14 @@ public class PlayerLaunch : MonoBehaviour {
             gameObject.transform.parent = null;
             rb2D.isKinematic = false;
             rb2D.velocity = new Vector2(0, launchSpeed);
-            
+			Debug.Log (launchedYet);
+			StartCoroutine (launchedCounter ());
         }
+
     }
+	IEnumerator launchedCounter(){
+		yield return new WaitForSeconds (3);
+		goingDown = true;
+		Debug.Log (goingDown);
+	}
 }
