@@ -4,30 +4,52 @@ using System.Collections.Generic;
 
 public class SpawnerController : MonoBehaviour
 {
-    float _height;
-    public float height
-    {
-        get { return _height; }
-        set { _height = 50f; }
-    }
-
+    
     public Transform[] allSpawners;
 
     public EnemyBaseController[] allEnemies;
 
-    public float spawnTimeMin = 1f, spawnTimeMax = 3f;
+    public GameObject player;
+
+    public float startSpawningHeightThreshold = 3f;
+    float currentPlayerHeight = 0;
+    float currentSpawnTime = 0;
 
     void Start()
     {
         // waits for a random ammount of time set between spawnTimeMin and spawnTimeMax before calling an enemy spawn
-        InvokeRepeating("SpawnRandomEnemy", 1, Random.Range(spawnTimeMin, spawnTimeMax));
+        StartCoroutine("SpawnRandomEnemy");
     }
 
-    // chooses randomly from one of the spawner transforms and instantiates a new enemy chosen by the method below
-    void SpawnRandomEnemy()
+    void Update()
     {
-        Transform newSpawnLocation = allSpawners[Random.Range(0, allSpawners.Length)];
-        Instantiate(ChooseRandomEnemyToSpawn(newSpawnLocation), newSpawnLocation.position, newSpawnLocation.rotation);
+        currentPlayerHeight = player.transform.position.y;
+        SetSpawnTimeAccordingToHeight();
+    }
+
+    void SetSpawnTimeAccordingToHeight()
+    {
+        if(currentPlayerHeight <= startSpawningHeightThreshold)
+        {
+            currentSpawnTime = 0;
+        }
+        if(currentPlayerHeight >= startSpawningHeightThreshold)
+        {
+            currentSpawnTime = 2f;
+        }
+    }
+
+
+    // chooses randomly from one of the spawner transforms and instantiates a new enemy chosen by the method below
+    IEnumerator SpawnRandomEnemy()
+    {
+        yield return new WaitForSeconds(currentSpawnTime);
+        if (currentSpawnTime > 0)
+        {
+            Transform newSpawnLocation = allSpawners[Random.Range(0, allSpawners.Length)];
+            Instantiate(ChooseRandomEnemyToSpawn(newSpawnLocation), newSpawnLocation.position, newSpawnLocation.rotation);
+        }
+        StartCoroutine("SpawnRandomEnemy");
     }
 
 
