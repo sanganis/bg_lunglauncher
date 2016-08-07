@@ -39,7 +39,7 @@ public class PlayerLaunch : MonoBehaviour {
         if (Input.GetKey(KeyCode.Space))
         {
             launchSpeedVariable = Mathf.Abs( Mathf.Sin(Time.time - initTime));
-            print("I am ready to launch! " + launchSpeedVariable);
+            //print("I am ready to launch! " + launchSpeedVariable);
         }
         if (Input.GetKeyUp(KeyCode.Space))
         {
