@@ -11,7 +11,8 @@ public class SpawnerController : MonoBehaviour
 
     public GameObject player;
 
-    public float startSpawningHeightThreshold = 3f;
+    public float startSpawningHeight = 3f;
+    public float firstEnemySpawnIncreaseHeight = 10f, secondEnemySpawnIncreaseHeight = 20f, thirdEnemySpawnIncreaseHeight = 30f, fourthEnemySpawnIncreaseHeight = 40f;
     float currentPlayerHeight = 0;
     float currentSpawnTime = 0;
 
@@ -29,13 +30,29 @@ public class SpawnerController : MonoBehaviour
 
     void SetSpawnTimeAccordingToHeight()
     {
-        if(currentPlayerHeight <= startSpawningHeightThreshold)
+        if(currentPlayerHeight <= startSpawningHeight)
         {
             currentSpawnTime = 0;
         }
-        if(currentPlayerHeight >= startSpawningHeightThreshold)
+        if(currentPlayerHeight > startSpawningHeight)
         {
             currentSpawnTime = 2f;
+        }
+        if (currentPlayerHeight > firstEnemySpawnIncreaseHeight)
+        {
+            currentSpawnTime = 1.75f;
+        }
+        if (currentPlayerHeight > secondEnemySpawnIncreaseHeight)
+        {
+            currentSpawnTime = 1.5f;
+        }
+        if (currentPlayerHeight > thirdEnemySpawnIncreaseHeight)
+        {
+            currentSpawnTime = 1.25f;
+        }
+        if (currentPlayerHeight > fourthEnemySpawnIncreaseHeight)
+        {
+            currentSpawnTime = 1f;
         }
     }
 
