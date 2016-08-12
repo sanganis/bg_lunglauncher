@@ -7,7 +7,7 @@ public class PlayerColliderMovement : MonoBehaviour {
 
     public Rigidbody2D rb;
 
-    public PlayerControllerNew player;
+    public PlayerScreenController player;
 
     
 	

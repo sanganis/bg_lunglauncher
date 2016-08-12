@@ -15,7 +15,7 @@ public class PowerupBaseController : MonoBehaviour {
     {
 
         rb = GetComponent<Rigidbody2D>();
-        playerRb = GameObject.Find("Player").GetComponent<Rigidbody2D>();
+        playerRb = GameController.playerScreen.GetComponent<Rigidbody2D>();
     }
 
     void OnTriggerEnter2D(Collider2D coll)
