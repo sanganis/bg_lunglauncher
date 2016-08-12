@@ -76,7 +76,7 @@ public class PlayerLaunch : MonoBehaviour {
             rb2D.isKinematic = false;
             rb2D.velocity = new Vector2(0, launchSpeed);
 			Debug.Log (launchedYet);
-			StartCoroutine (launchedCounter ());
+			//StartCoroutine (launchedCounter ());
         }
 
     }
