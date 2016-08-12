@@ -4,29 +4,28 @@ using UnityEngine.UI;
 
 public class PlayerControllerNew : MonoBehaviour {
 
-    public float moveSpeed = 2f;
+    public PlayerColliderMovement playerCollider;
+    
     public float currentHeight;
 
     public Rigidbody2D rb;
 
-    bool launchedYet = false;
+    public bool launchedYet = false;
     bool clickedYet = false;
 
-    private float launchSpeedVariable = 0f;
-    private float initTime;
+    float launchSpeedVariable = 0f;
+    float initTime;
     public float maxLaunchSpeed = 100f;
 
-    private float movementY;
+    float movementY;
     public float maxSpeed = 50f;
-    private bool goingDown;
+    bool goingDown;
 
-    private Slider aimStrengthSlider;
+    Slider aimStrengthSlider;
 
 
     void Start()
     {
-
-
         aimStrengthSlider = GameObject.FindGameObjectWithTag("Power Slider").GetComponent<Slider>();
         rb = GetComponent<Rigidbody2D>();
         goingDown = false;
@@ -43,10 +42,7 @@ public class PlayerControllerNew : MonoBehaviour {
         {
             currentHeight = transform.position.y;
 
-            if (Input.GetMouseButton(0))
-            {
-                Move();
-            }
+            
         }
     }
 
@@ -88,18 +84,12 @@ public class PlayerControllerNew : MonoBehaviour {
             float launchSpeed = launchSpeedVariable * maxLaunchSpeed;
             gameObject.transform.parent = null;
             rb.isKinematic = false;
-            rb.velocity = new Vector2(0, launchSpeed);
+            rb.velocity = new Vector2(launchSpeed, launchSpeed);
             Debug.Log(launchedYet);
             //StartCoroutine (launchedCounter ());
         }
     }
-
-    void Move()
-    {
-        Vector3 target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector3 dir = (target - transform.position).normalized;
-        rb.velocity = dir * moveSpeed;
-    }
+     
 
 
 

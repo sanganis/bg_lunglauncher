@@ -31,7 +31,7 @@ public class EnemyVirusController : EnemyBaseController {
     public override void Movement()
     {
         base.Movement();
-        rb.velocity = new Vector2(currentHorizontalMovement, currentVerticalMovement + playerRb.velocity.y);
+        rb.velocity = new Vector2(currentHorizontalMovement + playerRb.velocity.x, currentVerticalMovement + playerRb.velocity.y);
     }
 
     // moves at a random x and y direction until stopTime, then waits for waitBeforeMoveTime before resetting

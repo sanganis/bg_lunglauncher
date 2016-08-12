@@ -9,14 +9,14 @@ public class EnemyBaseController : MonoBehaviour {
 
     [HideInInspector]
     public Rigidbody2D rb;
-
+    [HideInInspector]
     public Rigidbody2D playerRb;
 
 	
 	public virtual void Start () {
 
         rb = GetComponent<Rigidbody2D>();
-        playerRb = GameObject.Find("Player").GetComponent<Rigidbody2D>();
+        playerRb = GameController.playerScreen.GetComponent<Rigidbody2D>();
 	}
 	
     void OnTriggerEnter2D(Collider2D coll)

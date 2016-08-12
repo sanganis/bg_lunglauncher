@@ -14,6 +14,6 @@ public class MainUIController : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        height.text = GameController.player.currentHeight.ToString();
+        height.text = GameController.playerScreen.currentHeight.ToString();
 	}
 }

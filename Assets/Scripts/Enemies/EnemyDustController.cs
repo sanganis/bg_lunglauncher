@@ -27,7 +27,7 @@ public class EnemyDustController : EnemyBaseController {
     public override void Movement()
     {
         base.Movement();
-        rb.velocity = new Vector2(currentHorizontalMovement, currentVerticalMovement + playerRb.velocity.y);
+        rb.velocity = new Vector2(currentHorizontalMovement + playerRb.velocity.x, currentVerticalMovement + playerRb.velocity.y);
     }
 
     // randomly chooses an x and y movement speed, then resets after chaingeDirectionTime
