@@ -5,9 +5,10 @@ using UnityEngine.UI;
 public class PlayerScreenController : MonoBehaviour {
 
     // the player's actual collider and sprite, which moves independently from the PlayerScreen
+    [HideInInspector]
     public PlayerColliderMovement playerCollider;
-      
-    public Rigidbody2D rb;
+    [HideInInspector]
+    public Rigidbody2D rb;    
 
     // launching variables
     public bool launchedYet = false;
@@ -124,7 +125,6 @@ public class PlayerScreenController : MonoBehaviour {
     float ReturnBreathingEfficiency()
     {                
         return currentBreathingEfficiency;
-    }
-    
+    }    
 
 }
