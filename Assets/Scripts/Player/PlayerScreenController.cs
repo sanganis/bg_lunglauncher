@@ -29,7 +29,7 @@ public class PlayerScreenController : MonoBehaviour {
     public float currentHeight;
 
     // ultimately to be determined by PEP
-    public float currentBreathingEfficiency = 1f;
+    public float currentBreathingEfficiency = 1f;    
 
     void Start()
     {
@@ -46,7 +46,7 @@ public class PlayerScreenController : MonoBehaviour {
         else
         {
             currentHeight = transform.position.y;            
-        }
+        }        
         ControlClimbRate();
         SetCurrentBrathingEfficiency();        
     }
@@ -126,5 +126,10 @@ public class PlayerScreenController : MonoBehaviour {
     {                
         return currentBreathingEfficiency;
     }    
+
+    public void LockMovement()
+    {
+        rb.isKinematic = true;
+    }
 
 }

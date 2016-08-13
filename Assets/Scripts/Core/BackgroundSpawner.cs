@@ -5,21 +5,26 @@ public class BackgroundSpawner : MonoBehaviour {
 
     public GameObject[] backgroundTiles;
 
+    public GameObject groundTile;
+
     float previousXPos;
     float currentXPos;
-
+  
     float previousYPos;
     float currentYPos;
+
+    float previousGroundXPos;
     
-    
+
     void Update()
     {
-        SpawnBackgroundSegments();
+        SpawnSkySegments();
+        SpawnGroundSegments();
     }
 	
 	
     
-    void SpawnBackgroundSegments()
+    void SpawnSkySegments()
     {
         currentXPos = transform.position.x;
         currentYPos = transform.position.y;
@@ -27,8 +32,7 @@ public class BackgroundSpawner : MonoBehaviour {
         {
             Vector3 horizSpawnLoc = new Vector3(currentXPos + 20, transform.position.y);
             Instantiate(backgroundTiles[Random.Range(0, backgroundTiles.Length)], horizSpawnLoc, transform.rotation);
-            
-      
+                  
             Vector3 vertSpawnLoc = new Vector3(transform.position.x, currentYPos + 16);
             Instantiate(backgroundTiles[Random.Range(0, backgroundTiles.Length)], vertSpawnLoc, transform.rotation);
 
@@ -43,7 +47,16 @@ public class BackgroundSpawner : MonoBehaviour {
 
             previousXPos = currentXPos;
             previousYPos = currentYPos;
-        }
-        
+        }        
+    }
+
+    void SpawnGroundSegments()
+    {        
+        if(currentXPos > previousGroundXPos + 62)
+        {
+            Vector3 spawnLoc = new Vector3(currentXPos + 62, -7);
+            Instantiate(groundTile, spawnLoc, transform.rotation);
+            previousGroundXPos = currentXPos;
+        }        
     }
 }
