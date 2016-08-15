@@ -4,9 +4,8 @@ using UnityEngine.UI;
 
 public class PlayerScreenController : MonoBehaviour {
 
-    // the player's actual collider and sprite, which moves independently from the PlayerScreen
-    [HideInInspector]
-    public PlayerColliderMovement playerCollider;
+    // the player object, which moves independently from the PlayerScreen    
+    public PlayerColliderMovement playerObject;
     [HideInInspector]
     public Rigidbody2D rb;    
 
@@ -45,9 +44,9 @@ public class PlayerScreenController : MonoBehaviour {
         }
         else
         {
+            ControlClimbRate();
             currentHeight = transform.position.y;            
-        }        
-        ControlClimbRate();
+        }                
         SetCurrentBrathingEfficiency();        
     }
 
@@ -127,9 +126,27 @@ public class PlayerScreenController : MonoBehaviour {
         return currentBreathingEfficiency;
     }    
 
-    public void LockMovement()
+    // stops the PlayerScreen from being able to move
+    public void LockScreenMovement()
     {
         rb.isKinematic = true;
     }
+    public void UnlockScreenMovement()
+    {
+        rb.isKinematic = false;
+    }
+
+    public void KnockPlayerDown(float ammount)
+    {
+        Vector2 dir = new Vector2(rb.velocity.x, -ammount);
+        rb.velocity = dir;
+        FlashDamage();
+    }
+    
+    void FlashDamage()
+    {
+
+    }
+
 
 }

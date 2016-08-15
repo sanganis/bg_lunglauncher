@@ -13,6 +13,7 @@ public class EnemyWingedCleaner : EnemyBaseController {
     public override void Start()
     {
         base.Start();
+        enemyType = EnemyType.WINGEDCLEANER;
         verticalMovement = Random.Range(-1f, 1f);
     }
 

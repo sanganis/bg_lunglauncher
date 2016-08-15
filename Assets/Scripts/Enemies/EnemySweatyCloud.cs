@@ -16,6 +16,7 @@ public class EnemySweatyCloud : EnemyBaseController {
     public override void Start()
     {
         base.Start();
+        enemyType = EnemyType.SWEATYCLOUD;
         StartCoroutine("RandomMovement");
     }
     

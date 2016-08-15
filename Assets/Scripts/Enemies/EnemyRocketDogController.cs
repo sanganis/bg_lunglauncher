@@ -13,6 +13,7 @@ public class EnemyRocketDogController : EnemyBaseController {
     public override void Start()
     {
         base.Start();
+        enemyType = EnemyType.ROCKETDOG;
         verticalMovement = Random.Range(-1f, 1f);
     }
         

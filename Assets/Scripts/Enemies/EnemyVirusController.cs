@@ -19,6 +19,7 @@ public class EnemyVirusController : EnemyBaseController {
     public override void Start()
     {
         base.Start();
+        enemyType = EnemyType.VIRUS;
         StartCoroutine("RandomMovement");
     }
 

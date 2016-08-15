@@ -12,6 +12,7 @@ public class EnemyCigaretteController : EnemyBaseController {
     public override void Start()
     {
         base.Start();
+        enemyType = EnemyType.CIGARETTE;
         horizontalMovement = Random.Range(-2f, 0f);
     }
 

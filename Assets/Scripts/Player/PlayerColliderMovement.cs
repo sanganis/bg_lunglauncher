@@ -7,12 +7,12 @@ public class PlayerColliderMovement : MonoBehaviour {
 
     public Rigidbody2D rb;
 
-    public PlayerScreenController player;
+    public PlayerScreenController playerScreen;
 
     bool canMove = true;
 	
 	void Update () {
-        if (player.launchedYet)
+        if (playerScreen.launchedYet)
         {
             if (Input.GetMouseButton(0) && canMove)
             {
@@ -20,7 +20,7 @@ public class PlayerColliderMovement : MonoBehaviour {
             }
             else
             {
-                rb.velocity = new Vector2(player.rb.velocity.x, player.rb.velocity.y);
+                rb.velocity = new Vector2(playerScreen.rb.velocity.x, playerScreen.rb.velocity.y);
             }
         }
     }
@@ -30,23 +30,53 @@ public class PlayerColliderMovement : MonoBehaviour {
         Vector3 target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3 dir = (target - transform.position).normalized;
         //rb.velocity = dir * moveSpeed; 
-        rb.velocity = new Vector2((dir.x * moveSpeed) + player.rb.velocity.x, (dir.y * moveSpeed) + player.rb.velocity.y).normalized;       
+        rb.velocity = new Vector2((dir.x * moveSpeed) + playerScreen.rb.velocity.x, (dir.y * moveSpeed) + playerScreen.rb.velocity.y);       
     }
 
     void OnCollisionEnter2D(Collision2D coll)
     {
         if (coll.gameObject.tag == "Ground")
         {
-            player.LockMovement();
-            StopMovement();
+            playerScreen.LockScreenMovement();
+            LockPlayerMovement();
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D coll)
+    {
+        if(coll.gameObject.tag == "Enemy")
+        {
+            EnemyBaseController enemy = coll.gameObject.GetComponent<EnemyBaseController>();
+            if(enemy.enemyType == EnemyBaseController.EnemyType.BALLOONCAT)
+            {
+                PlayerFalls(5);
+            }
         }
     }
 
 
-    void StopMovement()
+    void PlayerFalls(float ammount)
+    {
+        playerScreen.KnockPlayerDown(ammount);
+    }
+
+    void PlayerSlowed()
+    {
+
+    }
+
+
+
+
+    // cannot move the player when active
+    public void LockPlayerMovement()
     {
         rb.velocity = new Vector2(0, 0);
         canMove = false;
+    }
+    public void UnlockPlayerMovement()
+    {
+
     }
 
 

@@ -3,8 +3,9 @@ using System.Collections;
 
 public class EnemyBaseController : MonoBehaviour {
 
-    // a base controller for all enemies. not fully utilized yet but eventually could be useful
+    // a base controller for all enemies
 
+    // set in the inspector to determine where the enemy will spawn
     public bool spawnsAtBottom, spawnsAtRightSide, spawnsAtTop;
 
     [HideInInspector]
@@ -12,7 +13,21 @@ public class EnemyBaseController : MonoBehaviour {
     [HideInInspector]
     public Rigidbody2D playerRb;
 
-	
+	public enum EnemyType
+    {
+        BALLOONCAT,
+        DUMBELL,
+        ROCKETDOG,
+        DUST,
+        SWEATYCLOUD,
+        CIGARETTE,
+        VIRUS,
+        WINGEDCLEANER
+    }
+
+    [HideInInspector]
+    public EnemyType enemyType;
+
 	public virtual void Start () {
 
         rb = GetComponent<Rigidbody2D>();

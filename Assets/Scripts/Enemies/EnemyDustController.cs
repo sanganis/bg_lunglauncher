@@ -16,6 +16,7 @@ public class EnemyDustController : EnemyBaseController {
     public override void Start()
     {
         base.Start();
+        enemyType = EnemyType.DUST;
         StartCoroutine("RandomMovement");
     }
         

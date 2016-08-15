@@ -12,6 +12,7 @@ public class EnemyCatController : EnemyBaseController {
     public override void Start()
     {
         base.Start();
+        enemyType = EnemyType.BALLOONCAT;
         horizontalMovement = Random.Range(-0.5f, 0.5f);
     }
 
