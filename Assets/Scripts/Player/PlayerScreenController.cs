@@ -6,6 +6,7 @@ public class PlayerScreenController : MonoBehaviour {
 
     // the player object, which moves independently from the PlayerScreen    
     public PlayerColliderMovement playerObject;
+
     [HideInInspector]
     public Rigidbody2D rb;    
 
@@ -14,7 +15,8 @@ public class PlayerScreenController : MonoBehaviour {
     bool clickedYet = false;
     float launchSpeedVariable = 0f;
     float initTime;
-    public float maxLaunchSpeed = 100f;               
+    public float maxLaunchSpeed = 100f;
+    public float horizontalLaunchSpeed = 18f;        
     Slider aimStrengthSlider;
 
     // once launched, how much force is applied over how much time at best breathing rate
@@ -84,17 +86,14 @@ public class PlayerScreenController : MonoBehaviour {
         if (Input.GetKey(KeyCode.Space) || Input.GetButton("Fire1"))
         {
             launchSpeedVariable = Mathf.Abs(Mathf.Sin(Time.time - initTime));
-            aimStrengthSlider.value = launchSpeedVariable;
-            //print("I am ready to launch! " + launchSpeedVariable);
+            aimStrengthSlider.value = launchSpeedVariable;            
         }
         if (Input.GetKeyUp(KeyCode.Space) || Input.GetButtonUp("Fire1"))
         {
-
             launchedYet = true;
-            float launchSpeed = launchSpeedVariable * maxLaunchSpeed;
-            gameObject.transform.parent = null;
-            rb.isKinematic = false;
-            rb.velocity = new Vector2(launchSpeed, launchSpeed);
+            float verticalLaunchSpeed = launchSpeedVariable * maxLaunchSpeed;
+            UnlockScreenMovement();
+            rb.velocity = new Vector2(horizontalLaunchSpeed, verticalLaunchSpeed);
             
             StartCoroutine("AdjustClimbToRhythem");
         }

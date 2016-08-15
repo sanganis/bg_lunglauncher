@@ -38,13 +38,18 @@ public class EnemyBaseController : MonoBehaviour {
     {
         if(coll.gameObject.tag == "Boundaries")
         {
-            Destroy(gameObject);
+            DestroyEnemey();
         }
     }
 
     public virtual void Movement()
     {
         
+    }
+
+    public void DestroyEnemey()
+    {
+        Destroy(gameObject);
     }
 
 }

@@ -3,13 +3,32 @@ using System.Collections;
 
 public class PlayerColliderMovement : MonoBehaviour {
 
+    public float defaultMoveSpeed = 2f;
+    [HideInInspector]
     public float moveSpeed = 2f;
-
+    
+    [HideInInspector]
     public Rigidbody2D rb;
+    [HideInInspector]
+    public SpriteRenderer spriteRenderer;
 
     public PlayerScreenController playerScreen;
+    public ScreenShake mainCamera;
+
+    // materials for making the sprite flash when damaged
+    public Material normalMaterial;
+    public Material flashMaterial;
 
     bool canMove = true;
+
+    float justBeenHit;
+    float hitRecovery = 1f;
+
+    void Start()
+    {        
+        rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
 	
 	void Update () {
         if (playerScreen.launchedYet)
@@ -49,9 +68,52 @@ public class PlayerColliderMovement : MonoBehaviour {
             EnemyBaseController enemy = coll.gameObject.GetComponent<EnemyBaseController>();
             if(enemy.enemyType == EnemyBaseController.EnemyType.BALLOONCAT)
             {
-                PlayerFalls(5);
+                PlayerFalls(10);
+                enemy.DestroyEnemey();
+            }            
+            if (enemy.enemyType == EnemyBaseController.EnemyType.DUMBELL)
+            {
+                PlayerFalls(15);
+                enemy.DestroyEnemey();
+            }            
+            if (enemy.enemyType == EnemyBaseController.EnemyType.ROCKETDOG)
+            {
+                PlayerFalls(10);
+                enemy.DestroyEnemey();
+            }            
+            if (enemy.enemyType == EnemyBaseController.EnemyType.VIRUS)
+            {
+                PlayerFalls(13);
+                enemy.DestroyEnemey();
             }
+            if (enemy.enemyType == EnemyBaseController.EnemyType.WINGEDCLEANER)
+            {
+                PlayerFalls(1);                
+            }
+            CallFlashOverDuration(1f);            
         }
+    }
+    
+    void OnTriggerStay2D(Collider2D coll)
+    {
+        EnemyBaseController enemy = coll.gameObject.GetComponent<EnemyBaseController>();
+        if (justBeenHit > hitRecovery + Time.time)
+        {
+            if (enemy.enemyType == EnemyBaseController.EnemyType.CIGARETTE)
+            {
+                PlayerFalls(0.1f);
+            }
+            if (enemy.enemyType == EnemyBaseController.EnemyType.DUST)
+            {
+                PlayerFalls(0.1f);
+            }
+            if (enemy.enemyType == EnemyBaseController.EnemyType.SWEATYCLOUD)
+            {
+                PlayerFalls(0.1f);
+            }
+            justBeenHit = Time.time;
+        }
+        CallFlashOverDuration(0.2f);
     }
 
 
@@ -60,14 +122,14 @@ public class PlayerColliderMovement : MonoBehaviour {
         playerScreen.KnockPlayerDown(ammount);
     }
 
-    void PlayerSlowed()
+    IEnumerator PlayerSlowed(float ammount, float duration)
     {
-
+        moveSpeed = defaultMoveSpeed / 2;
+        yield return new WaitForSeconds(0.5f);
+        moveSpeed = defaultMoveSpeed;
     }
-
-
-
-
+       
+    
     // cannot move the player when active
     public void LockPlayerMovement()
     {
@@ -76,9 +138,34 @@ public class PlayerColliderMovement : MonoBehaviour {
     }
     public void UnlockPlayerMovement()
     {
-
+        canMove = true;
     }
 
 
+
+    // for calling various sprite flashes from other scripts, like powerups
+    public void CallFlashOverDuration(float duration)
+    {                
+        StartCoroutine(CallFlashCoroutine(duration));        
+    }
+    // invokes the flashing, cancels after duration
+    IEnumerator CallFlashCoroutine(float duration)
+    {
+        CancelInvoke("InvokeFlash");        
+        InvokeRepeating("InvokeFlash", 0, 0.01f);
+        yield return new WaitForSeconds(duration);
+        CancelInvoke("InvokeFlash");
+    }
+    // determins how many flashes to run
+    void InvokeFlash()
+    {
+        StartCoroutine("Flash");
+    }
+    IEnumerator Flash()
+    {
+        spriteRenderer.material = flashMaterial;        
+        yield return new WaitForSeconds(0.0002f);
+        spriteRenderer.material = normalMaterial;        
+    }
 
 }
