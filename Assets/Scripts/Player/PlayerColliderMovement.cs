@@ -58,6 +58,7 @@ public class PlayerColliderMovement : MonoBehaviour {
         {
             playerScreen.LockScreenMovement();
             LockPlayerMovement();
+            playerScreen.GameOverFailure();
         }
     }
 
@@ -96,24 +97,28 @@ public class PlayerColliderMovement : MonoBehaviour {
     
     void OnTriggerStay2D(Collider2D coll)
     {
-        EnemyBaseController enemy = coll.gameObject.GetComponent<EnemyBaseController>();
-        if (justBeenHit > hitRecovery + Time.time)
+        if (coll.gameObject.tag == "Enemy")
         {
-            if (enemy.enemyType == EnemyBaseController.EnemyType.CIGARETTE)
+            EnemyBaseController enemy = coll.gameObject.GetComponent<EnemyBaseController>();
+            if (justBeenHit < hitRecovery + Time.time)
             {
-                PlayerFalls(0.1f);
+                if (enemy.enemyType == EnemyBaseController.EnemyType.CIGARETTE)
+                {
+                    PlayerFalls(0.1f);
+                }
+                if (enemy.enemyType == EnemyBaseController.EnemyType.DUST)
+                {
+                    PlayerFalls(0.1f);
+                }
+                if (enemy.enemyType == EnemyBaseController.EnemyType.SWEATYCLOUD)
+                {
+                    PlayerFalls(0.1f);
+                }
+                justBeenHit = Time.time;
+                StartCoroutine("PlayerSlowed");
             }
-            if (enemy.enemyType == EnemyBaseController.EnemyType.DUST)
-            {
-                PlayerFalls(0.1f);
-            }
-            if (enemy.enemyType == EnemyBaseController.EnemyType.SWEATYCLOUD)
-            {
-                PlayerFalls(0.1f);
-            }
-            justBeenHit = Time.time;
+            CallFlashOverDuration(0.2f);
         }
-        CallFlashOverDuration(0.2f);
     }
 
 
@@ -122,7 +127,7 @@ public class PlayerColliderMovement : MonoBehaviour {
         playerScreen.KnockPlayerDown(ammount);
     }
 
-    IEnumerator PlayerSlowed(float ammount, float duration)
+    IEnumerator PlayerSlowed()
     {
         moveSpeed = defaultMoveSpeed / 2;
         yield return new WaitForSeconds(0.5f);

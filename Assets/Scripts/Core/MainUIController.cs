@@ -7,13 +7,28 @@ public class MainUIController : MonoBehaviour {
     public Text height;
     public Text speed;
     public Text breathing;
-    
+    public Text successScore;
+
+    public GameObject mainPanel;
+    public GameObject successPanel;
+    public GameObject failurePanel;
+
+    public Slider timeSlider;
+
+    void Start()
+    {
+        timeSlider.maxValue = GameController.playerScreen.gameLength;
+    }
 	
 	void Update ()
     {
         SetHeightText();
         SetSpeedText();
         SetBreathingText();
+        if (GameController.playerScreen.launchedYet)
+        {
+            SetTimeSlider();
+        }
 	}
 
     void SetHeightText()
@@ -31,6 +46,33 @@ public class MainUIController : MonoBehaviour {
     {
         float roundedSpeed = Mathf.Round(GameController.playerScreen.rb.velocity.magnitude);
         speed.text = roundedSpeed.ToString() + "mps";
+    }
+
+    void SetTimeSlider()
+    {
+        timeSlider.value = Time.time;        
+    }
+
+
+
+    public void SetSuccessPanel()
+    {
+        mainPanel.gameObject.SetActive(false);
+        float roundedHeight = Mathf.Round(GameController.playerScreen.currentHeight);
+        successScore.text = roundedHeight.ToString();     
+        successPanel.gameObject.SetActive(true);
+    }
+
+
+    public void SetFailurePanel()
+    {
+        mainPanel.gameObject.SetActive(false);
+        failurePanel.gameObject.SetActive(true);
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 
 

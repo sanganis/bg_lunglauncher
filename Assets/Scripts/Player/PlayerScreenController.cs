@@ -7,6 +7,9 @@ public class PlayerScreenController : MonoBehaviour {
     // the player object, which moves independently from the PlayerScreen    
     public PlayerColliderMovement playerObject;
 
+    // how many seconds the game should last for
+    public float gameLength = 300f;
+
     [HideInInspector]
     public Rigidbody2D rb;    
 
@@ -30,7 +33,10 @@ public class PlayerScreenController : MonoBehaviour {
     public float currentHeight;
 
     // ultimately to be determined by PEP
-    public float currentBreathingEfficiency = 1f;    
+    public float currentBreathingEfficiency = 1f;
+
+    [HideInInspector]
+    public bool gameOver;
 
     void Start()
     {
@@ -48,7 +54,14 @@ public class PlayerScreenController : MonoBehaviour {
         {
             ControlClimbRate();
             currentHeight = transform.position.y;            
-        }                
+        }
+        if (!gameOver)
+        {
+            if(Time.time > gameLength)
+            {
+                GameOverSuccess();
+            }
+        }   
         SetCurrentBrathingEfficiency();        
     }
 
@@ -138,14 +151,35 @@ public class PlayerScreenController : MonoBehaviour {
     public void KnockPlayerDown(float ammount)
     {
         Vector2 dir = new Vector2(rb.velocity.x, -ammount);
-        rb.velocity = dir;
-        FlashDamage();
+        rb.velocity = dir;        
     }
     
-    void FlashDamage()
-    {
 
+    public void GameOverSuccess()
+    {
+        GameController.mainUIController.SetSuccessPanel();
+        playerObject.LockPlayerMovement();
+        gameOver = true;
+        InvokeRepeating("KillAllEnemies", 0, 0.1f);
     }
 
+    public void GameOverFailure()
+    {
+        GameController.mainUIController.SetFailurePanel();
+        playerObject.LockPlayerMovement();
+        gameOver = true;
+        InvokeRepeating("KillAllEnemies", 0, 0.1f);
+    }
+
+    // for getting rid of existing enemies, for instance when the game is over
+    public void KillAllEnemies()
+    {
+        EnemyBaseController[] currentEnemies;
+        currentEnemies = Object.FindObjectsOfType<EnemyBaseController>();
+        for (int i = 0; i < currentEnemies.Length; i++)
+        {
+            currentEnemies[i].DestroyEnemey();
+        }
+    }
 
 }
