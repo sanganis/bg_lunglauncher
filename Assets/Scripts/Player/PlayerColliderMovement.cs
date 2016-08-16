@@ -13,7 +13,8 @@ public class PlayerColliderMovement : MonoBehaviour {
     public SpriteRenderer spriteRenderer;
 
     public PlayerScreenController playerScreen;
-    public ScreenShake mainCamera;
+    public Camera mainCamera;
+    public RectTransform UITransform;
 
     // materials for making the sprite flash when damaged
     public Material normalMaterial;
@@ -47,10 +48,36 @@ public class PlayerColliderMovement : MonoBehaviour {
     void Move()
     {
         Vector3 target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector3 dir = (target - transform.position).normalized;
-        //rb.velocity = dir * moveSpeed; 
-        rb.velocity = new Vector2((dir.x * moveSpeed) + playerScreen.rb.velocity.x, (dir.y * moveSpeed) + playerScreen.rb.velocity.y);       
+        Vector3 dir = (target - transform.position).normalized;        
+        rb.velocity = new Vector2((dir.x * moveSpeed) + playerScreen.rb.velocity.x, (dir.y * moveSpeed) + playerScreen.rb.velocity.y);
     }
+
+    /*
+    void KeepPlayerWithinScreen()
+    {
+        Vector2 playerScreenPos = mainCamera.WorldToScreenPoint(transform.position);
+        Vector2 playerAdjustedPos = transform.position;
+
+        float halfScreenWidth = UITransform.sizeDelta.x / 2;
+        float halfScreenHeight = UITransform.sizeDelta.y / 2;
+
+        if (playerScreenPos.x > halfScreenWidth)
+        {            
+            transform.position = new Vector2(playerScreenPos.x, transform.position.y);
+        }
+        if (transform.position.x < -Screen.width)
+        {
+            transform.position = new Vector2(-Screen.width, transform.position.y);
+        }
+        if (transform.position.y > Screen.height)
+        {
+            transform.position = new Vector2(transform.position.x, Screen.height);
+        }
+        if (transform.position.y < -Screen.height)
+        {
+            transform.position = new Vector2(transform.position.x, -Screen.height);
+        }
+    }*/
 
     void OnCollisionEnter2D(Collision2D coll)
     {
