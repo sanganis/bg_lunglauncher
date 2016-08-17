@@ -5,15 +5,17 @@ using UnityEngine.UI;
 public class PlayerScreenController : MonoBehaviour {
 
     // the player object, which moves independently from the PlayerScreen    
-    public PlayerColliderMovement playerObject;
+    public PlayerObjectController playerObject;
 
     // how many seconds the game should last for
     public float gameLength = 300f;
 
     [HideInInspector]
-    public Rigidbody2D rb;    
+    public Rigidbody2D rb;
+    public AudioSource source; 
 
     // launching variables
+    [HideInInspector]
     public bool launchedYet = false;
     bool clickedYet = false;
     float launchSpeedVariable = 0f;
@@ -29,13 +31,19 @@ public class PlayerScreenController : MonoBehaviour {
     float climbForce = 2f;
 
     public float maxAscendSpeed = 30f;
-    public float maxDescendSpeed = -10f;
+    public float maxDescendSpeed = -20f;
 
     // updated for calculating score
+    [HideInInspector]
     public float currentHeight;
 
     // ultimately to be determined by PEP
+    [HideInInspector]
     public float currentBreathingEfficiency = 1f;
+
+    public AudioClip launchSound;
+    public AudioClip hitEnemySound;
+    public AudioClip powerupSound;
 
     [HideInInspector]
     public bool gameOver;
@@ -101,8 +109,7 @@ public class PlayerScreenController : MonoBehaviour {
         {
             launchSpeedVariable = Mathf.Abs(Mathf.Sin(Time.time - initTime));
             aimStrengthSlider.value = launchSpeedVariable;    
-            float barrelAngle = launchSpeedVariable * 45;
-            Debug.Log("Launch speed angle " + barrelAngle);
+            float barrelAngle = launchSpeedVariable * 45;            
             cannonBarrel.eulerAngles = new Vector3(0, 0, barrelAngle);
         }
         if (Input.GetKeyUp(KeyCode.Space) || Input.GetButtonUp("Fire1"))
@@ -111,7 +118,7 @@ public class PlayerScreenController : MonoBehaviour {
             float verticalLaunchSpeed = launchSpeedVariable * maxLaunchSpeed;
             UnlockScreenMovement();
             rb.velocity = new Vector2(horizontalLaunchSpeed, verticalLaunchSpeed);
-            
+            source.PlayOneShot(launchSound);
             StartCoroutine("AdjustClimbToRhythem");
         }
     }
@@ -154,7 +161,7 @@ public class PlayerScreenController : MonoBehaviour {
 
     public void KnockPlayerDown(float ammount)
     {
-        Vector2 dir = new Vector2(rb.velocity.x, -ammount);
+        Vector2 dir = new Vector2(rb.velocity.x, rb.velocity.y -ammount);
         rb.velocity = dir;        
     }
     
@@ -162,6 +169,7 @@ public class PlayerScreenController : MonoBehaviour {
     public void GameOverSuccess()
     {
         GameController.mainUIController.SetSuccessPanel();
+        GameController.musicController.PlayVictoryJingle();
         playerObject.LockPlayerMovement();
         gameOver = true;
         InvokeRepeating("KillAllEnemies", 0, 0.1f);
@@ -170,6 +178,7 @@ public class PlayerScreenController : MonoBehaviour {
     public void GameOverFailure()
     {
         GameController.mainUIController.SetFailurePanel();
+        GameController.musicController.PlayFailureJingle();
         playerObject.LockPlayerMovement();
         gameOver = true;
         InvokeRepeating("KillAllEnemies", 0, 0.1f);
@@ -184,6 +193,15 @@ public class PlayerScreenController : MonoBehaviour {
         {
             currentEnemies[i].DestroyEnemey();
         }
+    }
+
+    public void PlayEnemyHitSound()
+    {
+        source.PlayOneShot(hitEnemySound);
+    }
+    public void PlayPowerupSound()
+    {
+        source.PlayOneShot(powerupSound);
     }
 
 }

@@ -1,17 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerColliderMovement : MonoBehaviour {
+public class PlayerObjectController : MonoBehaviour {
 
+    // movement variables
     public float defaultMoveSpeed = 2f;
     [HideInInspector]
     public float moveSpeed = 2f;
-    
+    public float stayInsideScreenBy = 10f;
+
+    // components
     [HideInInspector]
     public Rigidbody2D rb;
     [HideInInspector]
-    public SpriteRenderer spriteRenderer;
-
+    public SpriteRenderer spriteRenderer;    
     public PlayerScreenController playerScreen;
     public Camera mainCamera;
     public RectTransform UITransform;
@@ -20,12 +22,10 @@ public class PlayerColliderMovement : MonoBehaviour {
     public Material normalMaterial;
     public Material flashMaterial;
 
+    // util veriables
     bool canMove = true;
-
     float justBeenHit;
-    float hitRecovery = 1f;
-
-    public float stayInsideScreenBy = 10f;
+    float hitRecovery = 1f;    
 
     void Start()
     {        
@@ -124,6 +124,7 @@ public class PlayerColliderMovement : MonoBehaviour {
             {
                 PlayerFalls(1);                
             }
+            playerScreen.PlayEnemyHitSound();
             CallFlashOverDuration(1f);            
         }
     }
@@ -133,20 +134,21 @@ public class PlayerColliderMovement : MonoBehaviour {
         if (coll.gameObject.tag == "Enemy")
         {
             EnemyBaseController enemy = coll.gameObject.GetComponent<EnemyBaseController>();
-            if (justBeenHit < hitRecovery + Time.time)
+            if (justBeenHit + hitRecovery < Time.time)
             {
                 if (enemy.enemyType == EnemyBaseController.EnemyType.CIGARETTE)
                 {
-                    PlayerFalls(0.1f);
+                    PlayerFalls(1f);
                 }
                 if (enemy.enemyType == EnemyBaseController.EnemyType.DUST)
                 {
-                    PlayerFalls(0.1f);
+                    PlayerFalls(1f);
                 }
                 if (enemy.enemyType == EnemyBaseController.EnemyType.SWEATYCLOUD)
                 {
-                    PlayerFalls(0.1f);
+                    PlayerFalls(1f);
                 }
+                playerScreen.PlayEnemyHitSound();
                 justBeenHit = Time.time;
                 StartCoroutine("PlayerSlowed");
             }
