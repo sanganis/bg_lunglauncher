@@ -25,6 +25,8 @@ public class PlayerColliderMovement : MonoBehaviour {
     float justBeenHit;
     float hitRecovery = 1f;
 
+    public float stayInsideScreenBy = 10f;
+
     void Start()
     {        
         rb = GetComponent<Rigidbody2D>();
@@ -37,47 +39,51 @@ public class PlayerColliderMovement : MonoBehaviour {
             if (Input.GetMouseButton(0) && canMove)
             {
                 Move();
+                KeepPlayerWithinScreen();
             }
             else
             {
                 rb.velocity = new Vector2(playerScreen.rb.velocity.x, playerScreen.rb.velocity.y);
             }
-        }
+        }        
     }
 
     void Move()
     {
         Vector3 target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector3 dir = (target - transform.position).normalized;        
-        rb.velocity = new Vector2((dir.x * moveSpeed) + playerScreen.rb.velocity.x, (dir.y * moveSpeed) + playerScreen.rb.velocity.y);
+        Vector3 dir = (target - transform.position).normalized;           
+        rb.velocity = new Vector2((dir.x * moveSpeed) + playerScreen.rb.velocity.x, (dir.y * moveSpeed) + playerScreen.rb.velocity.y);        
     }
 
-    /*
+    // calculates if the player has gone beyond the boundaries of the current screen (so works on any export setting)
+    // then moves the player back to the boundary
     void KeepPlayerWithinScreen()
     {
         Vector2 playerScreenPos = mainCamera.WorldToScreenPoint(transform.position);
-        Vector2 playerAdjustedPos = transform.position;
+        Vector3 playerAdjustedPos = playerScreenPos;           
 
-        float halfScreenWidth = UITransform.sizeDelta.x / 2;
-        float halfScreenHeight = UITransform.sizeDelta.y / 2;
+        float screenWidth = UITransform.sizeDelta.x;
+        float screenHeight = UITransform.sizeDelta.y;
 
-        if (playerScreenPos.x > halfScreenWidth)
+        if (playerScreenPos.x > screenWidth)
         {            
-            transform.position = new Vector2(playerScreenPos.x, transform.position.y);
+            playerAdjustedPos = new Vector2(screenWidth - stayInsideScreenBy, playerAdjustedPos.y);
         }
-        if (transform.position.x < -Screen.width)
+        if (playerScreenPos.x < 0)
         {
-            transform.position = new Vector2(-Screen.width, transform.position.y);
+            playerAdjustedPos = new Vector2(stayInsideScreenBy, playerAdjustedPos.y);
         }
-        if (transform.position.y > Screen.height)
+        if (playerScreenPos.y > screenHeight)
         {
-            transform.position = new Vector2(transform.position.x, Screen.height);
+            playerAdjustedPos = new Vector2(playerAdjustedPos.x, screenHeight - stayInsideScreenBy);
         }
-        if (transform.position.y < -Screen.height)
+        if (playerScreenPos.y < 0)
         {
-            transform.position = new Vector2(transform.position.x, -Screen.height);
-        }
-    }*/
+            playerAdjustedPos = new Vector2(playerAdjustedPos.x, stayInsideScreenBy);
+        }        
+        transform.position = mainCamera.ScreenToWorldPoint(playerAdjustedPos);
+        transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+    }
 
     void OnCollisionEnter2D(Collision2D coll)
     {

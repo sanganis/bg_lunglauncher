@@ -19,8 +19,10 @@ public class PlayerScreenController : MonoBehaviour {
     float launchSpeedVariable = 0f;
     float initTime;
     public float maxLaunchSpeed = 100f;
-    public float horizontalLaunchSpeed = 18f;        
-    Slider aimStrengthSlider;
+    public float horizontalLaunchSpeed = 18f;
+
+    public Slider aimStrengthSlider;
+    public Transform cannonBarrel;
 
     // once launched, how much force is applied over how much time at best breathing rate
     float refreshTime = 0.1f;
@@ -39,8 +41,7 @@ public class PlayerScreenController : MonoBehaviour {
     public bool gameOver;
 
     void Start()
-    {
-        aimStrengthSlider = GameObject.FindGameObjectWithTag("Power Slider").GetComponent<Slider>();
+    {        
         rb = GetComponent<Rigidbody2D>();            
     }
 
@@ -99,7 +100,10 @@ public class PlayerScreenController : MonoBehaviour {
         if (Input.GetKey(KeyCode.Space) || Input.GetButton("Fire1"))
         {
             launchSpeedVariable = Mathf.Abs(Mathf.Sin(Time.time - initTime));
-            aimStrengthSlider.value = launchSpeedVariable;            
+            aimStrengthSlider.value = launchSpeedVariable;    
+            float barrelAngle = launchSpeedVariable * 45;
+            Debug.Log("Launch speed angle " + barrelAngle);
+            cannonBarrel.eulerAngles = new Vector3(0, 0, barrelAngle);
         }
         if (Input.GetKeyUp(KeyCode.Space) || Input.GetButtonUp("Fire1"))
         {

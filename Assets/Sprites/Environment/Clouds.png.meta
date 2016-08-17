@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 67fced0e8d7750a4d8160807e6172c83
-timeCreated: 1471014389
+timeCreated: 1471436269
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -50,7 +50,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 128
+  spritePixelsToUnits: 32
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
   textureType: 8
@@ -63,9 +63,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 2333
-        width: 2684
-        height: 2148
+        y: 651
+        width: 748
+        height: 599
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -75,10 +75,10 @@ TextureImporter:
       name: Clouds_1
       rect:
         serializedVersion: 2
-        x: 2928
-        y: 2346
-        width: 2689
-        height: 2143
+        x: 816
+        y: 654
+        width: 750
+        height: 598
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -88,10 +88,10 @@ TextureImporter:
       name: Clouds_2
       rect:
         serializedVersion: 2
-        x: 5712
-        y: 2333
-        width: 2684
-        height: 2148
+        x: 1592
+        y: 651
+        width: 750
+        height: 599
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -102,9 +102,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 58
-        width: 2684
-        height: 2147
+        y: 16
+        width: 748
+        height: 600
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -114,10 +114,10 @@ TextureImporter:
       name: Clouds_4
       rect:
         serializedVersion: 2
-        x: 2879
-        y: 33
-        width: 2688
-        height: 2147
+        x: 803
+        y: 9
+        width: 749
+        height: 600
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -127,10 +127,10 @@ TextureImporter:
       name: Clouds_5
       rect:
         serializedVersion: 2
-        x: 5774
+        x: 1610
         y: 0
-        width: 2684
-        height: 2143
+        width: 748
+        height: 598
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
