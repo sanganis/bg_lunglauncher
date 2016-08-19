@@ -13,6 +13,8 @@ public class EnemyBaseController : MonoBehaviour {
     [HideInInspector]
     public Rigidbody2D playerRb;
 
+    public GameObject destroyedParticles;
+
 	public enum EnemyType
     {
         BALLOONCAT,
@@ -49,6 +51,7 @@ public class EnemyBaseController : MonoBehaviour {
 
     public void DestroyEnemey()
     {
+        Instantiate(destroyedParticles, transform.position, transform.rotation);
         Destroy(gameObject);
     }
 

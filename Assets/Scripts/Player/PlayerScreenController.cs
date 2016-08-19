@@ -38,8 +38,8 @@ public class PlayerScreenController : MonoBehaviour {
     public float currentHeight;
 
     // ultimately to be determined by PEP
-    [HideInInspector]
-    public float currentBreathingEfficiency = 1f;
+    
+    public float currentBreathingEfficiency = 0.5f;
 
     public AudioClip launchSound;
     public AudioClip hitEnemySound;
@@ -47,6 +47,7 @@ public class PlayerScreenController : MonoBehaviour {
 
     [HideInInspector]
     public bool gameOver;
+       
 
     void Start()
     {        
@@ -128,19 +129,28 @@ public class PlayerScreenController : MonoBehaviour {
     {
         if (Input.GetKeyDown("up"))
         {
-            currentBreathingEfficiency += 0.1f;
-            if(currentBreathingEfficiency > 1f)
-            {
-                currentBreathingEfficiency = 1f;
-            }
+            BreathingEfficiencyUp();
         }
         if (Input.GetKeyDown("down"))
         {
-            currentBreathingEfficiency -= 0.1f;
-            if (currentBreathingEfficiency < 0f)
-            {
-                currentBreathingEfficiency = 0f;
-            }
+            BreathingEfficiencyDown();
+        }
+    }
+
+    public void BreathingEfficiencyUp()
+    {
+        currentBreathingEfficiency += 0.1f;
+        if (currentBreathingEfficiency > 1f)
+        {
+            currentBreathingEfficiency = 1f;
+        }
+    }
+    public void BreathingEfficiencyDown()
+    {
+        currentBreathingEfficiency -= 0.1f;
+        if (currentBreathingEfficiency < 0f)
+        {
+            currentBreathingEfficiency = 0f;
         }
     }
     
@@ -159,13 +169,29 @@ public class PlayerScreenController : MonoBehaviour {
         rb.isKinematic = false;
     }
 
+    public void BumpPlayerUp(float ammount)
+    {
+        Vector2 dir = new Vector2(rb.velocity.x, rb.velocity.y + ammount);
+        rb.velocity = dir;
+    }
+
     public void KnockPlayerDown(float ammount)
     {
         Vector2 dir = new Vector2(rb.velocity.x, rb.velocity.y -ammount);
         rb.velocity = dir;        
     }
-    
 
+    public void CallPowerupInvincible(float duration = 5f)
+    {
+        StartCoroutine(PowerUpInvincible(duration));        
+    }
+    IEnumerator PowerUpInvincible(float duration)
+    {
+        playerObject.invincible = true;
+        yield return new WaitForSeconds(duration);
+        playerObject.invincible = false;
+    }
+    
     public void GameOverSuccess()
     {
         GameController.mainUIController.SetSuccessPanel();

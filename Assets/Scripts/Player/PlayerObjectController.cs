@@ -20,12 +20,17 @@ public class PlayerObjectController : MonoBehaviour {
 
     // materials for making the sprite flash when damaged
     public Material normalMaterial;
-    public Material flashMaterial;
+    // flash material is changed according to what the player encounteres
+    Material flashMaterial;
+    public Material enemyFlashMaterial;
+    public Material powerUpFlashMaterial;
 
     // util veriables
     bool canMove = true;
     float justBeenHit;
-    float hitRecovery = 1f;    
+    float hitRecovery = 1f;
+    [HideInInspector]
+    public bool invincible;
 
     void Start()
     {        
@@ -100,33 +105,60 @@ public class PlayerObjectController : MonoBehaviour {
         if(coll.gameObject.tag == "Enemy")
         {
             EnemyBaseController enemy = coll.gameObject.GetComponent<EnemyBaseController>();
-            if(enemy.enemyType == EnemyBaseController.EnemyType.BALLOONCAT)
-            {
-                PlayerFalls(10);
-                enemy.DestroyEnemey();
-            }            
-            if (enemy.enemyType == EnemyBaseController.EnemyType.DUMBELL)
-            {
-                PlayerFalls(15);
-                enemy.DestroyEnemey();
-            }            
-            if (enemy.enemyType == EnemyBaseController.EnemyType.ROCKETDOG)
-            {
-                PlayerFalls(10);
-                enemy.DestroyEnemey();
-            }            
-            if (enemy.enemyType == EnemyBaseController.EnemyType.VIRUS)
-            {
-                PlayerFalls(13);
-                enemy.DestroyEnemey();
+            if (!invincible)
+            {                
+                if (enemy.enemyType == EnemyBaseController.EnemyType.BALLOONCAT)
+                {
+                    PlayerFalls(10);
+                    enemy.DestroyEnemey();
+                }
+                if (enemy.enemyType == EnemyBaseController.EnemyType.DUMBELL)
+                {
+                    PlayerFalls(15);
+                    enemy.DestroyEnemey();
+                }
+                if (enemy.enemyType == EnemyBaseController.EnemyType.ROCKETDOG)
+                {
+                    PlayerFalls(10);
+                    enemy.DestroyEnemey();
+                }
+                if (enemy.enemyType == EnemyBaseController.EnemyType.VIRUS)
+                {
+                    PlayerFalls(13);
+                    enemy.DestroyEnemey();
+                }
+                if (enemy.enemyType == EnemyBaseController.EnemyType.WINGEDCLEANER)
+                {
+                    PlayerFalls(1);
+                }
+                playerScreen.PlayEnemyHitSound();
+                flashMaterial = enemyFlashMaterial;
+                CallFlashOverDuration(1f);
             }
-            if (enemy.enemyType == EnemyBaseController.EnemyType.WINGEDCLEANER)
+            if (invincible)
             {
-                PlayerFalls(1);                
-            }
-            playerScreen.PlayEnemyHitSound();
-            CallFlashOverDuration(1f);            
+                enemy.DestroyEnemey();
+            }     
         }
+        if (coll.gameObject.tag == "Powerup")
+        {
+            PowerupBaseController powerUp = coll.gameObject.GetComponent<PowerupBaseController>();
+            if (powerUp.powerUpType == PowerupBaseController.PowerUpType.AERO)
+            {
+                playerScreen.CallPowerupInvincible();
+                playerScreen.PlayPowerupSound();
+                powerUp.DestroyPowerup();
+            }
+            if (powerUp.powerUpType == PowerupBaseController.PowerUpType.PUFFER)
+            {
+                StartCoroutine(PlayerSpeedUp(5f));
+                playerScreen.BumpPlayerUp(5f);
+                playerScreen.PlayPowerupSound();
+                powerUp.DestroyPowerup();
+            }
+            flashMaterial = powerUpFlashMaterial;
+            CallFlashOverDuration(5f);
+        }         
     }
     
     void OnTriggerStay2D(Collider2D coll)
@@ -134,25 +166,32 @@ public class PlayerObjectController : MonoBehaviour {
         if (coll.gameObject.tag == "Enemy")
         {
             EnemyBaseController enemy = coll.gameObject.GetComponent<EnemyBaseController>();
-            if (justBeenHit + hitRecovery < Time.time)
+            if (!invincible)
             {
-                if (enemy.enemyType == EnemyBaseController.EnemyType.CIGARETTE)
+                if (justBeenHit + hitRecovery < Time.time)
                 {
-                    PlayerFalls(1f);
+                    if (enemy.enemyType == EnemyBaseController.EnemyType.CIGARETTE)
+                    {
+                        PlayerFalls(1f);
+                    }
+                    if (enemy.enemyType == EnemyBaseController.EnemyType.DUST)
+                    {
+                        PlayerFalls(1f);
+                    }
+                    if (enemy.enemyType == EnemyBaseController.EnemyType.SWEATYCLOUD)
+                    {
+                        PlayerFalls(1f);
+                    }
+                    playerScreen.PlayEnemyHitSound();
+                    justBeenHit = Time.time;
+                    StartCoroutine("PlayerSlowed");
                 }
-                if (enemy.enemyType == EnemyBaseController.EnemyType.DUST)
-                {
-                    PlayerFalls(1f);
-                }
-                if (enemy.enemyType == EnemyBaseController.EnemyType.SWEATYCLOUD)
-                {
-                    PlayerFalls(1f);
-                }
-                playerScreen.PlayEnemyHitSound();
-                justBeenHit = Time.time;
-                StartCoroutine("PlayerSlowed");
+                CallFlashOverDuration(0.2f);
             }
-            CallFlashOverDuration(0.2f);
+            if (invincible)
+            {
+                enemy.DestroyEnemey();
+            }
         }
     }
 
@@ -166,6 +205,13 @@ public class PlayerObjectController : MonoBehaviour {
     {
         moveSpeed = defaultMoveSpeed / 2;
         yield return new WaitForSeconds(0.5f);
+        moveSpeed = defaultMoveSpeed;
+    }
+
+    IEnumerator PlayerSpeedUp(float duration)
+    {
+        moveSpeed = defaultMoveSpeed * 2;
+        yield return new WaitForSeconds(duration);
         moveSpeed = defaultMoveSpeed;
     }
        

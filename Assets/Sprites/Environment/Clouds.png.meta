@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 67fced0e8d7750a4d8160807e6172c83
-timeCreated: 1471447509
+timeCreated: 1471452629
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -63,9 +63,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 973
-        width: 1119
-        height: 896
+        y: 1226
+        width: 1410
+        height: 1129
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -75,10 +75,10 @@ TextureImporter:
       name: Clouds_1
       rect:
         serializedVersion: 2
-        x: 1221
-        y: 978
-        width: 1121
-        height: 894
+        x: 1538
+        y: 1233
+        width: 1413
+        height: 1126
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -88,10 +88,10 @@ TextureImporter:
       name: Clouds_2
       rect:
         serializedVersion: 2
-        x: 2382
-        y: 973
-        width: 1121
-        height: 896
+        x: 3001
+        y: 1226
+        width: 1413
+        height: 1129
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -102,9 +102,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 24
-        width: 1119
-        height: 896
+        y: 30
+        width: 1410
+        height: 1129
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -114,10 +114,10 @@ TextureImporter:
       name: Clouds_4
       rect:
         serializedVersion: 2
-        x: 1200
-        y: 14
-        width: 1121
-        height: 895
+        x: 1512
+        y: 17
+        width: 1413
+        height: 1129
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -127,10 +127,10 @@ TextureImporter:
       name: Clouds_5
       rect:
         serializedVersion: 2
-        x: 2408
+        x: 3034
         y: 0
-        width: 1119
-        height: 894
+        width: 1410
+        height: 1126
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

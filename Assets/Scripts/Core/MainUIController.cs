@@ -70,6 +70,16 @@ public class MainUIController : MonoBehaviour {
         failurePanel.gameObject.SetActive(true);
     }
 
+    public void BreathingEfficiencyUp()
+    {
+        GameController.playerScreen.BreathingEfficiencyUp();
+    }
+
+    public void BreathingEfficiencyDown()
+    {
+        GameController.playerScreen.BreathingEfficiencyDown();
+    }
+
     public void Quit()
     {
         Application.Quit();
