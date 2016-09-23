@@ -7,7 +7,7 @@ public class DestroyAfterDistance : MonoBehaviour {
 
    void Update()
     {
-        if (GameController.playerScreen.transform.position.x - transform.position.x > xDistanceFromPlayer)
+        if (PeakFlowGameController.playerScreen.transform.position.x - transform.position.x > xDistanceFromPlayer)
         {
             Destroy(gameObject);
         }
