@@ -9,6 +9,8 @@ public class PlayerScreenController : MonoBehaviour {
 
     // how many seconds the game should last for
     public float gameLength = 300f;
+    // what time the player completed peak flows and launched
+    float startTime;
 
     [HideInInspector]
     public Rigidbody2D rb;
@@ -18,9 +20,9 @@ public class PlayerScreenController : MonoBehaviour {
     [HideInInspector]
     public bool launchedYet = false;
     bool clickedYet = false;
-    float launchSpeedVariable = 0f;
+    float launchSpeedVariable;
     float initTime;
-    public float maxLaunchSpeed = 100f;
+    public float verticalLaunchSpeed = 100f;
     public float horizontalLaunchSpeed = 18f;
 
     public Slider aimStrengthSlider;
@@ -47,7 +49,15 @@ public class PlayerScreenController : MonoBehaviour {
 
     [HideInInspector]
     public bool gameOver;
-       
+
+    // peak flow variables
+    public float minimumPeakFlow = 0.3f;
+    int peakFlowsCompleted = 0;
+    public Slider[] peakFlowSliders;
+    float[] peakFlowResults = new float[3];
+    // gets set by a combination of all 3 peak flow results
+    float peakFlowMultiplier;
+    
 
     void Start()
     {        
@@ -58,7 +68,7 @@ public class PlayerScreenController : MonoBehaviour {
     {
         if (!launchedYet)
         {
-            CheckLaunch();
+            CheckForPeakFlowInput();
         }
         else
         {
@@ -75,6 +85,7 @@ public class PlayerScreenController : MonoBehaviour {
         SetCurrentBrathingEfficiency();        
     }
 
+    // stops the player from climbing faster than a desired rate
     void ControlClimbRate()
     {
         if (rb.velocity.y > maxAscendSpeed)
@@ -88,43 +99,76 @@ public class PlayerScreenController : MonoBehaviour {
     }
 
     // multiplies the force pushing the player up with the current breathing efficiency
-    IEnumerator AdjustClimbToRhythem()
+    IEnumerator AdjustClimbRateToBreathing()
     {
         yield return new WaitForSeconds(refreshTime);
 
         Vector2 verticalSpeed = new Vector2(0, climbForce * ReturnBreathingEfficiency());
         rb.AddForce(verticalSpeed, ForceMode2D.Impulse);
                 
-        StartCoroutine("AdjustClimbToRhythem");
+        StartCoroutine("AdjustClimbRateToBreathing");
     }
-    
 
-    void CheckLaunch()
+    float peakFlowInputDelay = 1f;
+    float lastPeakFlow;
+
+    void CheckForPeakFlowInput()
     {
-        if (!clickedYet && (Input.GetKeyDown(KeyCode.Space)) || Input.GetButtonDown("Fire1"))
+        // needs delay
+
+        if ((Input.GetKeyDown(KeyCode.Space)) || Input.GetButtonDown("Fire1") && Time.time > peakFlowInputDelay + lastPeakFlow)
         {
-            clickedYet = true;
-            initTime = Time.time;
+            float peakFlow = PerformPeakFlowTest();
+            if (peakFlow > minimumPeakFlow)
+            {
+                peakFlowSliders[peakFlowsCompleted].value = peakFlow;
+                peakFlowResults[peakFlowsCompleted] = peakFlow;
+                peakFlowsCompleted++;
+            }
+            else
+            {                
+                GameController.mainUIController.NotifyPeakFlowFailure();           
+            }
+            lastPeakFlow = Time.time;
         }
-        if (Input.GetKey(KeyCode.Space) || Input.GetButton("Fire1"))
+        if(peakFlowsCompleted == 3)
         {
-            launchSpeedVariable = Mathf.Abs(Mathf.Sin(Time.time - initTime));
-            aimStrengthSlider.value = launchSpeedVariable;    
-            float barrelAngle = launchSpeedVariable * 45;            
-            cannonBarrel.eulerAngles = new Vector3(0, 0, barrelAngle);
-        }
-        if (Input.GetKeyUp(KeyCode.Space) || Input.GetButtonUp("Fire1"))
-        {
+            peakFlowMultiplier = peakFlowResults[0] + peakFlowResults[1] + peakFlowResults[2];
+            InvokeRepeating("AngleCannonUp", 0, 0.01f);
+            Invoke("LaunchPlayer", 1f);
             launchedYet = true;
-            float verticalLaunchSpeed = launchSpeedVariable * maxLaunchSpeed;
-            UnlockScreenMovement();
-            rb.velocity = new Vector2(horizontalLaunchSpeed, verticalLaunchSpeed);
-            source.PlayOneShot(launchSound);
-            StartCoroutine("AdjustClimbToRhythem");
         }
     }
 
-       // a temporary method to simulate breathing being better or worse
+    // random result to represent the peak flow results we will get
+    float PerformPeakFlowTest()
+    {
+        return Random.Range(0f, 1f);
+    }
+
+ 
+
+    void AngleCannonUp()
+    {       
+        float barrelAngle = peakFlowMultiplier * 25;        
+        if (cannonBarrel.eulerAngles.z < barrelAngle)
+        {
+            cannonBarrel.eulerAngles = new Vector3(cannonBarrel.eulerAngles.x, cannonBarrel.eulerAngles.y, cannonBarrel.eulerAngles.z + 1f);
+        }       
+    }
+
+    void LaunchPlayer()
+    {
+        CancelInvoke("AngleCannonUp"); 
+        float vertLaunchSpeed = peakFlowMultiplier * verticalLaunchSpeed;
+        float horLaunchSpeed = peakFlowMultiplier * horizontalLaunchSpeed;
+        UnlockScreenMovement();
+        rb.velocity = new Vector2(horLaunchSpeed, vertLaunchSpeed);
+        StartCoroutine("AdjustClimbRateToBreathing");
+        source.PlayOneShot(launchSound);
+    }
+
+    // a temporary method to simulate breathing being better or worse
     void SetCurrentBrathingEfficiency()
     {
         if (Input.GetKeyDown("up"))

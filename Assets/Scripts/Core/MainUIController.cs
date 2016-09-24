@@ -12,6 +12,7 @@ public class MainUIController : MonoBehaviour {
     public GameObject mainPanel;
     public GameObject successPanel;
     public GameObject failurePanel;
+    public GameObject peakFlowFailedPanel;
 
     public Slider timeSlider;
 
@@ -69,6 +70,18 @@ public class MainUIController : MonoBehaviour {
         mainPanel.gameObject.SetActive(false);
         failurePanel.gameObject.SetActive(true);
     }
+
+    public void NotifyPeakFlowFailure()
+    {
+        StartCoroutine("FlashPeakFlowFailedPanel");
+    }
+    IEnumerator FlashPeakFlowFailedPanel()
+    {
+        peakFlowFailedPanel.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        peakFlowFailedPanel.SetActive(false);             
+    }
+
 
     public void BreathingEfficiencyUp()
     {
