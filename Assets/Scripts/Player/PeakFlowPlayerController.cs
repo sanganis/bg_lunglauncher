@@ -16,17 +16,14 @@ public class PeakFlowPlayerController : MonoBehaviour {
     [HideInInspector]
     public bool launchedYet = false;
     bool clickedYet = false;
-    float launchSpeedVariable = 0f;
+    float peakFlowVariable = 0f;
     float initTime;
-    public float maxLaunchSpeed = 100f;
-    public float horizontalLaunchSpeed = 18f;
+    public float verticalLaunchSpeed = 100f;
+    public float horizontalLaunchSpeed = 100f;
 
     public Slider aimStrengthSlider;
     public Transform cannonBarrel;
-
-    // once launched, how much force is applied over how much time at best breathing rate
-    float refreshTime = 0.1f;
-    float climbForce = 2f;
+     
 
     public float maxAscendSpeed = 30f;
     public float maxDescendSpeed = -20f;
@@ -34,15 +31,19 @@ public class PeakFlowPlayerController : MonoBehaviour {
     // updated for calculating score
     [HideInInspector]
     public float currentHeight;
+    public float currendDistance;
     
     public AudioClip launchSound;   
 
     [HideInInspector]
     public bool gameOver;
 
+    Vector3 startPos;
+
 
     void Start()
     {
+        startPos = transform.position;
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -55,6 +56,7 @@ public class PeakFlowPlayerController : MonoBehaviour {
         else
         {            
             currentHeight = transform.position.y;
+            currendDistance = Vector3.Distance(startPos, transform.position);
         }        
     }
 
@@ -79,26 +81,33 @@ public class PeakFlowPlayerController : MonoBehaviour {
         }
         if (Input.GetKey(KeyCode.Space) || Input.GetButton("Fire1") && !launchedYet)
         {
-            AngleCannonUp();
+            peakFlowVariable = CalculatePeakFlow();
+            InvokeRepeating("AngleCannonUp",0,0.01f);            
             Invoke("LaunchPlayer", 1f);
             launchedYet = true;
         }    
     }
 
     void AngleCannonUp()
-    {
-        launchSpeedVariable = CalculatePeakFlow();
-        aimStrengthSlider.value = launchSpeedVariable;
-        float barrelAngle = launchSpeedVariable * 45;
-        cannonBarrel.eulerAngles = new Vector3(0, 0, barrelAngle);
+    {        
+        float barrelAngle = peakFlowVariable * 45;
+        if (cannonBarrel.eulerAngles.z < barrelAngle)
+        {
+            cannonBarrel.eulerAngles = new Vector3(cannonBarrel.eulerAngles.x, cannonBarrel.eulerAngles.y, cannonBarrel.eulerAngles.z + 1f);            
+        }
+        if(aimStrengthSlider.value < peakFlowVariable)
+        {
+            aimStrengthSlider.value += 0.01f;
+        }        
     }
 
     void LaunchPlayer()
     {
-        
-        float verticalLaunchSpeed = launchSpeedVariable * maxLaunchSpeed;
+        CancelInvoke("AngleCannonUp");
+        float vertLaunchSpeed = peakFlowVariable * verticalLaunchSpeed;
+        float horLaunchSpeed = peakFlowVariable * horizontalLaunchSpeed;
         UnlockScreenMovement();
-        rb.velocity = new Vector2(horizontalLaunchSpeed, verticalLaunchSpeed);
+        rb.velocity = new Vector2(horLaunchSpeed, vertLaunchSpeed);
         source.PlayOneShot(launchSound);
     }
 
