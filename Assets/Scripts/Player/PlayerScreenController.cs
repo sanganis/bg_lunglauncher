@@ -99,14 +99,14 @@ public class PlayerScreenController : MonoBehaviour {
     }
 
     // multiplies the force pushing the player up with the current breathing efficiency
-    IEnumerator AdjustClimbToRhythem()
+    IEnumerator AdjustClimbRateToBreathing()
     {
         yield return new WaitForSeconds(refreshTime);
 
         Vector2 verticalSpeed = new Vector2(0, climbForce * ReturnBreathingEfficiency());
         rb.AddForce(verticalSpeed, ForceMode2D.Impulse);
                 
-        StartCoroutine("AdjustClimbToRhythem");
+        StartCoroutine("AdjustClimbRateToBreathing");
     }
 
     float peakFlowInputDelay = 1f;
@@ -164,6 +164,7 @@ public class PlayerScreenController : MonoBehaviour {
         float horLaunchSpeed = peakFlowMultiplier * horizontalLaunchSpeed;
         UnlockScreenMovement();
         rb.velocity = new Vector2(horLaunchSpeed, vertLaunchSpeed);
+        StartCoroutine("AdjustClimbRateToBreathing");
         source.PlayOneShot(launchSound);
     }
 

@@ -78,7 +78,7 @@ public class MainUIController : MonoBehaviour {
     IEnumerator FlashPeakFlowFailedPanel()
     {
         peakFlowFailedPanel.SetActive(true);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         peakFlowFailedPanel.SetActive(false);             
     }
 
