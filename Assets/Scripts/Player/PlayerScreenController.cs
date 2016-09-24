@@ -121,6 +121,7 @@ public class PlayerScreenController : MonoBehaviour {
             float peakFlow = PerformPeakFlowTest();
             if (peakFlow > minimumPeakFlow)
             {
+                PlayerStatisticsManager.Instance.AddPeakFlowResult(peakFlow);
                 peakFlowSliders[peakFlowsCompleted].value = peakFlow;
                 peakFlowResults[peakFlowsCompleted] = peakFlow;
                 peakFlowsCompleted++;
