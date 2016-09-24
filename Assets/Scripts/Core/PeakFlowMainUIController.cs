@@ -7,7 +7,7 @@ public class PeakFlowMainUIController : MonoBehaviour
 
     public Text height;
     public Text speed;
-    public Text distance;    
+    public Text breathing;
     public Text successScore;
 
     public GameObject mainPanel;
@@ -20,8 +20,7 @@ public class PeakFlowMainUIController : MonoBehaviour
     void Update()
     {
         SetHeightText();
-        SetSpeedText();
-        SetDistanceText();    
+        SetSpeedText();        
         if (PeakFlowGameController.playerScreen.launchedYet)
         {
             SetTimeSlider();
@@ -40,12 +39,6 @@ public class PeakFlowMainUIController : MonoBehaviour
         speed.text = roundedSpeed.ToString() + "mps";
     }
 
-    void SetDistanceText()
-    {
-        float roundedDistance = Mathf.Round(PeakFlowGameController.playerScreen.currendDistance);
-        distance.text = roundedDistance.ToString() + "m";
-    }
-
     void SetTimeSlider()
     {
         timeSlider.value = Time.time;
@@ -56,8 +49,8 @@ public class PeakFlowMainUIController : MonoBehaviour
     public void SetSuccessPanel()
     {
         mainPanel.gameObject.SetActive(false);
-        float roundedDistance = Mathf.Round(PeakFlowGameController.playerScreen.currendDistance);
-        successScore.text = roundedDistance.ToString();
+        float roundedHeight = Mathf.Round(PeakFlowGameController.playerScreen.currentHeight);
+        successScore.text = roundedHeight.ToString();
         successPanel.gameObject.SetActive(true);
     }
 

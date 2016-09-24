@@ -20,7 +20,6 @@ public class BackgroundSpawner : MonoBehaviour {
     public float skyXOffset;
     public float skyYOffset;
     public float groundXOffset = 62;
-    public float groundYOffset = -8;
 
     
     void Update()
@@ -71,7 +70,7 @@ public class BackgroundSpawner : MonoBehaviour {
     {        
         if(currentXPos > previousGroundXPos + groundXOffset)
         {
-            Vector3 spawnLoc = new Vector3(currentXPos + groundXOffset, groundYOffset);
+            Vector3 spawnLoc = new Vector3(currentXPos + groundXOffset, -8);
             GameObject newGround;
             newGround = (GameObject)Instantiate(groundTile, spawnLoc, transform.rotation);
             newGround.transform.parent = backgroundTileHolder.transform;

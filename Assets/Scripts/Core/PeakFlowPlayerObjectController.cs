@@ -63,7 +63,6 @@ public class PeakFlowPlayerObjectController : MonoBehaviour
     public void LockPlayerMovement()
     {
         rb.velocity = new Vector2(0, 0);
-        rb.isKinematic = true;
         canMove = false;
     }
     public void UnlockPlayerMovement()
