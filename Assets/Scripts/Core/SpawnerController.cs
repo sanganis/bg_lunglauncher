@@ -4,12 +4,14 @@ using System.Collections.Generic;
 
 public class SpawnerController : MonoBehaviour
 {
-    
+
     public Transform[] allSpawners;
 
     public EnemyBaseController[] allEnemies;
 
     public PowerupBaseController[] allPowerups;
+
+    public GameObject[] allBackgroundObjects;
 
     public GameObject player;
 
@@ -24,6 +26,7 @@ public class SpawnerController : MonoBehaviour
     {
         // waits for a random ammount of time set between spawnTimeMin and spawnTimeMax before calling an enemy spawn
         StartCoroutine("SpawnRandomEnemy");
+        StartCoroutine("SpawnSkyObjects");
     }
 
     void Update()
@@ -34,11 +37,11 @@ public class SpawnerController : MonoBehaviour
 
     void SetSpawnTimeAccordingToHeight()
     {
-        if(currentPlayerHeight <= startSpawningHeight)
+        if (currentPlayerHeight <= startSpawningHeight)
         {
             currentSpawnTime = 0;
         }
-        if(currentPlayerHeight > startSpawningHeight)
+        if (currentPlayerHeight > startSpawningHeight)
         {
             currentSpawnTime = 2f;
         }
@@ -72,9 +75,9 @@ public class SpawnerController : MonoBehaviour
             if (powerupSpawnChance > Random.Range(0f, 1f))
             {
                 Transform newPowerupSpawnLocation = allSpawners[Random.Range(0, allSpawners.Length)];
-                Instantiate(allPowerups[Random.Range(0,allPowerups.Length)], newSpawnLocation.position, newSpawnLocation.rotation);
+                Instantiate(allPowerups[Random.Range(0, allPowerups.Length)], newSpawnLocation.position, newSpawnLocation.rotation);
             }
-        }        
+        }
         StartCoroutine("SpawnRandomEnemy");
     }
 
@@ -119,4 +122,20 @@ public class SpawnerController : MonoBehaviour
         return enemiesToSpawn[Random.Range(0, enemiesToSpawn.Count)];
     }
 
+
+    IEnumerator SpawnSkyObjects()
+    {
+        yield return new WaitForSeconds(Random.Range(0f, 1f));
+        if (currentPlayerHeight > 10)
+        {
+            Transform newSpawnLocation = allSpawners[Random.Range(0, allSpawners.Length)];
+            Instantiate(ChooseRandomBackgroundToSpawn(), newSpawnLocation.position, newSpawnLocation.rotation);
+        }  
+        StartCoroutine("SpawnSkyObjects");
+    }
+
+    GameObject ChooseRandomBackgroundToSpawn()
+    {        
+        return allBackgroundObjects[Random.Range(0, allBackgroundObjects.Length)];
+    }
 }
