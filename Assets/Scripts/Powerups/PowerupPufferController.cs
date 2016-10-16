@@ -12,7 +12,7 @@ public class PowerupPufferController : PowerupBaseController {
     public override void Start()
     {
         base.Start();
-        horizontalMovement = Random.Range(-0.5f, 0.5f);
+        horizontalMovement = directionOfTravelX * 2;
     }
 
 

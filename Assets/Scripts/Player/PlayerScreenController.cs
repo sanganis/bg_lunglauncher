@@ -41,7 +41,7 @@ public class PlayerScreenController : MonoBehaviour {
 
     // ultimately to be determined by PEP
     
-    public float currentBreathingEfficiency = 0.5f;
+    public float currentBreathingEfficiency = 0.7f;
 
     public AudioClip launchSound;
     public AudioClip hitEnemySound;

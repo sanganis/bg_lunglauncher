@@ -24,7 +24,7 @@ public class BackgroundSpawner : MonoBehaviour {
     
     void Update()
     {
-        SpawnSkySegments();
+        //SpawnSkySegments();
         SpawnGroundSegments();
     }
 	
@@ -65,6 +65,7 @@ public class BackgroundSpawner : MonoBehaviour {
             previousYPos = currentYPos;
         }        
     }
+        
 
     void SpawnGroundSegments()
     {        

@@ -37,9 +37,16 @@ public class EnemyVirusController : EnemyBaseController {
 
     // moves at a random x and y direction until stopTime, then waits for waitBeforeMoveTime before resetting
     IEnumerator RandomMovement()
-    {
+    {        
         currentHorizontalMovement = Random.Range(-randomHorizontalMovementMax, randomHorizontalMovementMax);
         currentVerticalMovement = Random.Range(-randomVerticalMovementMax, randomVerticalMovementMax);                
+        yield return new WaitForSeconds(stopTime);
+        currentHorizontalMovement = 0;
+        currentVerticalMovement = 0;
+        yield return new WaitForSeconds(stopTime);
+        UpdateDirectionOfTravel();
+        currentHorizontalMovement = directionOfTravelX * 2;
+        currentHorizontalMovement = directionOfTravelY * 2;
         yield return new WaitForSeconds(stopTime);
         currentHorizontalMovement = 0;
         currentVerticalMovement = 0;

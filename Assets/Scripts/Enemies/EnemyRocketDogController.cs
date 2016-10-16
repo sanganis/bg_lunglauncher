@@ -14,7 +14,7 @@ public class EnemyRocketDogController : EnemyBaseController {
     {
         base.Start();
         enemyType = EnemyType.ROCKETDOG;
-        verticalMovement = Random.Range(-1f, 1f);
+        verticalMovement = directionOfTravelY * 2;
     }
         
     void Update()
