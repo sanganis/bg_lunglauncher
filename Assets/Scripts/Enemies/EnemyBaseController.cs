@@ -15,6 +15,7 @@ public class EnemyBaseController : MonoBehaviour {
     [HideInInspector]
     GameObject lungCharacter;
 
+    // movement stuff, for determining where the player is relative to the enemy
     Vector2 enemyScreenPos;
     Vector2 lungCharPos;
     Vector2 directionOfPlayer;
@@ -22,8 +23,7 @@ public class EnemyBaseController : MonoBehaviour {
     public float directionOfTravelX;
     [HideInInspector]
     public float directionOfTravelY;
-
-    public RectTransform UITransform;
+     
 
     public GameObject destroyedParticles;
     
@@ -47,14 +47,17 @@ public class EnemyBaseController : MonoBehaviour {
 	public virtual void Start () {
         rb = GetComponent<Rigidbody2D>();
         playerRb = GameController.playerScreen.GetComponent<Rigidbody2D>();
-
-        // establish the relative direction of the player based on screen position
         lungCharacter = GameObject.Find("LungCharacter");
+        UpdateDirectionOfTravel();
+    }
+
+    public void UpdateDirectionOfTravel()
+    {
+        // establish the relative direction of the player based on screen position        
         Transform lungTrans = lungCharacter.transform;
         lungCharPos = Camera.main.WorldToScreenPoint(lungTrans.position);
-        enemyScreenPos = Camera.main.WorldToScreenPoint(transform.position);        
+        enemyScreenPos = Camera.main.WorldToScreenPoint(transform.position);
         directionOfPlayer = lungCharPos - enemyScreenPos;
-
         directionOfTravelX = directionOfPlayer.x / Screen.width;
         directionOfTravelY = directionOfPlayer.y / Screen.height;
     }

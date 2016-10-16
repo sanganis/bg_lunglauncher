@@ -14,7 +14,7 @@ public class EnemyWingedCleaner : EnemyBaseController {
     {
         base.Start();
         enemyType = EnemyType.WINGEDCLEANER;
-        verticalMovement = directionOfTravelY;
+        verticalMovement = directionOfTravelY * 2;
     }
 
     void Update()

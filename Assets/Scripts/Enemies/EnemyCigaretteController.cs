@@ -13,7 +13,7 @@ public class EnemyCigaretteController : EnemyBaseController {
     {
         base.Start();
         enemyType = EnemyType.CIGARETTE;
-        horizontalMovement = Random.Range(-2f, 0f);
+        horizontalMovement = directionOfTravelX * 2;
     }
 
 

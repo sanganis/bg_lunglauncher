@@ -37,6 +37,10 @@ public class EnemyDustController : EnemyBaseController {
         currentHorizontalMovement = Random.Range(-randomHorizontalMovementMax, randomHorizontalMovementMax);
         currentVerticalMovement = Random.Range(-randomVerticalMovementMax, randomVerticalMovementMax);        
         yield return new WaitForSeconds(changeDirectionTime);
+        UpdateDirectionOfTravel();
+        currentHorizontalMovement = directionOfTravelX * 2;
+        currentHorizontalMovement = directionOfTravelY * 2;
+        yield return new WaitForSeconds(changeDirectionTime);
         StartCoroutine("RandomMovement");
     }
 

@@ -13,7 +13,7 @@ public class PowerupAeroController : PowerupBaseController {
     public override void Start()
     {
         base.Start();
-        verticalMovement = Random.Range(-1f, 1f);
+        verticalMovement = directionOfTravelY * 2;
     }
 
     void Update()
