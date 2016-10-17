@@ -8,6 +8,8 @@ public class MainUIController : MonoBehaviour {
     public Text speed;
     public Text breathing;
     public Text successScore;
+    public Text enemiesDestroyed;
+    public Text powerupsCollected;
 
     public Image[] lives;
 
@@ -20,7 +22,7 @@ public class MainUIController : MonoBehaviour {
 
     void Start()
     {
-        timeSlider.maxValue = GameController.playerScreen.gameLength;
+        timeSlider.maxValue = GameController.gameController.gameLength;
     }
 	
 	void Update ()
@@ -28,7 +30,7 @@ public class MainUIController : MonoBehaviour {
         SetHeightText();
         SetSpeedText();
         SetBreathingText();
-        if (GameController.playerScreen.launchedYet)
+        if (GameController.gameController.timerStarted)
         {
             SetTimeSlider();
         }
@@ -53,7 +55,8 @@ public class MainUIController : MonoBehaviour {
 
     void SetTimeSlider()
     {
-        timeSlider.value = Time.time;        
+        timeSlider.maxValue = GameController.gameController.gameLength;
+        timeSlider.value = Time.time - GameController.gameController.startTime;        
     }
 
     public void SetLivesNumber()
@@ -68,13 +71,21 @@ public class MainUIController : MonoBehaviour {
         }
     }
 
+    public void SetEnemiesDestroyed()
+    {
+        enemiesDestroyed.text = GameController.gameController.enemiesDestroyed.ToString();
+    }
+
+    public void SetPowerupsCollected()
+    {
+        powerupsCollected.text = GameController.gameController.powerupsCollected.ToString();
+    }
 
 
     public void SetSuccessPanel()
     {
         mainPanel.gameObject.SetActive(false);
-        float roundedHeight = Mathf.Round(GameController.playerScreen.currentHeight);
-        successScore.text = roundedHeight.ToString();     
+        successScore.text = GameController.gameController.CalculateScore().ToString();     
         successPanel.gameObject.SetActive(true);
     }
 

@@ -3,13 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class PlayerScreenController : MonoBehaviour {
-
-     
-    // how many seconds the game should last for
-    public float gameLength = 300f;
-    // what time the player completed peak flows and launched
-    float startTime;
-
+    
     [HideInInspector]
     public Rigidbody2D rb;
     public AudioSource source; 
@@ -45,9 +39,7 @@ public class PlayerScreenController : MonoBehaviour {
     public AudioClip hitEnemySound;
     public AudioClip powerupSound;
 
-    [HideInInspector]
-    public bool gameOver;
-
+    
     // peak flow variables
     public float minimumPeakFlow = 0.3f;
     int peakFlowsCompleted = 0;
@@ -55,7 +47,10 @@ public class PlayerScreenController : MonoBehaviour {
     float[] peakFlowResults = new float[3];
     // gets set by a combination of all 3 peak flow results
     float peakFlowMultiplier;
-    
+
+    float peakFlowInputDelay = 1f;
+    float lastPeakFlow;
+
 
     void Start()
     {        
@@ -73,13 +68,7 @@ public class PlayerScreenController : MonoBehaviour {
             ControlClimbRate();
             currentHeight = transform.position.y;            
         }
-        if (!gameOver)
-        {
-            if(Time.time > gameLength)
-            {
-                GameOverSuccess();
-            }
-        }   
+        
         SetCurrentBrathingEfficiency();        
     }
 
@@ -107,8 +96,7 @@ public class PlayerScreenController : MonoBehaviour {
         StartCoroutine("AdjustClimbRateToBreathing");
     }
 
-    float peakFlowInputDelay = 1f;
-    float lastPeakFlow;
+
 
     void CheckForPeakFlowInput()
     {
@@ -165,6 +153,7 @@ public class PlayerScreenController : MonoBehaviour {
         rb.velocity = new Vector2(horLaunchSpeed, vertLaunchSpeed);
         StartCoroutine("AdjustClimbRateToBreathing");
         source.PlayOneShot(launchSound);
+        GameController.gameController.SetGameTime();
     }
 
     // a temporary method to simulate breathing being better or worse
@@ -227,43 +216,7 @@ public class PlayerScreenController : MonoBehaviour {
         //lungCharacter.invincible = false;
     }
     
-    public void GameOverSuccess()
-    {
-        GameController.mainUIController.SetSuccessPanel();
-        GameController.musicController.PlayVictoryJingle();
-        //lungCharacter.LockPlayerMovement();
-        gameOver = true;
-        InvokeRepeating("KillAllEnemies", 0, 0.1f);
-    }
-
-    public void GameOverHitGround()
-    {
-        GameController.mainUIController.SetFailurePanel();
-        GameController.musicController.PlayFailureJingle();
-        //lungCharacter.LockPlayerMovement();
-        gameOver = true;
-        InvokeRepeating("KillAllEnemies", 0, 0.1f);
-    }
-    public void GameOverOutOfLives()
-    {
-        GameController.mainUIController.SetFailurePanel();
-        GameController.musicController.PlayFailureJingle();
-        //lungCharacter.LockPlayerMovement();
-        gameOver = true;
-        InvokeRepeating("KillAllEnemies", 0, 0.1f);
-    }
-
-
-    // for getting rid of existing enemies, for instance when the game is over
-    public void KillAllEnemies()
-    {
-        EnemyBaseController[] currentEnemies;
-        currentEnemies = Object.FindObjectsOfType<EnemyBaseController>();
-        for (int i = 0; i < currentEnemies.Length; i++)
-        {
-            currentEnemies[i].DestroyEnemy();
-        }
-    }
+    
 
     public void PlayEnemyHitSound()
     {

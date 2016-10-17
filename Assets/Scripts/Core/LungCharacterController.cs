@@ -14,7 +14,7 @@ public class LungCharacterController : MonoBehaviour
         GameController.mainUIController.SetLivesNumber();
         if(currentLives == 0)
         {
-            GameController.playerScreen.GameOverOutOfLives();
+            GameController.gameController.GameOverOutOfLives();
         }
     }
 

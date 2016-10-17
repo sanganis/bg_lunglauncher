@@ -87,12 +87,17 @@ public class EnemyBaseController : MonoBehaviour {
     // called from InputController when the player taps the enemy
     public virtual void TapDamage()
     {
+        GameController.gameController.enemiesDestroyed++;
+        GameController.mainUIController.SetEnemiesDestroyed();
         DestroyEnemy();
     }
 
-    public void DestroyEnemy()
+    public void DestroyEnemy(bool displayParticles = true)
     {
-        Instantiate(destroyedParticles, transform.position, transform.rotation);
+        if (displayParticles)
+        {
+            Instantiate(destroyedParticles, transform.position, transform.rotation);
+        }
         Destroy(gameObject);
     }
        

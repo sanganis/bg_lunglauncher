@@ -96,7 +96,7 @@ public class PlayerObjectController : MonoBehaviour {
         {
             playerScreen.LockScreenMovement();
             LockPlayerMovement();
-            playerScreen.GameOverHitGround();
+            //playerScreen.GameOverHitGround();
         }
     }
 

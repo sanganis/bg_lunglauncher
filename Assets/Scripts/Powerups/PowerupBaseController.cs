@@ -62,19 +62,25 @@ public class PowerupBaseController : MonoBehaviour {
 
     public virtual void HitPlayer()
     {
+        GameController.gameController.powerupsCollected++;
+        GameController.mainUIController.SetPowerupsCollected();
         playerScreen.PlayPowerupSound();
+        DestroyPowerup();
     }
 
     // called from InputController when the player taps the enemy
     public virtual void TapDamage()
     {
-        playerScreen.PlayEnemyHitSound();
+        playerScreen.PlayEnemyHitSound();        
         DestroyPowerup();
     }
 
-    public void DestroyPowerup()
+    public void DestroyPowerup(bool displayParticles = true)
     {
-        Instantiate(destroyedParticles, transform.position, transform.rotation);
+        if (displayParticles)
+        {
+            Instantiate(destroyedParticles, transform.position, transform.rotation);
+        }
         Destroy(gameObject);
     }
 
