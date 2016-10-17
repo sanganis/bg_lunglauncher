@@ -16,6 +16,8 @@ public class PowerupBaseController : MonoBehaviour {
     [HideInInspector]
     public Rigidbody2D rb;
     [HideInInspector]
+    public PlayerScreenController playerScreen;
+    [HideInInspector]
     public Rigidbody2D playerRb;
     [HideInInspector]
     GameObject lungCharacter;
@@ -30,7 +32,8 @@ public class PowerupBaseController : MonoBehaviour {
     public virtual void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        playerRb = GameController.playerScreen.GetComponent<Rigidbody2D>();
+        playerScreen = GameController.playerScreen.GetComponent<PlayerScreenController>();
+        playerRb = playerScreen.GetComponent<Rigidbody2D>();
         lungCharacter = GameObject.Find("LungCharacter");
         UpdateDirectionOfTravel();
     }
@@ -45,7 +48,11 @@ public class PowerupBaseController : MonoBehaviour {
         if (coll.gameObject.tag == "Boundaries")
         {
             DestroyPowerup();
-        }        
+        }
+        if (coll.gameObject.tag == "Player")
+        {
+            HitPlayer();
+        }
     }
 
     public virtual void Movement()
@@ -53,9 +60,22 @@ public class PowerupBaseController : MonoBehaviour {
 
     }
 
+    public virtual void HitPlayer()
+    {
+        playerScreen.PlayPowerupSound();
+    }
+
+    // called from InputController when the player taps the enemy
+    public virtual void TapDamage()
+    {
+        playerScreen.PlayEnemyHitSound();
+        DestroyPowerup();
+    }
+
     public void DestroyPowerup()
     {
         Instantiate(destroyedParticles, transform.position, transform.rotation);
         Destroy(gameObject);
     }
+
 }

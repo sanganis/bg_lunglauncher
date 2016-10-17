@@ -9,6 +9,8 @@ public class MainUIController : MonoBehaviour {
     public Text breathing;
     public Text successScore;
 
+    public Image[] lives;
+
     public GameObject mainPanel;
     public GameObject successPanel;
     public GameObject failurePanel;
@@ -52,6 +54,18 @@ public class MainUIController : MonoBehaviour {
     void SetTimeSlider()
     {
         timeSlider.value = Time.time;        
+    }
+
+    public void SetLivesNumber()
+    {
+        for (int i = 0; i < lives.Length; i++)
+        {
+            lives[i].enabled = false;
+        }
+        for (int i = 0; i < GameController.lungCharacter.currentLives; i++)
+        {
+            lives[i].enabled = true;
+        }
     }
 
 

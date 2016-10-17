@@ -96,7 +96,7 @@ public class PlayerObjectController : MonoBehaviour {
         {
             playerScreen.LockScreenMovement();
             LockPlayerMovement();
-            playerScreen.GameOverFailure();
+            playerScreen.GameOverHitGround();
         }
     }
 
@@ -110,22 +110,22 @@ public class PlayerObjectController : MonoBehaviour {
                 if (enemy.enemyType == EnemyBaseController.EnemyType.BALLOONCAT)
                 {
                     PlayerFalls(10);
-                    enemy.DestroyEnemey();
+                    enemy.DestroyEnemy();
                 }
                 if (enemy.enemyType == EnemyBaseController.EnemyType.DUMBELL)
                 {
                     PlayerFalls(15);
-                    enemy.DestroyEnemey();
+                    enemy.DestroyEnemy();
                 }
                 if (enemy.enemyType == EnemyBaseController.EnemyType.ROCKETDOG)
                 {
                     PlayerFalls(10);
-                    enemy.DestroyEnemey();
+                    enemy.DestroyEnemy();
                 }
                 if (enemy.enemyType == EnemyBaseController.EnemyType.VIRUS)
                 {
                     PlayerFalls(13);
-                    enemy.DestroyEnemey();
+                    enemy.DestroyEnemy();
                 }
                 if (enemy.enemyType == EnemyBaseController.EnemyType.WINGEDCLEANER)
                 {
@@ -137,7 +137,7 @@ public class PlayerObjectController : MonoBehaviour {
             }
             if (invincible)
             {
-                enemy.DestroyEnemey();
+                enemy.DestroyEnemy();
             }     
         }
         if (coll.gameObject.tag == "Powerup")
@@ -152,7 +152,7 @@ public class PlayerObjectController : MonoBehaviour {
             if (powerUp.powerUpType == PowerupBaseController.PowerUpType.PUFFER)
             {
                 StartCoroutine(PlayerSpeedUp(5f));
-                playerScreen.BumpPlayerUp(5f);
+                //playerScreen.BumpPlayerUp(5f);
                 playerScreen.PlayPowerupSound();
                 powerUp.DestroyPowerup();
             }
@@ -190,7 +190,7 @@ public class PlayerObjectController : MonoBehaviour {
             }
             if (invincible)
             {
-                enemy.DestroyEnemey();
+                enemy.DestroyEnemy();
             }
         }
     }
@@ -198,7 +198,7 @@ public class PlayerObjectController : MonoBehaviour {
 
     void PlayerFalls(float ammount)
     {
-        playerScreen.KnockPlayerDown(ammount);
+        //playerScreen.KnockPlayerDown(ammount);
     }
 
     IEnumerator PlayerSlowed()

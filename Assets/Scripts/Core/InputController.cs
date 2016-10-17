@@ -25,7 +25,14 @@ public class InputController : MonoBehaviour
 
             if (hitInformation.collider != null)
             {
-                hitInformation.transform.gameObject.GetComponent<EnemyBaseController>().TapDamage();                
+                if (hitInformation.transform.gameObject.tag == "Enemy")
+                {
+                    hitInformation.transform.gameObject.GetComponent<EnemyBaseController>().TapDamage();
+                }
+                if (hitInformation.transform.gameObject.tag == "Powerup")
+                {
+                    hitInformation.transform.gameObject.GetComponent<PowerupBaseController>().TapDamage();
+                }
             }
         }
     }
@@ -41,6 +48,10 @@ public class InputController : MonoBehaviour
                 if (hit.transform.gameObject.tag == "Enemy")
                 {
                     hit.transform.gameObject.GetComponent<EnemyBaseController>().TapDamage();
+                }
+                if (hit.transform.gameObject.tag == "Powerup")
+                {
+                    hit.transform.gameObject.GetComponent<PowerupBaseController>().TapDamage();
                 }
             }
         }

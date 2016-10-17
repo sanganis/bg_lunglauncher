@@ -13,6 +13,8 @@ public class SpawnerController : MonoBehaviour
 
     public GameObject[] allBackgroundObjects;
 
+    public GameObject backgroundHolder;
+
     public GameObject player;
 
 
@@ -129,7 +131,9 @@ public class SpawnerController : MonoBehaviour
         if (currentPlayerHeight > 10)
         {
             Transform newSpawnLocation = allSpawners[Random.Range(0, allSpawners.Length)];
-            Instantiate(ChooseRandomBackgroundToSpawn(), newSpawnLocation.position, newSpawnLocation.rotation);
+            GameObject backgroundObject;
+            backgroundObject = (GameObject)Instantiate(ChooseRandomBackgroundToSpawn(), newSpawnLocation.position, newSpawnLocation.rotation);
+            backgroundObject.transform.parent = backgroundHolder.transform;
         }  
         StartCoroutine("SpawnSkyObjects");
     }

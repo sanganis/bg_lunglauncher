@@ -4,9 +4,7 @@ using UnityEngine.UI;
 
 public class PlayerScreenController : MonoBehaviour {
 
-    // the player object, which moves independently from the PlayerScreen    
-    public PlayerObjectController playerObject;
-
+     
     // how many seconds the game should last for
     public float gameLength = 300f;
     // what time the player completed peak flows and launched
@@ -182,6 +180,7 @@ public class PlayerScreenController : MonoBehaviour {
         }
     }
 
+    // for debugging different breathing efficiency's
     public void BreathingEfficiencyUp()
     {
         currentBreathingEfficiency += 0.1f;
@@ -199,6 +198,7 @@ public class PlayerScreenController : MonoBehaviour {
         }
     }
     
+    // returns the current breathing efficiency
     float ReturnBreathingEfficiency()
     {                
         return currentBreathingEfficiency;
@@ -214,17 +214,7 @@ public class PlayerScreenController : MonoBehaviour {
         rb.isKinematic = false;
     }
 
-    public void BumpPlayerUp(float ammount)
-    {
-        Vector2 dir = new Vector2(rb.velocity.x, rb.velocity.y + ammount);
-        rb.velocity = dir;
-    }
-
-    public void KnockPlayerDown(float ammount)
-    {
-        Vector2 dir = new Vector2(rb.velocity.x, rb.velocity.y -ammount);
-        rb.velocity = dir;        
-    }
+   
 
     public void CallPowerupInvincible(float duration = 5f)
     {
@@ -232,28 +222,37 @@ public class PlayerScreenController : MonoBehaviour {
     }
     IEnumerator PowerUpInvincible(float duration)
     {
-        playerObject.invincible = true;
+        //lungCharacter.invincible = true;
         yield return new WaitForSeconds(duration);
-        playerObject.invincible = false;
+        //lungCharacter.invincible = false;
     }
     
     public void GameOverSuccess()
     {
         GameController.mainUIController.SetSuccessPanel();
         GameController.musicController.PlayVictoryJingle();
-        playerObject.LockPlayerMovement();
+        //lungCharacter.LockPlayerMovement();
         gameOver = true;
         InvokeRepeating("KillAllEnemies", 0, 0.1f);
     }
 
-    public void GameOverFailure()
+    public void GameOverHitGround()
     {
         GameController.mainUIController.SetFailurePanel();
         GameController.musicController.PlayFailureJingle();
-        playerObject.LockPlayerMovement();
+        //lungCharacter.LockPlayerMovement();
         gameOver = true;
         InvokeRepeating("KillAllEnemies", 0, 0.1f);
     }
+    public void GameOverOutOfLives()
+    {
+        GameController.mainUIController.SetFailurePanel();
+        GameController.musicController.PlayFailureJingle();
+        //lungCharacter.LockPlayerMovement();
+        gameOver = true;
+        InvokeRepeating("KillAllEnemies", 0, 0.1f);
+    }
+
 
     // for getting rid of existing enemies, for instance when the game is over
     public void KillAllEnemies()
@@ -262,7 +261,7 @@ public class PlayerScreenController : MonoBehaviour {
         currentEnemies = Object.FindObjectsOfType<EnemyBaseController>();
         for (int i = 0; i < currentEnemies.Length; i++)
         {
-            currentEnemies[i].DestroyEnemey();
+            currentEnemies[i].DestroyEnemy();
         }
     }
 

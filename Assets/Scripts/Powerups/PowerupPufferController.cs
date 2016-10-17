@@ -21,4 +21,12 @@ public class PowerupPufferController : PowerupBaseController {
         rb.velocity = directionOfTravel * moveSpeed;
         rb.velocity = new Vector2(rb.velocity.x + playerRb.velocity.x, rb.velocity.y + playerRb.velocity.y);        
     }
+
+    public override void HitPlayer()
+    {
+        base.HitPlayer();
+        GameController.lungCharacter.GainLives(1);
+        DestroyPowerup();
+    }
+
 }

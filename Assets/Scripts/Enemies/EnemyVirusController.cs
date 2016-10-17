@@ -43,5 +43,11 @@ public class EnemyVirusController : EnemyBaseController {
         StartCoroutine("RandomMovement");
     }
 
-    
+    public override void HitPlayer()
+    {
+        base.HitPlayer();
+        GameController.lungCharacter.LoseLives(1);
+        DestroyEnemy();
+    }
+
 }

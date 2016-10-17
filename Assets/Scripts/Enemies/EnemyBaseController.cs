@@ -11,11 +11,14 @@ public class EnemyBaseController : MonoBehaviour {
     [HideInInspector]
     public Rigidbody2D rb;
     [HideInInspector]
+    public PlayerScreenController playerScreen;
+    [HideInInspector]
     public Rigidbody2D playerRb;
     [HideInInspector]
     GameObject lungCharacter;
 
     // for movement
+    [HideInInspector]
     public Vector2 directionOfTravel;
     public float moveSpeed = 1f;
 
@@ -40,7 +43,8 @@ public class EnemyBaseController : MonoBehaviour {
 
 	public virtual void Start () {
         rb = GetComponent<Rigidbody2D>();
-        playerRb = GameController.playerScreen.GetComponent<Rigidbody2D>();
+        playerScreen = GameController.playerScreen.GetComponent<PlayerScreenController>();
+        playerRb = playerScreen.GetComponent<Rigidbody2D>();
         lungCharacter = GameObject.Find("LungCharacter");
         ChoosePlayerDirection();
     }
@@ -60,9 +64,13 @@ public class EnemyBaseController : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D coll)
     {
-        if(coll.gameObject.tag == "Boundaries")
+        if (coll.gameObject.tag == "Boundaries")
         {
-            DestroyEnemey();
+            DestroyEnemy();
+        }
+        if (coll.gameObject.tag == "Player")
+        {
+            HitPlayer();
         }
     }
 
@@ -71,13 +79,18 @@ public class EnemyBaseController : MonoBehaviour {
         
     }
 
+    public virtual void HitPlayer()
+    {
+        playerScreen.PlayEnemyHitSound();
+    }
+
     // called from InputController when the player taps the enemy
     public virtual void TapDamage()
     {
-        DestroyEnemey();
+        DestroyEnemy();
     }
 
-    public void DestroyEnemey()
+    public void DestroyEnemy()
     {
         Instantiate(destroyedParticles, transform.position, transform.rotation);
         Destroy(gameObject);

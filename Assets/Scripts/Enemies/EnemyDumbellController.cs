@@ -19,4 +19,11 @@ public class EnemyDumbellController : EnemyBaseController {
         enemyType = EnemyType.DUMBELL;
         rb.velocity = new Vector2(horizontalMovement + playerRb.velocity.x, verticalMovement + playerRb.velocity.y);
     }
+
+    public override void HitPlayer()
+    {
+        base.HitPlayer();
+        GameController.lungCharacter.LoseLives(1);
+        DestroyEnemy();
+    }
 }
