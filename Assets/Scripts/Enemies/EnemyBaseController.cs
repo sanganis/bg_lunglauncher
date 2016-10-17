@@ -15,15 +15,9 @@ public class EnemyBaseController : MonoBehaviour {
     [HideInInspector]
     GameObject lungCharacter;
 
-    // movement stuff, for determining where the player is relative to the enemy
-    Vector2 enemyScreenPos;
-    Vector2 lungCharPos;
-    Vector2 directionOfPlayer;
-    [HideInInspector]
-    public float directionOfTravelX;
-    [HideInInspector]
-    public float directionOfTravelY;
-     
+    // for movement
+    public Vector2 directionOfTravel;
+    public float moveSpeed = 1f;
 
     public GameObject destroyedParticles;
     
@@ -48,20 +42,22 @@ public class EnemyBaseController : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
         playerRb = GameController.playerScreen.GetComponent<Rigidbody2D>();
         lungCharacter = GameObject.Find("LungCharacter");
-        UpdateDirectionOfTravel();
+        ChoosePlayerDirection();
     }
 
-    public void UpdateDirectionOfTravel()
+    public void ChoosePlayerDirection()
     {
-        // establish the relative direction of the player based on screen position        
-        Transform lungTrans = lungCharacter.transform;
-        lungCharPos = Camera.main.WorldToScreenPoint(lungTrans.position);
-        enemyScreenPos = Camera.main.WorldToScreenPoint(transform.position);
-        directionOfPlayer = lungCharPos - enemyScreenPos;
-        directionOfTravelX = directionOfPlayer.x / Screen.width;
-        directionOfTravelY = directionOfPlayer.y / Screen.height;
+        directionOfTravel = (lungCharacter.transform.position - transform.position).normalized;
     }
-	
+    public void ChooseRandomDirection()
+    {
+        directionOfTravel = new Vector2(Random.Range(-1, 1), Random.Range(-1, 1));
+    }
+    public void ChooseNoDirection()
+    {
+        directionOfTravel = new Vector2(0, 0);
+    }
+
     void OnTriggerEnter2D(Collider2D coll)
     {
         if(coll.gameObject.tag == "Boundaries")

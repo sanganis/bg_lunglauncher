@@ -19,15 +19,10 @@ public class PowerupBaseController : MonoBehaviour {
     public Rigidbody2D playerRb;
     [HideInInspector]
     GameObject lungCharacter;
-
-    // movement stuff, for determining where the player is relative to the powerup
-    Vector2 enemyScreenPos;
-    Vector2 lungCharPos;
-    Vector2 directionOfPlayer;
-    [HideInInspector]
-    public float directionOfTravelX;
-    [HideInInspector]
-    public float directionOfTravelY;
+    
+    // for movement
+    public Vector2 directionOfTravel;
+    public float moveSpeed = 1f;
 
     public GameObject destroyedParticles;
 
@@ -42,13 +37,7 @@ public class PowerupBaseController : MonoBehaviour {
 
     public void UpdateDirectionOfTravel()
     {
-        // establish the relative direction of the player based on screen position        
-        Transform lungTrans = lungCharacter.transform;
-        lungCharPos = Camera.main.WorldToScreenPoint(lungTrans.position);
-        enemyScreenPos = Camera.main.WorldToScreenPoint(transform.position);
-        directionOfPlayer = lungCharPos - enemyScreenPos;
-        directionOfTravelX = directionOfPlayer.x / Screen.width;
-        directionOfTravelY = directionOfPlayer.y / Screen.height;
+        directionOfTravel = (lungCharacter.transform.position - transform.position).normalized;        
     }
 
     void OnTriggerEnter2D(Collider2D coll)

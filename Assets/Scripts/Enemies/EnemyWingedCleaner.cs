@@ -3,18 +3,11 @@ using System.Collections;
 
 public class EnemyWingedCleaner : EnemyBaseController {
 
-    // x movement speed
-    public float horizontalMovement = -2;
-
-    // temporary y movement speed, which is randomly set on initialization
-    float verticalMovement;
-
-
+   
     public override void Start()
     {
         base.Start();
-        enemyType = EnemyType.WINGEDCLEANER;
-        verticalMovement = directionOfTravelY * 2;
+        enemyType = EnemyType.WINGEDCLEANER;        
     }
 
     void Update()
@@ -25,6 +18,7 @@ public class EnemyWingedCleaner : EnemyBaseController {
     public override void Movement()
     {
         base.Movement();
-        rb.velocity = new Vector2(horizontalMovement + playerRb.velocity.x, verticalMovement + playerRb.velocity.y);
+        rb.velocity = directionOfTravel * moveSpeed;
+        rb.velocity = new Vector2(rb.velocity.x + playerRb.velocity.x, rb.velocity.y + playerRb.velocity.y);
     }
 }

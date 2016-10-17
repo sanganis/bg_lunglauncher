@@ -3,16 +3,10 @@ using System.Collections;
 
 public class PowerupPufferController : PowerupBaseController {
     
-    // y movement speed    
-    public float verticalMovement = 1f;
-
-    // temporary x movement speed, which is randomly set on initialization
-    float horizontalMovement;
 
     public override void Start()
     {
-        base.Start();
-        horizontalMovement = directionOfTravelX * 2;
+        base.Start();        
     }
 
 
@@ -24,6 +18,7 @@ public class PowerupPufferController : PowerupBaseController {
     public override void Movement()
     {
         base.Movement();
-        rb.velocity = new Vector2(horizontalMovement + playerRb.velocity.x, verticalMovement + playerRb.velocity.y);
+        rb.velocity = directionOfTravel * moveSpeed;
+        rb.velocity = new Vector2(rb.velocity.x + playerRb.velocity.x, rb.velocity.y + playerRb.velocity.y);        
     }
 }
