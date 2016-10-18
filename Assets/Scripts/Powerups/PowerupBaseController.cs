@@ -34,8 +34,7 @@ public class PowerupBaseController : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
         playerScreen = GameController.playerScreen.GetComponent<PlayerScreenController>();
         playerRb = playerScreen.GetComponent<Rigidbody2D>();
-        lungCharacter = GameObject.Find("LungCharacter");
-        UpdateDirectionOfTravel();
+        lungCharacter = GameObject.Find("LungCharacter");        
     }
 
     public void UpdateDirectionOfTravel()

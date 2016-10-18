@@ -28,7 +28,8 @@ public class EnemySweatyCloud : EnemyBaseController {
     public override void Movement()
     {
         base.Movement();
-        rb.velocity = new Vector2(currentHorizontalMovement + playerRb.velocity.x, currentVerticalMovement + playerRb.velocity.y);
+        rb.velocity = directionOfTravel * moveSpeed;
+        rb.velocity = new Vector2(rb.velocity.x + playerRb.velocity.x, rb.velocity.y + playerRb.velocity.y);
     }
 
     // randomly chooses an x and y movement speed, then resets after chaingeDirectionTime

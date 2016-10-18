@@ -19,8 +19,9 @@ public class SpawnerController : MonoBehaviour
 
     public GameObject player;
 
+    // the % chance that a powerup will spawn after currentPowerupSpawnTime;
+    public float powerupSpawnChance = 0.5f;
 
-    public float powerupSpawnChance = 0.1f;
     public float startSpawningHeight = 3f;
     public float firstEnemySpawnIncreaseHeight = 100f, secondEnemySpawnIncreaseHeight = 200f, thirdEnemySpawnIncreaseHeight = 300f, fourthEnemySpawnIncreaseHeight = 400f;
     float currentPlayerHeight = 0;

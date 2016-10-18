@@ -20,6 +20,7 @@ public class EnemyCigaretteController : EnemyBaseController {
     public override void Movement()
     {
         base.Movement();
+        ChoosePlayerDirection();
         rb.velocity = directionOfTravel * moveSpeed;
         rb.velocity = new Vector2(rb.velocity.x + playerRb.velocity.x, rb.velocity.y + playerRb.velocity.y);
     }
