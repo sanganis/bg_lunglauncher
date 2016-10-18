@@ -7,7 +7,8 @@ public class EnemyWingedCleaner : EnemyBaseController {
     public override void Start()
     {
         base.Start();
-        enemyType = EnemyType.WINGEDCLEANER;        
+        enemyType = EnemyType.WINGEDCLEANER;
+        StartCoroutine("FlapUpAndDown");
     }
 
     void Update()
@@ -19,20 +20,19 @@ public class EnemyWingedCleaner : EnemyBaseController {
     {
         base.Movement();        
         rb.velocity = directionOfTravel * moveSpeed;
-        rb.velocity = new Vector2(rb.velocity.x + playerRb.velocity.x, rb.velocity.y + playerRb.velocity.y);
-        StartCoroutine("FlapUpAndDown");
+        rb.velocity = new Vector2(rb.velocity.x + playerRb.velocity.x, rb.velocity.y + playerRb.velocity.y);        
     }
 
     IEnumerator FlapUpAndDown()
     {
         ChoosePlayerDirection();
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         directionOfTravel = new Vector2 (directionOfTravel.x,directionOfTravel.y + 1);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         ChoosePlayerDirection();
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         directionOfTravel = new Vector2(directionOfTravel.x, directionOfTravel.y - 1);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         StartCoroutine("FlapUpAndDown");
     }
     
