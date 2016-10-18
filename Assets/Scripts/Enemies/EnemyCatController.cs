@@ -24,11 +24,7 @@ public class EnemyCatController : EnemyBaseController {
         rb.velocity = new Vector2(rb.velocity.x + playerRb.velocity.x, rb.velocity.y + playerRb.velocity.y);
     }
 
-    public override void HitPlayer()
-    {
-        base.HitPlayer();        
-        GameController.lungCharacter.LoseLives(1);
-        DestroyEnemy();
-    }
-
+    
 }
+
+

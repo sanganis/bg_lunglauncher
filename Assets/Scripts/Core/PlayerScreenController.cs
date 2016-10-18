@@ -3,17 +3,14 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class PlayerScreenController : MonoBehaviour {
-    
+
     [HideInInspector]
     public Rigidbody2D rb;
-    public AudioSource source; 
+    public AudioSource source;
 
     // launching variables
     [HideInInspector]
     public bool launchedYet = false;
-    bool clickedYet = false;
-    float launchSpeedVariable;
-    float initTime;
     public float verticalLaunchSpeed = 100f;
     public float horizontalLaunchSpeed = 18f;
 
@@ -32,14 +29,16 @@ public class PlayerScreenController : MonoBehaviour {
     public float currentHeight;
 
     // ultimately to be determined by PEP
-    
+
     public float currentBreathingEfficiency = 0.7f;
 
     public AudioClip launchSound;
     public AudioClip hitEnemySound;
+    public AudioClip destroyEnemySound;
+    public AudioClip playerHurtSound;
     public AudioClip powerupSound;
 
-    
+
     // peak flow variables
     public float minimumPeakFlow = 0.3f;
     int peakFlowsCompleted = 0;
@@ -53,8 +52,8 @@ public class PlayerScreenController : MonoBehaviour {
 
 
     void Start()
-    {        
-        rb = GetComponent<Rigidbody2D>();            
+    {
+        rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
@@ -66,10 +65,10 @@ public class PlayerScreenController : MonoBehaviour {
         else
         {
             ControlClimbRate();
-            currentHeight = transform.position.y;            
+            currentHeight = transform.position.y;
         }
-        
-        SetCurrentBrathingEfficiency();        
+
+        SetCurrentBrathingEfficiency();
     }
 
     // stops the player from climbing faster than a desired rate
@@ -92,7 +91,7 @@ public class PlayerScreenController : MonoBehaviour {
 
         Vector2 verticalSpeed = new Vector2(0, climbForce * ReturnBreathingEfficiency());
         rb.AddForce(verticalSpeed, ForceMode2D.Impulse);
-                
+
         StartCoroutine("AdjustClimbRateToBreathing");
     }
 
@@ -113,12 +112,12 @@ public class PlayerScreenController : MonoBehaviour {
                 peakFlowsCompleted++;
             }
             else
-            {                
-                GameController.mainUIController.NotifyPeakFlowFailure();           
+            {
+                GameController.mainUIController.NotifyPeakFlowFailure();
             }
             lastPeakFlow = Time.time;
         }
-        if(peakFlowsCompleted == 3)
+        if (peakFlowsCompleted == 3)
         {
             peakFlowMultiplier = peakFlowResults[0] + peakFlowResults[1] + peakFlowResults[2];
             InvokeRepeating("AngleCannonUp", 0, 0.01f);
@@ -133,20 +132,20 @@ public class PlayerScreenController : MonoBehaviour {
         return Random.Range(0f, 1f);
     }
 
- 
+
 
     void AngleCannonUp()
-    {       
-        float barrelAngle = peakFlowMultiplier * 25;        
+    {
+        float barrelAngle = peakFlowMultiplier * 25;
         if (cannonBarrel.eulerAngles.z < barrelAngle)
         {
             cannonBarrel.eulerAngles = new Vector3(cannonBarrel.eulerAngles.x, cannonBarrel.eulerAngles.y, cannonBarrel.eulerAngles.z + 1f);
-        }       
+        }
     }
 
     void LaunchPlayer()
     {
-        CancelInvoke("AngleCannonUp"); 
+        CancelInvoke("AngleCannonUp");
         float vertLaunchSpeed = peakFlowMultiplier * verticalLaunchSpeed;
         float horLaunchSpeed = peakFlowMultiplier * horizontalLaunchSpeed;
         UnlockScreenMovement();
@@ -186,12 +185,12 @@ public class PlayerScreenController : MonoBehaviour {
             currentBreathingEfficiency = 0f;
         }
     }
-    
+
     // returns the current breathing efficiency
     float ReturnBreathingEfficiency()
-    {                
+    {
         return currentBreathingEfficiency;
-    }    
+    }
 
     // stops the PlayerScreen from being able to move
     public void LockScreenMovement()
@@ -203,11 +202,11 @@ public class PlayerScreenController : MonoBehaviour {
         rb.isKinematic = false;
     }
 
-   
+
 
     public void CallPowerupInvincible(float duration = 5f)
     {
-        StartCoroutine(PowerUpInvincible(duration));        
+        StartCoroutine(PowerUpInvincible(duration));
     }
     IEnumerator PowerUpInvincible(float duration)
     {
@@ -215,16 +214,25 @@ public class PlayerScreenController : MonoBehaviour {
         yield return new WaitForSeconds(duration);
         //lungCharacter.invincible = false;
     }
-    
-    
+
+
 
     public void PlayEnemyHitSound()
     {
         source.PlayOneShot(hitEnemySound);
     }
+    public void PlayEnemyDestroyedSound()
+    {
+        source.PlayOneShot(destroyEnemySound);
+    }
+    public void PlayPlayerHurtSound()
+    {
+        source.PlayOneShot(playerHurtSound);
+    }
     public void PlayPowerupSound()
     {
         source.PlayOneShot(powerupSound);
     }
-
 }
+
+   

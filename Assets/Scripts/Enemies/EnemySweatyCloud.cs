@@ -8,11 +8,7 @@ public class EnemySweatyCloud : EnemyBaseController {
     public float randomVerticalMovementMax = 0.5f;
     // how long it moves for before random movement is reset
     public float changeDirectionTime = 10f;
-
-    // temporary variables, used to set the random movement
-    float currentHorizontalMovement;
-    float currentVerticalMovement;
-
+    
     public override void Start()
     {
         base.Start();
@@ -42,10 +38,5 @@ public class EnemySweatyCloud : EnemyBaseController {
         StartCoroutine("RandomMovement");
     }
 
-    public override void HitPlayer()
-    {
-        base.HitPlayer();
-        GameController.lungCharacter.LoseLives(1);
-        DestroyEnemy();
-    }
+    
 }

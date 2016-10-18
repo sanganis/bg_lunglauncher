@@ -35,13 +35,6 @@ public class EnemyWingedCleaner : EnemyBaseController {
         yield return new WaitForSeconds(0.5f);
         StartCoroutine("FlapUpAndDown");
     }
-    
-
-
-    public override void HitPlayer()
-    {
-        base.HitPlayer();
-        GameController.lungCharacter.LoseLives(1);
-        DestroyEnemy();
-    }
+      
 }
+

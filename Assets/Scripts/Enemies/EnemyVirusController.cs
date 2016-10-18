@@ -42,12 +42,6 @@ public class EnemyVirusController : EnemyBaseController {
         yield return new WaitForSeconds(stopTime);
         StartCoroutine("RandomMovement");
     }
-
-    public override void HitPlayer()
-    {
-        base.HitPlayer();
-        GameController.lungCharacter.LoseLives(1);
-        DestroyEnemy();
-    }
+      
 
 }

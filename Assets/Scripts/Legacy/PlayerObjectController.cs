@@ -131,7 +131,7 @@ public class PlayerObjectController : MonoBehaviour {
                 {
                     PlayerFalls(1);
                 }
-                playerScreen.PlayEnemyHitSound();
+                playerScreen.PlayEnemyDestroyedSound();
                 flashMaterial = enemyFlashMaterial;
                 CallFlashOverDuration(1f);
             }
@@ -182,7 +182,7 @@ public class PlayerObjectController : MonoBehaviour {
                     {
                         PlayerFalls(1f);
                     }
-                    playerScreen.PlayEnemyHitSound();
+                    playerScreen.PlayEnemyDestroyedSound();
                     justBeenHit = Time.time;
                     StartCoroutine("PlayerSlowed");
                 }

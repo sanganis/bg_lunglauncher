@@ -8,11 +8,7 @@ public class EnemyDustController : EnemyBaseController {
     public float randomVerticalMovementMax = 1f;
     // how long it moves for before random movement is reset
     public float changeDirectionTime = 1f;
-
-    // temporary variables, used to set the random movement
-    float currentHorizontalMovement;
-    float currentVerticalMovement;
-
+       
     public override void Start()
     {
         base.Start();
@@ -41,12 +37,6 @@ public class EnemyDustController : EnemyBaseController {
         yield return new WaitForSeconds(changeDirectionTime);
         StartCoroutine("RandomMovement");
     }
-
-    public override void HitPlayer()
-    {
-        base.HitPlayer();
-        GameController.lungCharacter.LoseLives(1);
-        DestroyEnemy();
-    }
+      
 
 }

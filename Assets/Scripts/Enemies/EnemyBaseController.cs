@@ -5,6 +5,8 @@ public class EnemyBaseController : MonoBehaviour {
 
     // a base controller for all enemies
 
+    public int hitPoints = 1;
+
     // set in the inspector to determine where the enemy will spawn
     public bool spawnsAtBottom, spawnsAtRightSide, spawnsAtTop;
 
@@ -22,6 +24,9 @@ public class EnemyBaseController : MonoBehaviour {
     public Vector2 directionOfTravel;
     public float moveSpeed = 1f;
 
+    public int damageToPlayer = 1;
+
+    public GameObject damageParticles;
     public GameObject destroyedParticles;
     
 
@@ -81,15 +86,36 @@ public class EnemyBaseController : MonoBehaviour {
 
     public virtual void HitPlayer()
     {
-        playerScreen.PlayEnemyHitSound();
+        playerScreen.PlayPlayerHurtSound();        
+        if (!GameController.lungCharacter.invincible)
+        {
+            GameController.lungCharacter.LoseLives(damageToPlayer);
+            DestroyEnemy();
+        }
+        else
+        {
+            GameController.gameController.enemiesDestroyed++;
+            GameController.mainUIController.SetEnemiesDestroyed();
+            DestroyEnemy();
+        }
     }
 
     // called from InputController when the player taps the enemy
     public virtual void TapDamage()
     {
-        GameController.gameController.enemiesDestroyed++;
-        GameController.mainUIController.SetEnemiesDestroyed();
-        DestroyEnemy();
+        hitPoints--;
+        if(hitPoints > 0)
+        {
+            Instantiate(damageParticles, transform.position, transform.rotation);
+            GameController.playerScreen.PlayEnemyHitSound();
+        }
+        if (hitPoints == 0)
+        {
+            GameController.gameController.enemiesDestroyed++;
+            GameController.mainUIController.SetEnemiesDestroyed();
+            GameController.playerScreen.PlayEnemyDestroyedSound();
+            DestroyEnemy();
+        }
     }
 
     public void DestroyEnemy(bool displayParticles = true)

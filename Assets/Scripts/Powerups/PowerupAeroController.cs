@@ -3,6 +3,7 @@ using System.Collections;
 
 public class PowerupAeroController : PowerupBaseController {
 
+    public int livesGiven = 1;
   
     public override void Start()
     {
@@ -25,7 +26,7 @@ public class PowerupAeroController : PowerupBaseController {
     public override void HitPlayer()
     {
         base.HitPlayer();
-        GameController.lungCharacter.GainLives(1);
+        GameController.lungCharacter.GainLives(livesGiven);
         DestroyPowerup();
     }
 }

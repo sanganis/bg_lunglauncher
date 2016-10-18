@@ -2,7 +2,8 @@
 using System.Collections;
 
 public class PowerupPufferController : PowerupBaseController {
-    
+
+    public float invincibleDuration = 5f;
 
     public override void Start()
     {
@@ -26,7 +27,7 @@ public class PowerupPufferController : PowerupBaseController {
     public override void HitPlayer()
     {
         base.HitPlayer();
-        GameController.lungCharacter.GainLives(1);
+        GameController.lungCharacter.SetInvincible(invincibleDuration);
         DestroyPowerup();
     }
 

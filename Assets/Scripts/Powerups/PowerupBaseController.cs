@@ -70,7 +70,7 @@ public class PowerupBaseController : MonoBehaviour {
     // called from InputController when the player taps the enemy
     public virtual void TapDamage()
     {
-        playerScreen.PlayEnemyHitSound();        
+        playerScreen.PlayPlayerHurtSound();        
         DestroyPowerup();
     }
 
