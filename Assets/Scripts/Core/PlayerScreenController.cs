@@ -37,6 +37,7 @@ public class PlayerScreenController : MonoBehaviour {
     public AudioClip destroyEnemySound;
     public AudioClip playerHurtSound;
     public AudioClip powerupSound;
+    public AudioClip invincibleSound;
 
 
     // peak flow variables
@@ -232,6 +233,10 @@ public class PlayerScreenController : MonoBehaviour {
     public void PlayPowerupSound()
     {
         source.PlayOneShot(powerupSound);
+    }
+    public void PlayInvinbicbleSound()
+    {
+        source.PlayOneShot(invincibleSound);
     }
 }
 

@@ -54,6 +54,7 @@ public class LungCharacterController : MonoBehaviour
     public void SetInvincible(float duration)
     {
         InvincibleOn();
+        InvokeRepeating("PlayInvincibleSound", 0, 1f);
         flashMaterial = powerUpFlashMaterial;
         CallFlashOverDuration(duration);
         Invoke("InvincibleOff",duration);
@@ -65,6 +66,11 @@ public class LungCharacterController : MonoBehaviour
     void InvincibleOff()
     {
         invincible = false;
+        CancelInvoke("PlayInvincibleSound");
+    }
+    void PlayInvincibleSound()
+    {
+        GameController.playerScreen.PlayInvinbicbleSound();
     }
 
 

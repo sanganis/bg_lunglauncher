@@ -8,8 +8,7 @@ public class BackgroundColorChange : MonoBehaviour
 
     Color startingColor;
 
-    float height = 90f;
-
+    
     void Start()
     {
         startingColor = Camera.main.backgroundColor;
@@ -17,10 +16,9 @@ public class BackgroundColorChange : MonoBehaviour
 
     void Update()
     {
-        if (playerScreen.currentHeight > height + 20)
+        if (playerScreen.currentHeight > GameController.spawnerController.spawnStarsHeight)
         {
-            Camera.main.backgroundColor *= 0.99f;
-            height = playerScreen.currentHeight;
+            Camera.main.backgroundColor *= 0.99f;            
         }
     }
 }

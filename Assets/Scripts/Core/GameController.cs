@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour {
     public static LungCharacterController lungCharacter;
     public static MainUIController mainUIController;
     public static MusicController musicController;
+    public static SpawnerController spawnerController;
 
     // score variables
     public int enemiesDestroyed;
@@ -35,6 +36,7 @@ public class GameController : MonoBehaviour {
         lungCharacter = GameObject.Find("LungCharacter").GetComponent<LungCharacterController>();
         mainUIController = GameObject.Find("MainUI").GetComponent<MainUIController>();
         musicController = GetComponent<MusicController>();
+        spawnerController = GameObject.Find("ObjectSpawners").GetComponent<SpawnerController>();
 	}
 
     void Update()

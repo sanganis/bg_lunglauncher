@@ -11,7 +11,9 @@ public class SpawnerController : MonoBehaviour
 
     public PowerupBaseController[] allPowerups;
 
-    public GameObject[] allBackgroundObjects;
+    public GameObject[] clouds;
+
+    public GameObject stars;
 
     public GameObject groundTile;
 
@@ -24,6 +26,9 @@ public class SpawnerController : MonoBehaviour
 
     public float startSpawningHeight = 3f;
     public float firstEnemySpawnIncreaseHeight = 100f, secondEnemySpawnIncreaseHeight = 200f, thirdEnemySpawnIncreaseHeight = 300f, fourthEnemySpawnIncreaseHeight = 400f;
+
+    public float startingEnemySpawnTiming = 3f;
+    public float startingPowerupSpawnTiming = 10f;
     float currentPlayerHeight = 0;
     float currentEnemySpawnTime = 0;
     float currentPowerupSpawnTime = 0;
@@ -33,11 +38,15 @@ public class SpawnerController : MonoBehaviour
     float previousGroundXPos;
     float currentPlayerXPos;
 
+    public float spawnStarsHeight = 3000f;
+    float cloudSpawnTime = 2f;
+    float starSpawnTime = 1f;
+
     void Start()
     {        
         StartCoroutine("SpawnRandomEnemy");
         StartCoroutine("SpawnRandomPowerup");
-        StartCoroutine("SpawnSkyObjects");
+        StartCoroutine("SpawnSkyObjects");        
     }
 
     void Update()
@@ -53,31 +62,32 @@ public class SpawnerController : MonoBehaviour
         if (currentPlayerHeight <= startSpawningHeight)
         {
             currentEnemySpawnTime = 0;
+            currentPowerupSpawnTime = 0;
         }
         if (currentPlayerHeight > startSpawningHeight)
         {
-            currentEnemySpawnTime = 2f;
-            currentPowerupSpawnTime = 5f;
+            currentEnemySpawnTime = startingEnemySpawnTiming;
+            currentPowerupSpawnTime = startingPowerupSpawnTiming;
         }
         if (currentPlayerHeight > firstEnemySpawnIncreaseHeight)
         {
-            currentEnemySpawnTime = 1.75f;
-            currentPowerupSpawnTime = 4.75f;
+            currentEnemySpawnTime = startingEnemySpawnTiming - 0.25f;
+            currentPowerupSpawnTime = startingPowerupSpawnTiming - 0.25f;
         }
         if (currentPlayerHeight > secondEnemySpawnIncreaseHeight)
         {
-            currentEnemySpawnTime = 1.5f;
-            currentPowerupSpawnTime = 4.5f;
+            currentEnemySpawnTime = startingEnemySpawnTiming - 0.5f;
+            currentPowerupSpawnTime = startingPowerupSpawnTiming - 0.5f;
         }
         if (currentPlayerHeight > thirdEnemySpawnIncreaseHeight)
         {
-            currentEnemySpawnTime = 1.25f;
-            currentPowerupSpawnTime = 4.25f;
+            currentEnemySpawnTime = startingEnemySpawnTiming - 0.75f;
+            currentPowerupSpawnTime = startingPowerupSpawnTiming - 0.75f;
         }
         if (currentPlayerHeight > fourthEnemySpawnIncreaseHeight)
         {
-            currentEnemySpawnTime = 1f;
-            currentPowerupSpawnTime = 4f;
+            currentEnemySpawnTime = startingEnemySpawnTiming - 1f;
+            currentPowerupSpawnTime = startingPowerupSpawnTiming - 1f;
         }
     }
 
@@ -151,21 +161,35 @@ public class SpawnerController : MonoBehaviour
 
 
     IEnumerator SpawnSkyObjects()
-    {
-        yield return new WaitForSeconds(Random.Range(0f, 1f));
+    {        
         if (currentPlayerHeight > 10)
         {
             Transform newSpawnLocation = allSpawners[Random.Range(0, allSpawners.Length)];
             GameObject backgroundObject;
-            backgroundObject = (GameObject)Instantiate(ChooseRandomBackgroundToSpawn(), newSpawnLocation.position, newSpawnLocation.rotation);
+            backgroundObject = (GameObject)Instantiate(ChooseBackgroundToSpawn(), newSpawnLocation.position, newSpawnLocation.rotation);
             backgroundObject.transform.parent = backgroundHolder.transform;
         }  
+        if(currentPlayerHeight < spawnStarsHeight)
+        {
+            yield return new WaitForSeconds(cloudSpawnTime);
+        }
+        else
+        {
+            yield return new WaitForSeconds(starSpawnTime);
+        }
         StartCoroutine("SpawnSkyObjects");
     }
 
-    GameObject ChooseRandomBackgroundToSpawn()
-    {        
-        return allBackgroundObjects[Random.Range(0, allBackgroundObjects.Length)];
+    GameObject ChooseBackgroundToSpawn()
+    {
+        if (currentPlayerHeight < spawnStarsHeight)
+        {
+            return clouds[Random.Range(0, clouds.Length)];
+        }
+        else
+        {
+            return stars;
+        }
     }
 
     void SpawnGroundSegments()
