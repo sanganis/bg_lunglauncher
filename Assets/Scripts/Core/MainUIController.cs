@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class MainUIController : MonoBehaviour {
 
     public Text height;
-    public Text speed;
+    //public Text speed;
     public Text breathing;
     public Text successScore;
     public Text enemiesDestroyed;
@@ -28,7 +28,7 @@ public class MainUIController : MonoBehaviour {
 	void Update ()
     {
         SetHeightText();
-        SetSpeedText();
+        //SetSpeedText();
         SetBreathingText();
         if (GameController.gameController.timerStarted)
         {
@@ -47,11 +47,11 @@ public class MainUIController : MonoBehaviour {
         breathing.text = (Mathf.Round(GameController.playerScreen.currentBreathingEfficiency * 100)).ToString() + "%";
     }
 
-    void SetSpeedText()
+   /* void SetSpeedText()
     {
         float roundedSpeed = Mathf.Round(GameController.playerScreen.rb.velocity.magnitude);
         speed.text = roundedSpeed.ToString() + "mps";
-    }
+    }*/
 
     void SetTimeSlider()
     {
