@@ -19,6 +19,10 @@ public class MainUIController : MonoBehaviour {
     public GameObject gameOverGroundPanel;
     public GameObject peakFlowFailedPanel;
 
+    public GameObject debugPanel1;
+    public GameObject debugPanel2;
+    public Text debugPanel2Text;
+
     public Slider timeSlider;
 
     void Start()
@@ -130,6 +134,17 @@ public class MainUIController : MonoBehaviour {
     public void Quit()
     {
         Application.Quit();
+    }
+
+    public void DebugTouchInput()
+    {
+        debugPanel1.SetActive(true);
+    }
+
+    public void DebugPeakFlows(string text)
+    {
+        debugPanel2.SetActive(true);
+        debugPanel2Text.text = text;
     }
 
 

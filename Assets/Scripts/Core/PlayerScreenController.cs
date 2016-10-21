@@ -102,15 +102,15 @@ public class PlayerScreenController : MonoBehaviour {
     {
         // needs delay
 
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended || Input.GetButtonDown("Fire1") && Time.time > peakFlowInputDelay + lastPeakFlow)
-        {
-            float peakFlow = PerformPeakFlowTest();
+        if (Input.GetButtonDown("Fire1") && Time.time > peakFlowInputDelay + lastPeakFlow)
+        {            
+            float peakFlow = PerformPeakFlowTest();            
             if (peakFlow > minimumPeakFlow)
             {
-                PlayerStatisticsManager.Instance.AddPeakFlowResult(peakFlow);
+                //PlayerStatisticsManager.Instance.AddPeakFlowResult(peakFlow);
                 peakFlowSliders[peakFlowsCompleted].value = peakFlow;
-                peakFlowResults[peakFlowsCompleted] = peakFlow;
-                peakFlowsCompleted++;
+                peakFlowResults[peakFlowsCompleted] = peakFlow;                
+                peakFlowsCompleted++;                
             }
             else
             {
@@ -124,7 +124,8 @@ public class PlayerScreenController : MonoBehaviour {
             InvokeRepeating("AngleCannonUp", 0, 0.01f);
             Invoke("LaunchPlayer", 1f);
             launchedYet = true;
-        }
+        }       
+        
     }
 
     // random result to represent the peak flow results we will get
