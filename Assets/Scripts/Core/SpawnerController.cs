@@ -40,7 +40,7 @@ public class SpawnerController : MonoBehaviour
 
     public float spawnStarsHeight = 3000f;
     float cloudSpawnTime = 2f;
-    float starSpawnTime = 1f;
+    float starSpawnTime = 0.5f;
 
     void Start()
     {        
@@ -159,27 +159,35 @@ public class SpawnerController : MonoBehaviour
         return enemiesToSpawn[Random.Range(0, enemiesToSpawn.Count)];
     }
 
-
+    // checks on the player's height before spawning background objects
     IEnumerator SpawnSkyObjects()
-    {        
+    {
         if (currentPlayerHeight > 10)
         {
-            Transform newSpawnLocation = allSpawners[Random.Range(0, allSpawners.Length)];
+            Vector2 spawnVector = allSpawners[Random.Range(0, allSpawners.Length)].position;            
             GameObject backgroundObject;
-            backgroundObject = (GameObject)Instantiate(ChooseBackgroundToSpawn(), newSpawnLocation.position, newSpawnLocation.rotation);
-            backgroundObject.transform.parent = backgroundHolder.transform;
-        }  
-        if(currentPlayerHeight < spawnStarsHeight)
-        {
-            yield return new WaitForSeconds(cloudSpawnTime);
+            if (currentPlayerHeight < spawnStarsHeight)
+            {                
+                backgroundObject = (GameObject)Instantiate(ChooseBackgroundToSpawn(), spawnVector, transform.rotation);
+                backgroundObject.transform.parent = backgroundHolder.transform;
+                yield return new WaitForSeconds(cloudSpawnTime);
+            }
+            if (currentPlayerHeight > spawnStarsHeight)
+            {
+                spawnVector = new Vector2(spawnVector.x + Random.Range(-2, 2), spawnVector.y + Random.Range(-2, 2));   
+                backgroundObject = (GameObject)Instantiate(ChooseBackgroundToSpawn(), spawnVector, transform.rotation);
+                backgroundObject.transform.parent = backgroundHolder.transform;
+                yield return new WaitForSeconds(starSpawnTime);
+            }
         }
         else
         {
-            yield return new WaitForSeconds(starSpawnTime);
+            yield return new WaitForSeconds(0.1f);
         }
         StartCoroutine("SpawnSkyObjects");
     }
 
+    // returns a random background object dependent on player's height
     GameObject ChooseBackgroundToSpawn()
     {
         if (currentPlayerHeight < spawnStarsHeight)

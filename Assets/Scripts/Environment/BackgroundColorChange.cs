@@ -18,7 +18,7 @@ public class BackgroundColorChange : MonoBehaviour
     {
         if (playerScreen.currentHeight > GameController.spawnerController.spawnStarsHeight)
         {
-            Camera.main.backgroundColor *= 0.99f;            
+            Camera.main.backgroundColor *= 0.995f;            
         }
     }
 }

@@ -145,7 +145,7 @@ public class PlayerObjectController : MonoBehaviour {
             PowerupBaseController powerUp = coll.gameObject.GetComponent<PowerupBaseController>();
             if (powerUp.powerUpType == PowerupBaseController.PowerUpType.AERO)
             {
-                playerScreen.CallPowerupInvincible();
+                //playerScreen.CallPowerupInvincible();
                 playerScreen.PlayPowerupSound();
                 powerUp.DestroyPowerup();
             }

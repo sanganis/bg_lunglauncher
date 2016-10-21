@@ -70,25 +70,22 @@ public class GameController : MonoBehaviour {
     public void GameOverSuccess()
     {
         mainUIController.SetSuccessPanel();
-        musicController.PlayVictoryJingle();
-        //lungCharacter.LockPlayerMovement();
+        musicController.PlayVictoryJingle();        
         gameOver = true;
         InvokeRepeating("KillAllEnemies", 0, 0.1f);
     }
 
     public void GameOverHitGround()
     {
-        mainUIController.SetFailurePanel();
-        musicController.PlayFailureJingle();
-        //lungCharacter.LockPlayerMovement();
+        mainUIController.SetGameOverPanel(1);
+        musicController.PlayFailureJingle();        
         gameOver = true;
         InvokeRepeating("KillAllEnemies", 0, 0.1f);
     }
     public void GameOverOutOfLives()
     {
-        mainUIController.SetFailurePanel();
-        musicController.PlayFailureJingle();
-        //lungCharacter.LockPlayerMovement();
+        mainUIController.SetGameOverPanel(0);
+        musicController.PlayFailureJingle();        
         gameOver = true;
         InvokeRepeating("KillAllEnemies", 0, 0.1f);
     }

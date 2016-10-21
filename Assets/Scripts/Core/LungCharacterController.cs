@@ -19,11 +19,23 @@ public class LungCharacterController : MonoBehaviour
     public Material powerUpFlashMaterial;
     [HideInInspector]
     public SpriteRenderer spriteRenderer;
+    PlayerScreenController playerScreen;
 
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         normalMaterial = spriteRenderer.material;
+        playerScreen = GameController.playerScreen;
+    }
+
+
+    void OnCollisionEnter2D(Collision2D coll)
+    {
+        if (coll.gameObject.tag == "Ground")
+        {
+            playerScreen.LockScreenMovement();
+            GameController.gameController.GameOverHitGround();
+        }
     }
 
     public void LoseLives(int lose)
@@ -70,7 +82,7 @@ public class LungCharacterController : MonoBehaviour
     }
     void PlayInvincibleSound()
     {
-        GameController.playerScreen.PlayInvinbicbleSound();
+        playerScreen.PlayInvinbicbleSound();
     }
 
 

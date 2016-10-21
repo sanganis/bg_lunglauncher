@@ -102,7 +102,7 @@ public class PlayerScreenController : MonoBehaviour {
     {
         // needs delay
 
-        if ((Input.GetKeyDown(KeyCode.Space)) || Input.GetButtonDown("Fire1") && Time.time > peakFlowInputDelay + lastPeakFlow)
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended || Input.GetButtonDown("Fire1") && Time.time > peakFlowInputDelay + lastPeakFlow)
         {
             float peakFlow = PerformPeakFlowTest();
             if (peakFlow > minimumPeakFlow)
@@ -202,21 +202,7 @@ public class PlayerScreenController : MonoBehaviour {
     {
         rb.isKinematic = false;
     }
-
-
-
-    public void CallPowerupInvincible(float duration = 5f)
-    {
-        StartCoroutine(PowerUpInvincible(duration));
-    }
-    IEnumerator PowerUpInvincible(float duration)
-    {
-        //lungCharacter.invincible = true;
-        yield return new WaitForSeconds(duration);
-        //lungCharacter.invincible = false;
-    }
-
-
+    
 
     public void PlayEnemyHitSound()
     {

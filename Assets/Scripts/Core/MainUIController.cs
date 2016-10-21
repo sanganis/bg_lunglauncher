@@ -15,7 +15,8 @@ public class MainUIController : MonoBehaviour {
 
     public GameObject mainPanel;
     public GameObject successPanel;
-    public GameObject failurePanel;
+    public GameObject gameOverLivesPanel;
+    public GameObject gameOverGroundPanel;
     public GameObject peakFlowFailedPanel;
 
     public Slider timeSlider;
@@ -90,11 +91,19 @@ public class MainUIController : MonoBehaviour {
     }
 
 
-    public void SetFailurePanel()
+    public void SetGameOverPanel(int panel)
     {
-        mainPanel.gameObject.SetActive(false);
-        failurePanel.gameObject.SetActive(true);
-    }
+        if (panel == 0)
+        {
+            mainPanel.gameObject.SetActive(false);
+            gameOverLivesPanel.gameObject.SetActive(true);
+        }
+        if (panel == 1)
+        {
+            mainPanel.gameObject.SetActive(false);
+            gameOverGroundPanel.gameObject.SetActive(true);
+        }
+    }    
 
     public void NotifyPeakFlowFailure()
     {
