@@ -26,7 +26,6 @@ public class PowerupAeroController : PowerupBaseController {
     public override void HitPlayer()
     {
         base.HitPlayer();
-        GameController.lungCharacter.GainLives(livesGiven);
-        DestroyPowerup();
+        GameController.lungCharacter.GainLives(livesGiven);        
     }
 }

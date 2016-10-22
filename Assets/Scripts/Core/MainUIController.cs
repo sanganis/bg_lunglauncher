@@ -43,7 +43,7 @@ public class MainUIController : MonoBehaviour {
 
     void SetHeightText()
     {
-        float roundedHeight = Mathf.Round(GameController.playerScreen.currentHeight);
+        float roundedHeight = Mathf.Round(GameController.playerScreen.currentHeight) * 10;
         height.text = roundedHeight.ToString() + "m";
     }
 

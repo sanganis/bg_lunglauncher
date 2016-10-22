@@ -27,8 +27,7 @@ public class PowerupPufferController : PowerupBaseController {
     public override void HitPlayer()
     {
         base.HitPlayer();
-        GameController.lungCharacter.SetInvincible(invincibleDuration);
-        DestroyPowerup();
+        GameController.lungCharacter.SetInvincible(invincibleDuration);        
     }
 
 }

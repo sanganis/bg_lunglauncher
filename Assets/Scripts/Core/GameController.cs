@@ -61,9 +61,9 @@ public class GameController : MonoBehaviour {
     {
         int score;        
         score = Mathf.RoundToInt(playerScreen.currentHeight);
-        score += enemiesDestroyed * 100;
-        score += powerupsCollected * 100;
-        score += lungCharacter.currentLives * 100;
+        score += enemiesDestroyed * 10;
+        score += powerupsCollected * 10;
+        score += lungCharacter.currentLives * 10;
         return score;
     }
 

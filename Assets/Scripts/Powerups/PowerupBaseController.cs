@@ -26,6 +26,7 @@ public class PowerupBaseController : MonoBehaviour {
     public Vector2 directionOfTravel;
     public float moveSpeed = 1f;
 
+    public GameObject pickupParticles;
     public GameObject destroyedParticles;
 
 
@@ -46,7 +47,7 @@ public class PowerupBaseController : MonoBehaviour {
     {
         if (coll.gameObject.tag == "Boundaries")
         {
-            DestroyPowerup();
+            DestroyPowerup(false);
         }
         if (coll.gameObject.tag == "Player")
         {
@@ -64,7 +65,7 @@ public class PowerupBaseController : MonoBehaviour {
         GameController.gameController.powerupsCollected++;
         GameController.mainUIController.SetPowerupsCollected();
         playerScreen.PlayPowerupSound();
-        DestroyPowerup();
+        PickupPowerup();
     }
 
     // called from InputController when the player taps the enemy
@@ -79,6 +80,15 @@ public class PowerupBaseController : MonoBehaviour {
         if (displayParticles)
         {
             Instantiate(destroyedParticles, transform.position, transform.rotation);
+        }
+        Destroy(gameObject);
+    }
+
+    public void PickupPowerup(bool displayParticles = true)
+    {
+        if (displayParticles)
+        {
+            Instantiate(pickupParticles, transform.position, transform.rotation);
         }
         Destroy(gameObject);
     }
