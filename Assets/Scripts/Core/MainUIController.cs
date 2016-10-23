@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MainUIController : MonoBehaviour {
 
@@ -134,6 +135,11 @@ public class MainUIController : MonoBehaviour {
     public void Quit()
     {
         Application.Quit();
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(0);
     }
 
     public void DebugTouchInput()
