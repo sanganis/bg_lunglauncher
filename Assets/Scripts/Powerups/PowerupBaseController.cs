@@ -26,8 +26,8 @@ public class PowerupBaseController : MonoBehaviour {
     public Vector2 directionOfTravel;
     public float moveSpeed = 1f;
 
-    public GameObject pickupParticles;
-    public GameObject destroyedParticles;
+    public GameObject[] pickupParticles;
+    public GameObject[] destroyedParticles;
 
 
     public virtual void Start()
@@ -79,7 +79,10 @@ public class PowerupBaseController : MonoBehaviour {
     {
         if (displayParticles)
         {
-            Instantiate(destroyedParticles, transform.position, transform.rotation);
+            for (int i = 0; i < destroyedParticles.Length; i++)
+            {
+                Instantiate(destroyedParticles[i], transform.position, transform.rotation);
+            }
         }
         Destroy(gameObject);
     }
@@ -88,7 +91,10 @@ public class PowerupBaseController : MonoBehaviour {
     {
         if (displayParticles)
         {
-            Instantiate(pickupParticles, transform.position, transform.rotation);
+            for (int i = 0; i < pickupParticles.Length; i++)
+            {
+                Instantiate(pickupParticles[i], transform.position, transform.rotation);
+            }
         }
         Destroy(gameObject);
     }

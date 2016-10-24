@@ -13,6 +13,7 @@ public class PlayerScreenController : MonoBehaviour {
     public bool launchedYet = false;
     public float verticalLaunchSpeed = 100f;
     public float horizontalLaunchSpeed = 18f;
+    bool controlClimbRate;
 
     public Slider aimStrengthSlider;
     public Transform cannonBarrel;
@@ -63,12 +64,11 @@ public class PlayerScreenController : MonoBehaviour {
         {
             CheckForPeakFlowInput();
         }
-        else
+        else if (controlClimbRate)
         {
-            ControlClimbRate();
-            currentHeight = transform.position.y;
+            ControlClimbRate();            
         }
-
+        currentHeight = transform.position.y;
         SetCurrentBrathingEfficiency();
     }
 
@@ -85,6 +85,13 @@ public class PlayerScreenController : MonoBehaviour {
         }
     }
 
+    // invoked after a few seconds, to give the character time to fly from the peak flow power
+    void DelayBeforeControlClimbRate()
+    {
+        controlClimbRate = true;
+    }
+
+
     // multiplies the force pushing the player up with the current breathing efficiency
     IEnumerator AdjustClimbRateToBreathing()
     {
@@ -95,8 +102,6 @@ public class PlayerScreenController : MonoBehaviour {
 
         StartCoroutine("AdjustClimbRateToBreathing");
     }
-
-
 
     void CheckForPeakFlowInput()
     {
@@ -130,16 +135,15 @@ public class PlayerScreenController : MonoBehaviour {
 
     // random result to represent the peak flow results we will get
     float PerformPeakFlowTest()
-    {
+    {        
         return Random.Range(0f, 1f);
     }
 
 
 
     void AngleCannonUp()
-    {
-        float barrelAngle = peakFlowMultiplier * 25;
-        if (cannonBarrel.eulerAngles.z < barrelAngle)
+    {        
+        if (cannonBarrel.eulerAngles.z < 45)
         {
             cannonBarrel.eulerAngles = new Vector3(cannonBarrel.eulerAngles.x, cannonBarrel.eulerAngles.y, cannonBarrel.eulerAngles.z + 1f);
         }
@@ -147,12 +151,11 @@ public class PlayerScreenController : MonoBehaviour {
 
     void LaunchPlayer()
     {
-        CancelInvoke("AngleCannonUp");
-        float vertLaunchSpeed = peakFlowMultiplier * verticalLaunchSpeed;
-        float horLaunchSpeed = peakFlowMultiplier * horizontalLaunchSpeed;
-        UnlockScreenMovement();
-        rb.velocity = new Vector2(horLaunchSpeed, vertLaunchSpeed);
+        CancelInvoke("AngleCannonUp");        
+        UnlockScreenMovement();        
+        rb.velocity = new Vector2(horizontalLaunchSpeed, verticalLaunchSpeed) * peakFlowMultiplier;
         StartCoroutine("AdjustClimbRateToBreathing");
+        Invoke("DelayBeforeControlClimbRate", 3f);
         source.PlayOneShot(launchSound);
         GameController.gameController.SetGameTime();
     }

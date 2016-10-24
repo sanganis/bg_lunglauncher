@@ -26,8 +26,8 @@ public class EnemyBaseController : MonoBehaviour {
 
     public int damageToPlayer = 1;
 
-    public GameObject damageParticles;
-    public GameObject destroyedParticles;
+    public GameObject[] damageParticles;
+    public GameObject[] destroyedParticles;
     
 
 
@@ -106,7 +106,10 @@ public class EnemyBaseController : MonoBehaviour {
         hitPoints--;
         if(hitPoints > 0)
         {
-            Instantiate(damageParticles, transform.position, transform.rotation);
+            for (int i = 0; i < damageParticles.Length; i++)
+            {
+                Instantiate(damageParticles[i], transform.position, transform.rotation);
+            }
             GameController.playerScreen.PlayEnemyHitSound();
         }
         if (hitPoints == 0)
@@ -122,7 +125,10 @@ public class EnemyBaseController : MonoBehaviour {
     {
         if (displayParticles)
         {
-            Instantiate(destroyedParticles, transform.position, transform.rotation);
+            for (int i = 0; i < destroyedParticles.Length; i++)
+            {
+                Instantiate(destroyedParticles[i], transform.position, transform.rotation);
+            }
         }
         Destroy(gameObject);
     }

@@ -33,7 +33,7 @@ public class EnemyVirusController : EnemyBaseController {
     IEnumerator RandomMovement()
     {
         ChooseRandomDirection();        
-        yield return new WaitForSeconds(moveTime);
+        yield return new WaitForSeconds(moveTime / 2);
         ChooseNoDirection();
         yield return new WaitForSeconds(stopTime);
         ChoosePlayerDirection();        
