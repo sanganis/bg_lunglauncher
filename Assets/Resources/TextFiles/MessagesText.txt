@@ -1,4 +1,12 @@
-Test text 1
-*Test text 2
-*Test text 3
-*Test text 4
+Did you know that 1 kid out of 10 has asthma?
+*Asthma cannot be cured but YOU can control it!
+*Control your asthma to play more.
+*Control your asthma to do more sports.
+*Control your asthma to breathe better.
+*Asthma crises happen when you meet a trigger.
+*You have your own asthma triggers. Fight them!
+*In crises, it’s hard for air to move through your lungs.
+*In crises, you cough more.
+*In crises, you have trouble breathing.
+*In crises, you make a whistling sound.
+*Controller and rescue medications are used to treat asthma.
