@@ -47,7 +47,7 @@ public class PlayerScreenController : MonoBehaviour {
     public Slider[] peakFlowSliders;
     float[] peakFlowResults = new float[3];
     // gets set by a combination of all 3 peak flow results
-    float peakFlowMultiplier;
+    float peakFlowMultiplier = 1f;
 
     float peakFlowInputDelay = 1f;
     float lastPeakFlow;
@@ -56,6 +56,9 @@ public class PlayerScreenController : MonoBehaviour {
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        InvokeRepeating("AngleCannonUp", 0, 0.05f);
+        Invoke("LaunchPlayer", 3f);
     }
 
     void Update()
@@ -143,7 +146,7 @@ public class PlayerScreenController : MonoBehaviour {
 
     void AngleCannonUp()
     {        
-        if (cannonBarrel.eulerAngles.z < 45)
+        if (cannonBarrel.eulerAngles.z < 50)
         {
             cannonBarrel.eulerAngles = new Vector3(cannonBarrel.eulerAngles.x, cannonBarrel.eulerAngles.y, cannonBarrel.eulerAngles.z + 1f);
         }
