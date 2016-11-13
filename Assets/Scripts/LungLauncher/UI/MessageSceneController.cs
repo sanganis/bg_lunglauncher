@@ -11,6 +11,7 @@ public class MessageSceneController : MonoBehaviour {
 
     string[] allMessages;
 
+    public float nextSceneTime = 10f;
     public float messageTime = 5f;
 
     	
@@ -18,7 +19,8 @@ public class MessageSceneController : MonoBehaviour {
     {
         DivideUpMessages();
         SetRandomMessage();
-        Invoke("StartNextScene", messageTime);
+        Invoke("SetRandomMessage", messageTime);
+        Invoke("StartNextScene", nextSceneTime);
     }
 
     void DivideUpMessages()
