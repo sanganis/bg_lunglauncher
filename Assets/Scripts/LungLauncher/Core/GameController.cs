@@ -24,6 +24,9 @@ public class GameController : MonoBehaviour {
     [HideInInspector]
     public bool timerStarted;
 
+    // used to set whether the enemy is a childs trigger and should appear in the game
+    public EnemyBaseController enemyCat,enemyCigarette,enemyDumbell,enemyDust,enemyDog,enemySweat,enemyVirus,enemyCleaner;
+
 
     // A class to keep static references for all major game elements, to easily facilitate referencing between classes
 
@@ -32,7 +35,8 @@ public class GameController : MonoBehaviour {
         gameController = GetComponent<GameController>();
         playerScreen = GameObject.Find("PlayerScreen").GetComponent<PlayerScreenController>();
         lungCharacter = GameObject.Find("LungCharacter").GetComponent<LungCharacterController>();
-        mainUIController = GameObject.Find("MainUI").GetComponent<MainUIController>();                
+        mainUIController = GameObject.Find("MainUI").GetComponent<MainUIController>();
+        SetEnemiesAccordingToTriggers();        
 	}
 
     void Update()
@@ -103,5 +107,21 @@ public class GameController : MonoBehaviour {
             currentPowerups[i].DestroyPowerup(false);
         }
     }
+
+    // looks in the PlayerPrefs file to see what triggers the child has
+    void SetEnemiesAccordingToTriggers()
+    {
+        enemyCat.isChildsTrigger = (PlayerPrefs.HasKey("CatTrigger"));
+        enemyCigarette.isChildsTrigger = (PlayerPrefs.HasKey("CigaretteTrigger"));
+        enemyDumbell.isChildsTrigger = (PlayerPrefs.HasKey("DumbellTrigger"));
+        enemyDust.isChildsTrigger = (PlayerPrefs.HasKey("DustTrigger"));
+        enemyDog.isChildsTrigger = (PlayerPrefs.HasKey("DogTrigger"));
+        enemySweat.isChildsTrigger = (PlayerPrefs.HasKey("SweatTrigger"));
+        enemyVirus.isChildsTrigger = (PlayerPrefs.HasKey("VirusTrigger"));
+        enemyCleaner.isChildsTrigger = (PlayerPrefs.HasKey("CleanerTrigger"));
+    }
+
+
+
 
 }

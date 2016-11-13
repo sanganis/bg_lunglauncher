@@ -137,7 +137,7 @@ public class SpawnerController : MonoBehaviour
         {
             for (int i = 0; i < allEnemies.Length; i++)
             {
-                if (allEnemies[i].spawnsAtBottom)
+                if (allEnemies[i].spawnsAtBottom && allEnemies[i].isChildsTrigger)
                 {
                     enemiesToSpawn.Add(allEnemies[i]);
                 }
@@ -147,7 +147,7 @@ public class SpawnerController : MonoBehaviour
         {
             for (int i = 0; i < allEnemies.Length; i++)
             {
-                if (allEnemies[i].spawnsAtRightSide)
+                if (allEnemies[i].spawnsAtRightSide && allEnemies[i].isChildsTrigger)
                 {
                     enemiesToSpawn.Add(allEnemies[i]);
                 }
@@ -157,7 +157,7 @@ public class SpawnerController : MonoBehaviour
         {
             for (int i = 0; i < allEnemies.Length; i++)
             {
-                if (allEnemies[i].spawnsAtTop)
+                if (allEnemies[i].spawnsAtTop && allEnemies[i].isChildsTrigger)
                 {
                     enemiesToSpawn.Add(allEnemies[i]);
                 }

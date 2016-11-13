@@ -9,6 +9,7 @@ public class EnemyBaseController : MonoBehaviour {
 
     // set in the inspector to determine where the enemy will spawn
     public bool spawnsAtBottom, spawnsAtRightSide, spawnsAtTop;
+    
 
     [HideInInspector]
     public Rigidbody2D rb;
@@ -29,6 +30,7 @@ public class EnemyBaseController : MonoBehaviour {
     public GameObject[] damageParticles;
     public GameObject[] destroyedParticles;
 
+    // set by the GameManager depending on if the child has tis enemy as a trigger
     public bool isChildsTrigger;
 
 	public enum EnemyType
