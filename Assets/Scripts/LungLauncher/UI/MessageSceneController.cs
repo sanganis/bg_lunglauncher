@@ -34,7 +34,7 @@ public class MessageSceneController : MonoBehaviour {
 
     void StartNextScene()
     {
-        GameManager.manager.LoadLevel(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);        
     }
 
 }
