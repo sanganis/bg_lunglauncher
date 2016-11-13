@@ -65,7 +65,7 @@ public class PlayerScreenController : MonoBehaviour {
     {
         if (!launchedYet)
         {
-            CheckForPeakFlowInput();
+            //CheckForPeakFlowInput();
         }
         else if (controlClimbRate)
         {
@@ -158,7 +158,8 @@ public class PlayerScreenController : MonoBehaviour {
         UnlockScreenMovement();        
         rb.velocity = new Vector2(horizontalLaunchSpeed, verticalLaunchSpeed) * peakFlowMultiplier;
         StartCoroutine("AdjustClimbRateToBreathing");
-        Invoke("DelayBeforeControlClimbRate", 3f);
+        controlClimbRate = true;
+        //Invoke("DelayBeforeControlClimbRate", 3f);
         source.PlayOneShot(launchSound);
         GameController.gameController.SetGameTime();
     }

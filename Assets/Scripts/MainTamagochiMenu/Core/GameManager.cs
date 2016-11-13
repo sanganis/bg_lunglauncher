@@ -22,21 +22,21 @@ public class GameManager : MonoBehaviour {
             _manager = this;
         }
         DontDestroyOnLoad(this.gameObject);
-        TestMethodForTriggers();
+        //TurnOnAllTriggers();
     }
 
     // turns all triggers on. used for testing the game
-    void TestMethodForTriggers()
+    void TurnOnAllTriggers()
     {
-        //ClearAllKeys();
-        SetChildsTriggers(0);
-        SetChildsTriggers(1);
-        SetChildsTriggers(2);
-        SetChildsTriggers(3);
-        SetChildsTriggers(4);
-        SetChildsTriggers(5);
-        SetChildsTriggers(6);
-        SetChildsTriggers(7);        
+        ClearAllKeys();
+        ToggleTrigger(0);
+        ToggleTrigger(1);
+        ToggleTrigger(2);
+        ToggleTrigger(3);
+        ToggleTrigger(4);
+        ToggleTrigger(5);
+        ToggleTrigger(6);
+        ToggleTrigger(7);        
     }
 
     void ClearAllKeys()
@@ -45,66 +45,91 @@ public class GameManager : MonoBehaviour {
     }
     
     // use to create a key that will be looked for to see if it is a trigger
-    public void SetChildsTriggers(int triggerNumber)
+    public void ToggleTrigger(int triggerNumber)
     {
         switch (triggerNumber)
         {
             case 0:
-                PlayerPrefs.SetString("CatTrigger", "");
+                if (PlayerPrefs.HasKey("CatTrigger"))
+                {
+                    PlayerPrefs.DeleteKey("CatTrigger");
+                }
+                else
+                {
+                    PlayerPrefs.SetString("CatTrigger", "");
+                }
                 break;
             case 1:
-                PlayerPrefs.SetString("CigaretteTrigger", "");
+                if (PlayerPrefs.HasKey("CigaretteTrigger"))
+                {
+                    PlayerPrefs.DeleteKey("CigaretteTrigger");
+                }
+                else
+                {
+                    PlayerPrefs.SetString("CigaretteTrigger", "");
+                }
                 break;
             case 2:
-                PlayerPrefs.SetString("DumbellTrigger", "");
+                if (PlayerPrefs.HasKey("DumbellTrigger"))
+                {
+                    PlayerPrefs.DeleteKey("DumbellTrigger");
+                }
+                else
+                {
+                    PlayerPrefs.SetString("DumbellTrigger", "");
+                }
                 break;
             case 3:
-                PlayerPrefs.SetString("DustTrigger", "");
+                if (PlayerPrefs.HasKey("DustTrigger"))
+                {
+                    PlayerPrefs.DeleteKey("DustTrigger");
+                }
+                else
+                {
+                    PlayerPrefs.SetString("DustTrigger", "");
+                }
                 break;
             case 4:
-                PlayerPrefs.SetString("DogTrigger", "");
+                if (PlayerPrefs.HasKey("DogTrigger"))
+                {
+                    PlayerPrefs.DeleteKey("DogTrigger");
+                }
+                else
+                {
+                    PlayerPrefs.SetString("DogTrigger", "");
+                }
                 break;
             case 5:
-                PlayerPrefs.SetString("SweatTrigger", "");
+                if (PlayerPrefs.HasKey("SweatTrigger"))
+                {
+                    PlayerPrefs.DeleteKey("SweatTrigger");
+                }
+                else
+                {
+                    PlayerPrefs.SetString("SweatTrigger", "");
+                }
                 break;
             case 6:
-                PlayerPrefs.SetString("VirusTrigger", "");
+                if (PlayerPrefs.HasKey("VirusTrigger"))
+                {
+                    PlayerPrefs.DeleteKey("VirusTrigger");
+                }
+                else
+                {
+                    PlayerPrefs.SetString("VirusTrigger", "");
+                }
                 break;
             case 7:
-                PlayerPrefs.SetString("CleanerTrigger", "");
+                if (PlayerPrefs.HasKey("CleanerTrigger"))
+                {
+                    PlayerPrefs.DeleteKey("CleanerTrigger");
+                }
+                else
+                {
+                    PlayerPrefs.SetString("CleanerTrigger", "");
+                }
                 break;
         }
-    }
-
-    void RemoveChildsTrigger(int triggerNumber)
-    {
-        switch (triggerNumber)
-        {
-            case 0:
-                PlayerPrefs.DeleteKey("CatTrigger");
-                break;
-            case 1:
-                PlayerPrefs.DeleteKey("CigaretteTrigger");
-                break;
-            case 2:
-                PlayerPrefs.DeleteKey("DumbellTrigger");
-                break;
-            case 3:
-                PlayerPrefs.DeleteKey("DustTrigger");
-                break;
-            case 4:
-                PlayerPrefs.DeleteKey("DogTrigger");
-                break;
-            case 5:
-                PlayerPrefs.DeleteKey("SweatTrigger");
-                break;
-            case 6:
-                PlayerPrefs.DeleteKey("VirusTrigger");
-                break;
-            case 7:
-                PlayerPrefs.DeleteKey("CleanerTrigger");
-                break;
-        }
-    }
+    }    
 
 }

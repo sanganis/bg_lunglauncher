@@ -163,8 +163,13 @@ public class SpawnerController : MonoBehaviour
                 }
             }
         }
-        return enemiesToSpawn[Random.Range(0, enemiesToSpawn.Count)];
+        if (enemiesToSpawn != null)
+        {
+            return enemiesToSpawn[Random.Range(0, enemiesToSpawn.Count)];
+        }
+        return null;
     }
+
 
     // checks on the player's height before spawning background objects
     IEnumerator SpawnSkyObjects()
