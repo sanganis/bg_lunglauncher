@@ -10,6 +10,13 @@ public class MusicController : MonoBehaviour {
     public AudioClip victoryJingle;
     public AudioClip failureJingle;
 
+    public static MusicController instance;
+
+    void Awake()
+    {
+        instance = this;
+    }
+
     	
 	void Start ()
     {

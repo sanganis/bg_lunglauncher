@@ -5,6 +5,8 @@ using System.Collections.Generic;
 public class SpawnerController : MonoBehaviour
 {
 
+    public static SpawnerController instance;
+
     public Transform[] allSpawners;
 
     public EnemyBaseController[] allEnemies;
@@ -41,6 +43,11 @@ public class SpawnerController : MonoBehaviour
     public float spawnStarsHeight = 3000f;
     float cloudSpawnTime = 2f;
     float starSpawnTime = 0.5f;
+
+    void Awake()
+    {
+        instance = this;
+    }
 
     void Start()
     {        

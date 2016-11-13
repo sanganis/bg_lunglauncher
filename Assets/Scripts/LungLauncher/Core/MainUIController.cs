@@ -19,6 +19,8 @@ public class MainUIController : MonoBehaviour {
     public GameObject gameOverLivesPanel;
     public GameObject gameOverGroundPanel;
     public GameObject peakFlowFailedPanel;
+    public GameObject advicePanel;
+    public GameObject tutorialPanel;
 
     public GameObject debugPanel1;
     public GameObject debugPanel2;
@@ -27,7 +29,7 @@ public class MainUIController : MonoBehaviour {
     public Slider timeSlider;
 
     void Start()
-    {
+    {        
         timeSlider.maxValue = GameController.gameController.gameLength;
     }
 	

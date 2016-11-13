@@ -28,8 +28,8 @@ public class EnemyBaseController : MonoBehaviour {
 
     public GameObject[] damageParticles;
     public GameObject[] destroyedParticles;
-    
 
+    public bool isChildsTrigger;
 
 	public enum EnemyType
     {

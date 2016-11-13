@@ -6,9 +6,7 @@ public class GameController : MonoBehaviour {
     public static GameController gameController;
     public static PlayerScreenController playerScreen;    
     public static LungCharacterController lungCharacter;
-    public static MainUIController mainUIController;
-    public static MusicController musicController;
-    public static SpawnerController spawnerController;
+    public static MainUIController mainUIController;        
 
     // score variables
     public int enemiesDestroyed;
@@ -34,9 +32,7 @@ public class GameController : MonoBehaviour {
         gameController = GetComponent<GameController>();
         playerScreen = GameObject.Find("PlayerScreen").GetComponent<PlayerScreenController>();
         lungCharacter = GameObject.Find("LungCharacter").GetComponent<LungCharacterController>();
-        mainUIController = GameObject.Find("MainUI").GetComponent<MainUIController>();
-        musicController = GetComponent<MusicController>();
-        spawnerController = GameObject.Find("ObjectSpawners").GetComponent<SpawnerController>();
+        mainUIController = GameObject.Find("MainUI").GetComponent<MainUIController>();                
 	}
 
     void Update()
@@ -70,7 +66,7 @@ public class GameController : MonoBehaviour {
     public void GameOverSuccess()
     {
         mainUIController.SetSuccessPanel();
-        musicController.PlayVictoryJingle();        
+        MusicController.instance.PlayVictoryJingle();        
         gameOver = true;
         InvokeRepeating("KillAllEnemies", 0, 0.1f);
     }
@@ -78,14 +74,14 @@ public class GameController : MonoBehaviour {
     public void GameOverHitGround()
     {
         mainUIController.SetGameOverPanel(1);
-        musicController.PlayFailureJingle();        
+        MusicController.instance.PlayFailureJingle();        
         gameOver = true;
         InvokeRepeating("KillAllEnemies", 0, 0.1f);
     }
     public void GameOverOutOfLives()
     {
         mainUIController.SetGameOverPanel(0);
-        musicController.PlayFailureJingle();        
+        MusicController.instance.PlayFailureJingle();        
         gameOver = true;
         InvokeRepeating("KillAllEnemies", 0, 0.1f);
     }
