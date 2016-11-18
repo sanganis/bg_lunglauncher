@@ -30,7 +30,7 @@ public class SetTriggersPanel : MonoBehaviour {
             case 0:
                 if (PlayerPrefs.HasKey("CatTrigger"))
                 {
-                    buttonImage[0].color = new Color(0.5f, 0.5f, 0.5f, 1f);
+                    buttonImage[0].color = new Color(0.714f, 1f, 0.647f, 1f);
                 }
                 else
                 {
@@ -40,7 +40,7 @@ public class SetTriggersPanel : MonoBehaviour {
             case 1:
                 if (PlayerPrefs.HasKey("CigaretteTrigger"))
                 {
-                    buttonImage[1].color = new Color(0.5f, 0.5f, 0.5f, 1f);
+                    buttonImage[1].color = new Color(0.714f, 1f, 0.647f, 1f);
                 }
                 else
                 {
@@ -50,7 +50,7 @@ public class SetTriggersPanel : MonoBehaviour {
             case 2:
                 if (PlayerPrefs.HasKey("DumbellTrigger"))
                 {
-                    buttonImage[2].color = new Color(0.5f, 0.5f, 0.5f, 1f);
+                    buttonImage[2].color = new Color(0.714f, 1f, 0.647f, 1f);
                 }
                 else
                 {
@@ -60,7 +60,7 @@ public class SetTriggersPanel : MonoBehaviour {
             case 3:
                 if (PlayerPrefs.HasKey("DustTrigger"))
                 {
-                    buttonImage[3].color = new Color(0.5f, 0.5f, 0.5f, 1f);
+                    buttonImage[3].color = new Color(0.714f, 1f, 0.647f, 1f);
                 }
                 else
                 {
@@ -70,7 +70,7 @@ public class SetTriggersPanel : MonoBehaviour {
             case 4:
                 if (PlayerPrefs.HasKey("DogTrigger"))
                 {
-                    buttonImage[4].color = new Color(0.5f, 0.5f, 0.5f, 1f);
+                    buttonImage[4].color = new Color(0.714f, 1f, 0.647f, 1f);
                 }
                 else
                 {
@@ -80,7 +80,7 @@ public class SetTriggersPanel : MonoBehaviour {
             case 5:
                 if (PlayerPrefs.HasKey("SweatTrigger"))
                 {
-                    buttonImage[5].color = new Color(0.5f, 0.5f, 0.5f, 1f);
+                    buttonImage[5].color = new Color(0.714f, 1f, 0.647f, 1f);
                 }
                 else
                 {
@@ -90,7 +90,7 @@ public class SetTriggersPanel : MonoBehaviour {
             case 6:
                 if (PlayerPrefs.HasKey("VirusTrigger"))
                 {
-                    buttonImage[6].color = new Color(0.5f, 0.5f, 0.5f, 1f);
+                    buttonImage[6].color = new Color(0.714f, 1f, 0.647f, 1f);
                 }
                 else
                 {
@@ -100,7 +100,7 @@ public class SetTriggersPanel : MonoBehaviour {
             case 7:
                 if (PlayerPrefs.HasKey("CleanerTrigger"))
                 {
-                    buttonImage[7].color = new Color(0.5f, 0.5f, 0.5f, 1f);
+                    buttonImage[7].color = new Color(0.714f, 1f, 0.647f, 1f);
                 }
                 else
                 {

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 82fd9cf5eb063db45a107dde24c96a1a
-timeCreated: 1471444297
+timeCreated: 1479467111
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -58,10 +58,10 @@ TextureImporter:
       name: CannonNew_0
       rect:
         serializedVersion: 2
-        x: 166
-        y: 273
-        width: 536
-        height: 537
+        x: 58
+        y: 137
+        width: 763
+        height: 757
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -71,10 +71,10 @@ TextureImporter:
       name: CannonNew_1
       rect:
         serializedVersion: 2
-        x: 969
-        y: 249
-        width: 1269
-        height: 575
+        x: 872
+        y: 111
+        width: 1456
+        height: 808
       alignment: 9
       pivot: {x: 0.33567873, y: 0.47494778}
       border: {x: 0, y: 0, z: 0, w: 0}
