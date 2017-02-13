@@ -72,12 +72,12 @@ TextureImporter:
       name: ball
       rect:
         serializedVersion: 2
-        x: 1772
+        x: 746
         y: 1886
         width: 154
         height: 161
       alignment: 9
-      pivot: {x: 0.5, y: 0.49068323}
+      pivot: {x: 0.4999979, y: 0.49068165}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: -1
@@ -85,12 +85,12 @@ TextureImporter:
       name: bike
       rect:
         serializedVersion: 2
-        x: 1604
+        x: 578
         y: 1375
         width: 373
         height: 232
       alignment: 9
-      pivot: {x: 0.5201072, y: 0.4525862}
+      pivot: {x: 0.5201081, y: 0.45258704}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: -1
@@ -98,12 +98,12 @@ TextureImporter:
       name: Cat
       rect:
         serializedVersion: 2
-        x: 1027
+        x: 1
         y: 1023
         width: 575
         height: 584
       alignment: 9
-      pivot: {x: 0.5426087, y: 0.380137}
+      pivot: {x: 0.5426082, y: 0.38013732}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: -1
@@ -111,12 +111,12 @@ TextureImporter:
       name: Dog
       rect:
         serializedVersion: 2
-        x: 1027
+        x: 1
         y: 1609
         width: 743
         height: 438
       alignment: 9
-      pivot: {x: 0.43607, y: 0.5913242}
+      pivot: {x: 0.4360696, y: 0.5913238}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: -1
@@ -124,25 +124,12 @@ TextureImporter:
       name: lamp
       rect:
         serializedVersion: 2
-        x: 1772
+        x: 746
         y: 1770
         width: 93
         height: 114
       alignment: 9
-      pivot: {x: 0.49462366, y: 0.36842102}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: MyRoom
-      rect:
-        serializedVersion: 2
-        x: 1
-        y: 1279
-        width: 1024
-        height: 768
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0.4946209, y: 0.36842048}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: -1
@@ -150,12 +137,12 @@ TextureImporter:
       name: Seat
       rect:
         serializedVersion: 2
-        x: 1928
+        x: 902
         y: 1831
         width: 101
         height: 216
       alignment: 9
-      pivot: {x: 0.5049505, y: 0.6712963}
+      pivot: {x: 0.504953, y: 0.6712969}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: -1
