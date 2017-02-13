@@ -75,7 +75,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1
-        y: 28
+        y: 246
         width: 166
         height: 225
       alignment: 9
@@ -87,8 +87,8 @@ TextureImporter:
       name: button_Down
       rect:
         serializedVersion: 2
-        x: 300
-        y: 128
+        x: 132
+        y: 119
         width: 130
         height: 125
       alignment: 9
@@ -100,8 +100,8 @@ TextureImporter:
       name: button_Up
       rect:
         serializedVersion: 2
-        x: 432
-        y: 129
+        x: 264
+        y: 353
         width: 127
         height: 124
       alignment: 9
@@ -113,8 +113,8 @@ TextureImporter:
       name: DistanceBar
       rect:
         serializedVersion: 2
-        x: 274
-        y: 92
+        x: 1
+        y: 479
         width: 440
         height: 32
       alignment: 9
@@ -126,8 +126,8 @@ TextureImporter:
       name: InGameInfoPanelLong
       rect:
         serializedVersion: 2
-        x: 169
-        y: 18
+        x: 1
+        y: 9
         width: 101
         height: 39
       alignment: 9
@@ -139,8 +139,8 @@ TextureImporter:
       name: InGameInfoPanels
       rect:
         serializedVersion: 2
-        x: 272
-        y: 19
+        x: 443
+        y: 473
         width: 52
         height: 38
       alignment: 0
@@ -152,8 +152,8 @@ TextureImporter:
       name: InGameInfoPanelSquare
       rect:
         serializedVersion: 2
-        x: 169
-        y: 59
+        x: 1
+        y: 50
         width: 103
         height: 65
       alignment: 9
@@ -162,24 +162,11 @@ TextureImporter:
       outline: []
       tessellationDetail: -1
     - serializedVersion: 2
-      name: MyRoom
-      rect:
-        serializedVersion: 2
-        x: 1
-        y: 255
-        width: 1024
-        height: 768
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: -1
-    - serializedVersion: 2
       name: PlayerStar
       rect:
         serializedVersion: 2
-        x: 169
-        y: 126
+        x: 1
+        y: 117
         width: 129
         height: 127
       alignment: 9
