@@ -2,16 +2,16 @@ version: 2
 importPivots: 1
 tpsheetFileNames:
 - Assets/codeandweb.com/Example/SpriteSheet/sprites.tpsheet
-- Assets/Sprites/TextureAtlases/Enemies.tpsheet
-- Assets/Sprites/TextureAtlases/Environment.tpsheet
-- Assets/Sprites/TextureAtlases/Player.tpsheet
-- Assets/Sprites/TextureAtlases/UI.tpsheet
+- Assets/MiniGame-LungLauncher/Artwork-LL/Sprites/TextureAtlases/Enemies.tpsheet
+- Assets/MiniGame-LungLauncher/Artwork-LL/Sprites/TextureAtlases/Environment.tpsheet
+- Assets/MiniGame-LungLauncher/Artwork-LL/Sprites/TextureAtlases/Player.tpsheet
+- Assets/MiniGame-LungLauncher/Artwork-LL/Sprites/TextureAtlases/UI.tpsheet
 textureFileNames:
 - Assets/codeandweb.com/Example/SpriteSheet/sprites.png
-- Assets/Sprites/TextureAtlases/Enemies.png
-- Assets/Sprites/TextureAtlases/Environment.png
-- Assets/Sprites/TextureAtlases/Player.png
-- Assets/Sprites/TextureAtlases/UI.png
+- Assets/MiniGame-LungLauncher/Artwork-LL/Sprites/TextureAtlases/Enemies.png
+- Assets/MiniGame-LungLauncher/Artwork-LL/Sprites/TextureAtlases/Environment.png
+- Assets/MiniGame-LungLauncher/Artwork-LL/Sprites/TextureAtlases/Player.png
+- Assets/MiniGame-LungLauncher/Artwork-LL/Sprites/TextureAtlases/UI.png
 normalmapFileNames:
 - Assets/codeandweb.com/Example/SpriteSheet/sprites_n.png
 - 
