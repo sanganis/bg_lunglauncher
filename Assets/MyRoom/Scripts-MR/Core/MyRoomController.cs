@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MyRoomController : MonoBehaviour {
-
-
+    
     [HideInInspector]
     public static MyRoomController instance;
 
@@ -12,7 +11,7 @@ public class MyRoomController : MonoBehaviour {
 
     Camera cam;
     Vector2 mousePos;
-
+   
     public enum InputState
     {
         VIEWING,
@@ -29,8 +28,16 @@ public class MyRoomController : MonoBehaviour {
     }
 
     void Start()
+    {        
+        cam = Camera.main;        
+    }
+
+
+    void InstantiateMySavedItems()
     {
-        cam = Camera.main;
+       
+
+
     }
 
 
@@ -78,19 +85,19 @@ public class MyRoomController : MonoBehaviour {
             selectedItem = null;
         }
     }
+    
+    void AttachItemToMouse()
+    {
+        selectedItem.transform.position = mousePos;
+    }
 
     public void ItemBought(MyRoomPlaceableItemController item)
     {        
         MyRoomPlaceableItemController newItem = (MyRoomPlaceableItemController)Instantiate(item, mousePos, item.transform.rotation);
         selectedItem = newItem;
+        AddItemToOwnedList(item);
         currentInputState = InputState.PLACING;
-    }
-
-
-    void AttachItemToMouse()
-    {        
-        selectedItem.transform.position = mousePos;
-    }
-
+    }    
+    
 
 }
