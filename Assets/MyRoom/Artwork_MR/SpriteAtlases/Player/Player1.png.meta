@@ -7,6 +7,9 @@ TextureImporter:
     21300000: PlayerPlaceholder
     21300002: Glasses
     21300004: Hat
+    21300006: PlayerBody
+    21300008: PlayerEyes
+    21300010: PlayerHead
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -92,12 +95,12 @@ TextureImporter:
       name: Glasses
       rect:
         serializedVersion: 2
-        x: 267
-        y: 969
+        x: 1
+        y: 57
         width: 136
         height: 54
       alignment: 9
-      pivot: {x: 0.5, y: -2.6111112}
+      pivot: {x: 0.49264705, y: 0.8703704}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: -1
@@ -105,25 +108,51 @@ TextureImporter:
       name: Hat
       rect:
         serializedVersion: 2
-        x: 1
-        y: 857
+        x: 141
+        y: 345
         width: 264
         height: 166
       alignment: 9
-      pivot: {x: 0.56439394, y: -1.0361446}
+      pivot: {x: 0.5, y: 0.30722892}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: -1
     - serializedVersion: 2
-      name: PlayerPlaceholder
+      name: PlayerBody
       rect:
         serializedVersion: 2
         x: 1
-        y: 271
-        width: 255
-        height: 584
+        y: 113
+        width: 138
+        height: 398
       alignment: 9
-      pivot: {x: 0.5647059, y: 0.59075344}
+      pivot: {x: 0.60144925, y: 0.0678392}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: PlayerEyes
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 9
+        width: 115
+        height: 46
+      alignment: 9
+      pivot: {x: 0.5043478, y: 0.45652175}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: PlayerHead
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 117
+        width: 256
+        height: 226
+      alignment: 9
+      pivot: {x: 0.54296875, y: 0.08849557}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: -1
