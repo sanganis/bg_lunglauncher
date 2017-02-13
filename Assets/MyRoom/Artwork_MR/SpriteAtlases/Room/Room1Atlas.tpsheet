@@ -1,0 +1,15 @@
+#
+# Sprite sheet data for Unity.
+#
+# To import these sprites into your Unity project, download "TexturePackerImporter":
+# http://www.codeandweb.com/texturepacker/unity
+#
+# $TexturePacker:SmartUpdate:fcd3ab3ae2810702ada997e834fab9f2:6a0fb0343b804ca49b25dd530d49f675:ac5101eac9d53e519f17ec61f1ecefc4$
+#
+:format=40300
+:texture=Room1Atlas.png
+:size=2048x1024
+:pivotpoints=enabled
+:borders=disabled
+
+MyRoom;1;255;1024;768; 0.5;0.5; 0;0;0;0; 4;1024;0;0;0;0;768;1024;768; 2;1;2;3;0;1;3

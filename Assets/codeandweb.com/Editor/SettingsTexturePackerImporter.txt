@@ -2,18 +2,24 @@ version: 2
 importPivots: 1
 tpsheetFileNames:
 - Assets/codeandweb.com/Example/SpriteSheet/sprites.tpsheet
-- Assets/MiniGame-LungLauncher/Artwork-LL/Sprites/TextureAtlases/Enemies.tpsheet
-- Assets/MiniGame-LungLauncher/Artwork-LL/Sprites/TextureAtlases/Environment.tpsheet
-- Assets/MiniGame-LungLauncher/Artwork-LL/Sprites/TextureAtlases/Player.tpsheet
-- Assets/MiniGame-LungLauncher/Artwork-LL/Sprites/TextureAtlases/UI.tpsheet
+- Assets/MiniGame-LungLauncher/Artwork-LL/TextureAtlases/Enemies.tpsheet
+- Assets/MiniGame-LungLauncher/Artwork-LL/TextureAtlases/Environment.tpsheet
+- Assets/MiniGame-LungLauncher/Artwork-LL/TextureAtlases/Player.tpsheet
+- Assets/MiniGame-LungLauncher/Artwork-LL/TextureAtlases/UI.tpsheet
+- Assets/MyRoom/Artwork_MR/SpriteAtlases/Player/Player1.tpsheet
+- Assets/MyRoom/Artwork_MR/SpriteAtlases/Room/Room1Atlas.tpsheet
 textureFileNames:
 - Assets/codeandweb.com/Example/SpriteSheet/sprites.png
-- Assets/MiniGame-LungLauncher/Artwork-LL/Sprites/TextureAtlases/Enemies.png
-- Assets/MiniGame-LungLauncher/Artwork-LL/Sprites/TextureAtlases/Environment.png
-- Assets/MiniGame-LungLauncher/Artwork-LL/Sprites/TextureAtlases/Player.png
-- Assets/MiniGame-LungLauncher/Artwork-LL/Sprites/TextureAtlases/UI.png
+- Assets/MiniGame-LungLauncher/Artwork-LL/TextureAtlases/Enemies.png
+- Assets/MiniGame-LungLauncher/Artwork-LL/TextureAtlases/Environment.png
+- Assets/MiniGame-LungLauncher/Artwork-LL/TextureAtlases/Player.png
+- Assets/MiniGame-LungLauncher/Artwork-LL/TextureAtlases/UI.png
+- Assets/MyRoom/Artwork_MR/SpriteAtlases/Player/Player1.png
+- Assets/MyRoom/Artwork_MR/SpriteAtlases/Room/Room1Atlas.png
 normalmapFileNames:
 - Assets/codeandweb.com/Example/SpriteSheet/sprites_n.png
+- 
+- 
 - 
 - 
 - 
