@@ -23,7 +23,7 @@ public class LungCharacterController : MonoBehaviour
 
     void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         normalMaterial = spriteRenderer.material;
         playerScreen = GameController.playerScreen;
     }

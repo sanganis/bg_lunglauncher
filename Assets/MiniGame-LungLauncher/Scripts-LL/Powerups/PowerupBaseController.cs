@@ -64,6 +64,8 @@ public class PowerupBaseController : MonoBehaviour {
     {
         GameController.gameController.powerupsCollected++;
         GameController.mainUIController.SetPowerupsCollected();
+        GameController.mainUIController.SetStarsCollected();
+        GameController.gameController.AddStarsToWallet();
         playerScreen.PlayPowerupSound();
         PickupPowerup();
     }

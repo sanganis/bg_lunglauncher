@@ -119,6 +119,8 @@ public class EnemyBaseController : MonoBehaviour {
             GameController.gameController.enemiesDestroyed++;
             GameController.mainUIController.SetEnemiesDestroyed();
             GameController.playerScreen.PlayEnemyDestroyedSound();
+            GameController.mainUIController.SetStarsCollected();
+            GameController.gameController.AddStarsToWallet();
             DestroyEnemy();
         }
     }

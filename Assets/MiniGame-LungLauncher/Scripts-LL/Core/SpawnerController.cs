@@ -23,6 +23,8 @@ public class SpawnerController : MonoBehaviour
 
     public GameObject player;
 
+    List<EnemyBaseController> enemiesToSpawn = new List<EnemyBaseController>();
+
     // the % chance that a powerup will spawn after currentPowerupSpawnTime;
     public float powerupSpawnChance = 0.5f;
 
@@ -40,7 +42,7 @@ public class SpawnerController : MonoBehaviour
     float previousGroundXPos;
     float currentPlayerXPos;
 
-    public float spawnStarsHeight = 3000f;
+    public float spawnStarsHeight = 1000f;
     float cloudSpawnTime = 2f;
     float starSpawnTime = 0.5f;
 
@@ -50,7 +52,8 @@ public class SpawnerController : MonoBehaviour
     }
 
     void Start()
-    {        
+    {
+        CheckAtLeastOneTriggerHasBeenSelected();
         StartCoroutine("SpawnRandomEnemy");
         StartCoroutine("SpawnRandomPowerup");
         StartCoroutine("SpawnSkyObjects");        
@@ -63,6 +66,24 @@ public class SpawnerController : MonoBehaviour
         SetSpawnTimeAccordingToHeight();
         SpawnGroundSegments();
     }
+
+    void CheckAtLeastOneTriggerHasBeenSelected()
+    {
+        // if at least one trigger has been set, return
+        for(int i = 0; i < allEnemies.Length; i++)
+        {
+            if (allEnemies[i].isChildsTrigger)
+            {
+                return;
+            }
+        }
+        // if none have been set, then set all of them
+        for (int i = 0; i < allEnemies.Length; i++)
+        {
+            allEnemies[i].isChildsTrigger = true;            
+        }
+    }
+
 
     void SetSpawnTimeAccordingToHeight()
     {
@@ -127,12 +148,12 @@ public class SpawnerController : MonoBehaviour
 
 
         // Randomly chooses from Enemies that should be spawnable at a given spawner location (bottom, side or top)
-        // creates a temporary list and cycles through all the enemies, adding them to the list if they
+        // assigns to a temporary list and cycles through all the enemies, adding them to the list if they
         // have the bool checked in EnemyBaseController to be spawnable from that location
         // then randomly returns an enemy from that list
         EnemyBaseController ChooseRandomEnemyToSpawn(Transform newSpawnLocation)
     {
-        List<EnemyBaseController> enemiesToSpawn = new List<EnemyBaseController>();
+        enemiesToSpawn.Clear();
         if (newSpawnLocation.gameObject.tag == "BottomSpawner")
         {
             for (int i = 0; i < allEnemies.Length; i++)
@@ -163,11 +184,15 @@ public class SpawnerController : MonoBehaviour
                 }
             }
         }
-        if (enemiesToSpawn != null)
+        if (enemiesToSpawn.Count != 0)
         {
             return enemiesToSpawn[Random.Range(0, enemiesToSpawn.Count)];
         }
-        return null;
+        else
+        {
+            Transform tryAnotheSpawnLocation = allSpawners[Random.Range(0, allSpawners.Length)];
+            return ChooseRandomEnemyToSpawn(tryAnotheSpawnLocation);
+        }        
     }
 
 

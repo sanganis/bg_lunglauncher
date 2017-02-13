@@ -11,6 +11,7 @@ public class MainUIController : MonoBehaviour {
     public Text successScore;
     public Text enemiesDestroyed;
     public Text powerupsCollected;
+    public Text starsCollected;
 
     public Image[] lives;
 
@@ -79,9 +80,14 @@ public class MainUIController : MonoBehaviour {
         }
     }
 
+    public void SetStarsCollected()
+    {
+        starsCollected.text = GameController.gameController.CalculateScore().ToString();        
+    }
+
     public void SetEnemiesDestroyed()
     {
-        enemiesDestroyed.text = GameController.gameController.enemiesDestroyed.ToString();
+        enemiesDestroyed.text = GameController.gameController.enemiesDestroyed.ToString();       
     }
 
     public void SetPowerupsCollected()
@@ -89,11 +95,11 @@ public class MainUIController : MonoBehaviour {
         powerupsCollected.text = GameController.gameController.powerupsCollected.ToString();
     }
 
-
     public void SetSuccessPanel()
     {
         mainPanel.gameObject.SetActive(false);
         successScore.text = GameController.gameController.CalculateScore().ToString();     
+
         successPanel.gameObject.SetActive(true);
     }
 
@@ -134,14 +140,9 @@ public class MainUIController : MonoBehaviour {
         GameController.playerScreen.BreathingEfficiencyDown();
     }
 
-    public void Quit()
+    public void LoadLevel(int levelNumber)
     {
-        Application.Quit();
-    }
-
-    public void Restart()
-    {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(levelNumber, LoadSceneMode.Single);
     }
 
     public void DebugTouchInput()

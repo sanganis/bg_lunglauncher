@@ -14,7 +14,7 @@ public class GlowEffect : MonoBehaviour {
 
 
 	void OnEnable () {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         InvokeRepeating("Glow", 0, 0.01f);
 	}
 	

@@ -59,16 +59,26 @@ public class GameController : MonoBehaviour {
 
     public int CalculateScore()
     {
-        int score;        
-        score = Mathf.RoundToInt(playerScreen.currentHeight);
-        score += enemiesDestroyed * 10;
-        score += powerupsCollected * 10;
-        score += lungCharacter.currentLives * 10;
+        int score = 0;        
+        //score = Mathf.RoundToInt(playerScreen.currentHeight);
+        score += enemiesDestroyed;
+        score += powerupsCollected;
+        //score += lungCharacter.currentLives;
         return score;
+    }
+
+
+    public void AddStarsToWallet()
+    {
+        int currentStars = PlayerPrefs.GetInt("Stars");
+        currentStars += CalculateScore();
+        PlayerPrefs.SetInt("Stars", currentStars);
+        PlayerPrefs.Save();
     }
 
     public void GameOverSuccess()
     {
+        AddStarsToWallet();        
         mainUIController.SetSuccessPanel();
         MusicController.instance.PlayVictoryJingle();        
         gameOver = true;
@@ -84,6 +94,7 @@ public class GameController : MonoBehaviour {
     }
     public void GameOverOutOfLives()
     {
+        AddStarsToWallet();
         mainUIController.SetGameOverPanel(0);
         MusicController.instance.PlayFailureJingle();        
         gameOver = true;

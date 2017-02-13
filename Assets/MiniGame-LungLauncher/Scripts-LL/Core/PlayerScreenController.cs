@@ -53,6 +53,11 @@ public class PlayerScreenController : MonoBehaviour {
     float lastPeakFlow;
 
 
+
+    //NOTE: PEAK FLOW TESTING AND BREATHING MONITORING HAVE BEEN TURNED OFF/DISABLED IN THIS SCRIPT, DUE TO THE CHANGING DESIGN OF THE GAME. 
+    // I HAVE LEFT THE METHODS IN FOR NOW IN CASE WE DECIDE TO GO BACK TO USING THEM IN THE FUTURE
+
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -72,7 +77,7 @@ public class PlayerScreenController : MonoBehaviour {
             ControlClimbRate();            
         }
         currentHeight = transform.position.y;
-        SetCurrentBrathingEfficiency();
+        //SetCurrentBrathingEfficiency();
     }
 
     // stops the player from climbing faster than a desired rate
@@ -159,6 +164,7 @@ public class PlayerScreenController : MonoBehaviour {
         rb.velocity = new Vector2(horizontalLaunchSpeed, verticalLaunchSpeed) * peakFlowMultiplier;
         StartCoroutine("AdjustClimbRateToBreathing");
         controlClimbRate = true;
+        launchedYet = true;
         //Invoke("DelayBeforeControlClimbRate", 3f);
         source.PlayOneShot(launchSound);
         GameController.gameController.SetGameTime();
