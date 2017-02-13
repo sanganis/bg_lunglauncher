@@ -1,9 +1,25 @@
 fileFormatVersion: 2
 guid: 5aac1cfd06c7be44c8b81672f7507057
-timeCreated: 1486997272
+timeCreated: 1486999574
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: CatBaloon1
+    21300002: CatBaloon2
+    21300004: Cigarette1
+    21300006: Cigarette2
+    21300008: DumbBell1
+    21300010: DumbBell2
+    21300012: Dust1
+    21300014: Dust2
+    21300016: RocketDog1
+    21300018: RocketDog2
+    21300020: SweatyCloud1
+    21300022: SweatyCloud2
+    21300024: Viru2
+    21300026: Virus1
+    21300028: WingedCleaner1
+    21300030: WingedCleaner2
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -58,33 +74,217 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-  - buildTarget: Standalone
-    maxTextureSize: 2048
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-  - buildTarget: Android
-    maxTextureSize: 2048
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-  - buildTarget: WebGL
-    maxTextureSize: 2048
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: CatBaloon1
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 519
+        width: 218
+        height: 294
+      alignment: 9
+      pivot: {x: 0.49311927, y: 0.46768707}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: CatBaloon2
+      rect:
+        serializedVersion: 2
+        x: 532
+        y: 498
+        width: 207
+        height: 290
+      alignment: 9
+      pivot: {x: 0.5338164, y: 0.4637931}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Cigarette1
+      rect:
+        serializedVersion: 2
+        x: 741
+        y: 586
+        width: 276
+        height: 202
+      alignment: 9
+      pivot: {x: 0.44746378, y: 0.42326733}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Cigarette2
+      rect:
+        serializedVersion: 2
+        x: 741
+        y: 388
+        width: 273
+        height: 196
+      alignment: 9
+      pivot: {x: 0.43040293, y: 0.42091838}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: DumbBell1
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 310
+        width: 205
+        height: 207
+      alignment: 9
+      pivot: {x: 0.50487804, y: 0.5048309}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: DumbBell2
+      rect:
+        serializedVersion: 2
+        x: 419
+        y: 108
+        width: 206
+        height: 198
+      alignment: 9
+      pivot: {x: 0.50242716, y: 0.4722222}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Dust1
+      rect:
+        serializedVersion: 2
+        x: 467
+        y: 308
+        width: 238
+        height: 188
+      alignment: 9
+      pivot: {x: 0.52310926, y: 0.54521275}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Dust2
+      rect:
+        serializedVersion: 2
+        x: 627
+        y: 32
+        width: 212
+        height: 174
+      alignment: 9
+      pivot: {x: 0.5117925, y: 0.5545977}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: RocketDog1
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 614
+        width: 309
+        height: 195
+      alignment: 9
+      pivot: {x: 0.4514563, y: 0.56153846}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: RocketDog2
+      rect:
+        serializedVersion: 2
+        x: 707
+        y: 208
+        width: 305
+        height: 178
+      alignment: 9
+      pivot: {x: 0.46393442, y: 0.5926966}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: SweatyCloud1
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 815
+        width: 325
+        height: 208
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4591346}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: SweatyCloud2
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 811
+        width: 309
+        height: 212
+      alignment: 9
+      pivot: {x: 0.47734627, y: 0.4551887}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Viru2
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 102
+        width: 197
+        height: 206
+      alignment: 9
+      pivot: {x: 0.5101523, y: 0.50728154}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Virus1
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 171
+        width: 209
+        height: 203
+      alignment: 9
+      pivot: {x: 0.48086125, y: 0.5492611}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: WingedCleaner1
+      rect:
+        serializedVersion: 2
+        x: 639
+        y: 790
+        width: 265
+        height: 233
+      alignment: 9
+      pivot: {x: 0.46981132, y: 0.4914163}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: WingedCleaner2
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 376
+        width: 244
+        height: 236
+      alignment: 9
+      pivot: {x: 0.49385247, y: 0.49364406}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
     outline: []
   spritePackingTag: 
   userData: 
