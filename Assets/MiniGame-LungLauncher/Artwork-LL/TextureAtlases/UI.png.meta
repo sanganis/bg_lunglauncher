@@ -13,6 +13,7 @@ TextureImporter:
     21300012: MyRoom
     21300014: PlayerStar
     21300016: DistanceBar
+    21300018: HealFrameBlue
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -87,8 +88,8 @@ TextureImporter:
       name: button_Down
       rect:
         serializedVersion: 2
-        x: 132
-        y: 119
+        x: 300
+        y: 352
         width: 130
         height: 125
       alignment: 9
@@ -100,8 +101,8 @@ TextureImporter:
       name: button_Up
       rect:
         serializedVersion: 2
-        x: 264
-        y: 353
+        x: 300
+        y: 226
         width: 127
         height: 124
       alignment: 9
@@ -123,11 +124,24 @@ TextureImporter:
       outline: []
       tessellationDetail: -1
     - serializedVersion: 2
-      name: InGameInfoPanelLong
+      name: HealFrameBlue
       rect:
         serializedVersion: 2
         x: 1
-        y: 9
+        y: 75
+        width: 169
+        height: 169
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 23, y: 19, z: 22, w: 19}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: InGameInfoPanelLong
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 34
         width: 101
         height: 39
       alignment: 9
@@ -153,7 +167,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1
-        y: 50
+        y: 8
         width: 103
         height: 65
       alignment: 9
@@ -165,8 +179,8 @@ TextureImporter:
       name: PlayerStar
       rect:
         serializedVersion: 2
-        x: 1
-        y: 117
+        x: 169
+        y: 344
         width: 129
         height: 127
       alignment: 9
