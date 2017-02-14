@@ -8,8 +8,11 @@ public class SaveLoadMyRoom : MonoBehaviour {
     public static SaveLoadMyRoom instance;
 
     public MyRoomPlaceableItemController[] allItems;
+    public MyRoomBackgroundController[] allBackgrounds;
       
     public List<int> myItemsList = new List<int>();
+
+    int savedBackground;
 
     public List<Vector3> myItemsPositionsList = new List<Vector3>();
 
@@ -29,9 +32,14 @@ public class SaveLoadMyRoom : MonoBehaviour {
 
     void Update()
     {
+        // debug controls
         if (Input.GetKeyDown(KeyCode.C))
         {
             PlayerPrefs.DeleteKey("MyItems");
+        }
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            MyRoomController.instance.currentStars += 100;
         }
     }
 
@@ -40,6 +48,12 @@ public class SaveLoadMyRoom : MonoBehaviour {
     {
         myItemsList.Add(itemID);
         myItemsPositionsList.Add(position);
+        SaveMyItems();
+    }
+
+    public void AddToMyBackground(int backgroundID)
+    {
+        savedBackground = backgroundID;
         SaveMyItems();
     }
 
@@ -60,7 +74,10 @@ public class SaveLoadMyRoom : MonoBehaviour {
         {
             myItemsPositionsList.Add(myItemsPositionsStorage[i]);
         }
-        InstantiateMySavedItems();
+        savedBackground = PlayerPrefs.GetInt("MyBackground");
+
+        InstantiateMySavedItems();       
+
     }
 
 
@@ -74,6 +91,14 @@ public class SaveLoadMyRoom : MonoBehaviour {
                 {
                     Instantiate(allItems[x], myItemsPositionsList[i], transform.rotation);
                 }
+            }
+        }
+        for (int b = 0; b < allBackgrounds.Length; b++)
+        {
+            if (savedBackground == (int)allBackgrounds[b].backgroundID)
+            {
+                MyRoomBackgroundController bg = Instantiate(allBackgrounds[b], Vector3.zero, transform.rotation);
+                MyRoomController.instance.currentBackground = bg;
             }
         }
     }
@@ -100,10 +125,12 @@ public class SaveLoadMyRoom : MonoBehaviour {
         tempSaveString = "";        
         PlayerPrefs.SetString("MyItemsPositions", null);
                 
-        tempSaveString = SerializeVector3Array(myItemsPositionsList.ToArray());
-        Debug.Log(tempSaveString);
+        tempSaveString = SerializeVector3Array(myItemsPositionsList.ToArray());        
 
         PlayerPrefs.SetString("MyItemsPositions", tempSaveString);
+
+        
+        PlayerPrefs.SetInt("MyBackground", savedBackground);
     }
 
     public string SerializeVector3Array(Vector3[] aVectors)

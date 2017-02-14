@@ -9,10 +9,12 @@ public class MyRoomController : MonoBehaviour {
 
     public MyRoomPlaceableItemController selectedItem;
 
+    public MyRoomBackgroundController currentBackground;
+
     Camera cam;
     Vector2 mousePos;
 
-    int currentStars;
+    public int currentStars;
    
     public enum InputState
     {
@@ -32,8 +34,7 @@ public class MyRoomController : MonoBehaviour {
     void Start()
     {        
         cam = Camera.main;        
-        currentStars = SaveLoadMyRoom.instance.LoadStars();
-        MyRoomMainUIController.instance.SetCurrentStars(currentStars);
+        currentStars = SaveLoadMyRoom.instance.LoadStars();        
     }
 
 
@@ -92,12 +93,23 @@ public class MyRoomController : MonoBehaviour {
 
     public void ItemBought(MyRoomPlaceableItemController item)
     {        
-        MyRoomPlaceableItemController newItem = (MyRoomPlaceableItemController)Instantiate(item, mousePos, item.transform.rotation);
-        selectedItem = newItem;
-        SubtractStars(item.cost); 
+        MyRoomPlaceableItemController newItem = Instantiate(item, mousePos, item.transform.rotation);
+        selectedItem = newItem;        
         currentInputState = InputState.PLACING;
-        MyRoomMainUIController.instance.SetCurrentStars(currentStars);
+        SubtractStars(item.cost);
+        MyRoomMainUIController.instance.SetCurrentStars();
     }
+
+    public void BackgroundBought(MyRoomBackgroundController background)
+    {
+        MyRoomBackgroundController newBackground = Instantiate(background, Vector3.zero, background.transform.rotation);
+        Destroy(currentBackground.gameObject);
+        currentBackground = newBackground;
+        SubtractStars(background.cost);
+        SaveLoadMyRoom.instance.AddToMyBackground((int)background.backgroundID);
+        MyRoomMainUIController.instance.SetCurrentStars();
+    }
+
 
     void SubtractStars(int numberToSubtract)
     {
@@ -112,6 +124,7 @@ public class MyRoomController : MonoBehaviour {
         {
             return true;
         }
+        MyRoomMainUIController.instance.CallFlashNotEnoughStars();
         return false;
     }
 

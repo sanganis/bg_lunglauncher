@@ -6,6 +6,7 @@ public class MyRoomShopController : MonoBehaviour {
 
     public MyRoomPlaceableItemController[] items;
 
+    public MyRoomBackgroundController[] backgrounds;
 
 
     public void BuyItem(int itemNumber)
@@ -15,4 +16,13 @@ public class MyRoomShopController : MonoBehaviour {
             MyRoomController.instance.ItemBought(items[itemNumber]);
         }
     }
+
+    public void BuyBackground(int backgroundNumber)
+    {
+        if (MyRoomController.instance.CanAffordItem(backgrounds[backgroundNumber].cost))
+        {
+            MyRoomController.instance.BackgroundBought(backgrounds[backgroundNumber]);
+        }
+    }
+
 }
