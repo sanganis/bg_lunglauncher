@@ -102,8 +102,7 @@ public class MyRoomController : MonoBehaviour {
 
     public void BackgroundBought(MyRoomBackgroundController background)
     {
-        MyRoomBackgroundController newBackground = Instantiate(background, Vector3.zero, background.transform.rotation);
-        Destroy(currentBackground.gameObject);
+        MyRoomBackgroundController newBackground = Instantiate(background, Vector3.zero, background.transform.rotation);        
         currentBackground = newBackground;
         SubtractStars(background.cost);
         SaveLoadMyRoom.instance.AddToMyBackground((int)background.backgroundID);

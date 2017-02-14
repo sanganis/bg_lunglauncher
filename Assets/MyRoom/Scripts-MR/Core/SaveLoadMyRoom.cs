@@ -24,10 +24,9 @@ public class SaveLoadMyRoom : MonoBehaviour {
 
     void Start()
     {
-        if (PlayerPrefs.HasKey("MyItems"))
-        {
+       
             LoadMyItems();
-        }
+        
     }
 
     void Update()
@@ -59,22 +58,29 @@ public class SaveLoadMyRoom : MonoBehaviour {
 
     public void LoadMyItems()
     {
-        string itemTemp = PlayerPrefs.GetString("MyItems");
-        string[] myItemsTempStorage;       
-        myItemsTempStorage = itemTemp.Split("*".ToCharArray());
-        for (int i = 0; i < myItemsTempStorage.Length; i++)
+        if (PlayerPrefs.HasKey("MyItems"))
         {
-            myItemsList.Add(int.Parse(myItemsTempStorage[i]));
-        }        
+            string itemTemp = PlayerPrefs.GetString("MyItems");
+            string[] myItemsTempStorage;
+            myItemsTempStorage = itemTemp.Split("*".ToCharArray());
+            for (int i = 0; i < myItemsTempStorage.Length; i++)
+            {
+                myItemsList.Add(int.Parse(myItemsTempStorage[i]));
+            }
 
-        string posTemp = PlayerPrefs.GetString("MyItemsPositions");
-        Vector3[] myItemsPositionsStorage;
-        myItemsPositionsStorage = DeserializeVector3Array(posTemp);
-        for(int i =0; i < myItemsPositionsStorage.Length; i++)
-        {
-            myItemsPositionsList.Add(myItemsPositionsStorage[i]);
+            string posTemp = PlayerPrefs.GetString("MyItemsPositions");
+            Vector3[] myItemsPositionsStorage;
+            myItemsPositionsStorage = DeserializeVector3Array(posTemp);
+            for (int i = 0; i < myItemsPositionsStorage.Length; i++)
+            {
+                myItemsPositionsList.Add(myItemsPositionsStorage[i]);
+            }
         }
-        savedBackground = PlayerPrefs.GetInt("MyBackground");
+
+        if (PlayerPrefs.HasKey("MyBackground"))
+        {
+            savedBackground = PlayerPrefs.GetInt("MyBackground");
+        }
 
         InstantiateMySavedItems();       
 

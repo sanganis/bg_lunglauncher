@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MyRoomMainUIController : MonoBehaviour {
@@ -36,5 +37,13 @@ public class MyRoomMainUIController : MonoBehaviour {
         yield return new WaitForSeconds(0.5f);
         notEnoughStarsNotification.SetActive(false);       
     }
+
+
+
+    public void LoadLevel(int levelNumber)
+    {
+        SceneManager.LoadScene(levelNumber, LoadSceneMode.Single);
+    }
+
 
 }
