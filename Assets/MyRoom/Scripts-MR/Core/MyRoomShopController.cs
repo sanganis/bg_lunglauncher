@@ -10,6 +10,9 @@ public class MyRoomShopController : MonoBehaviour {
 
     public void BuyItem(int itemNumber)
     {
-        MyRoomController.instance.ItemBought(items[itemNumber]);
+        if (MyRoomController.instance.CanAffordItem(items[itemNumber].cost))
+        {
+            MyRoomController.instance.ItemBought(items[itemNumber]);
+        }
     }
 }

@@ -19,6 +19,6 @@ public class MyRoomPlaceableItemController : MonoBehaviour {
 
     public ItemID itemID;
 
-
+    public int cost;
     
 }
