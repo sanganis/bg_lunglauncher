@@ -2,29 +2,63 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class SetTriggersPanel : MonoBehaviour {
+public class SetTriggersPanel : MonoBehaviour
+{
 
-    [SerializeField]
-    Image[] buttonImage;
 
-    void OnEnable()
+    private Image[] buttonImages;
+    private GameObject[] buttonsChecks;
+    private string[] PrefKeys;
+
+    public GameObject[] buttons;
+
+    static public GameObject getChildGameObject(GameObject fromGameObject, string withName)
     {
-        for(int i = 0; i < buttonImage.Length; i++)
+        //Author: Isaac Dart, June-13.
+        Transform[] ts = fromGameObject.transform.GetComponentsInChildren<Transform>(true);
+        foreach (Transform t in ts) if (t.gameObject.name == withName) return t.gameObject;
+        return null;
+    }
+
+    void Start()
+    {
+        PrefKeys = new string[buttons.Length];
+        buttonImages = new Image[buttons.Length];
+        buttonsChecks = new GameObject[buttons.Length];
+        for (int i = 0; i < buttons.Length; i++)
         {
+            buttonImages[i] = buttons[i].gameObject.GetComponent<Image>() as Image;
+            GameObject CheckBox = getChildGameObject(buttons[i].gameObject, "CheckBox") as GameObject;
+            if (CheckBox != null) buttonsChecks[i] = getChildGameObject(CheckBox, "Checked") as GameObject;
+            PrefKeys[i] = buttons[i].name;
             SetButtonColor(i);
         }
     }
-	
+
+    void OnEnable()
+    {
+
+    }
+
     public void SetTrigger(int triggerNumber)
     {
         GameManager.instance.ToggleTrigger(triggerNumber);
         SetButtonColor(triggerNumber);
     }
 
-
-
     void SetButtonColor(int triggerNumber)
-    {        
+    {
+        if (!PlayerPrefs.HasKey(PrefKeys[triggerNumber]))
+        {
+            buttonImages[triggerNumber].color = new Color(0.714f, 1f, 0.647f, 1f);
+            if (buttonsChecks[triggerNumber] != null) buttonsChecks[triggerNumber].SetActive(true);
+        }
+        else
+        {
+            buttonImages[triggerNumber].color = new Color(1, 1, 1, 1);
+            if (buttonsChecks[triggerNumber] != null) buttonsChecks[triggerNumber].SetActive(false);
+        }
+        /*
         switch (triggerNumber)
         {
             case 0:
@@ -107,13 +141,13 @@ public class SetTriggersPanel : MonoBehaviour {
                     buttonImage[7].color = new Color(1, 1, 1, 1);
                 }
                 break;
-        }
+        } */
     }
 
     public void BackButton()
     {
         this.gameObject.SetActive(false);
     }
-       
+
 
 }
