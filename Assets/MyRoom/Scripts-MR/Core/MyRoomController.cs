@@ -11,6 +11,8 @@ public class MyRoomController : MonoBehaviour {
 
     Camera cam;
     Vector2 mousePos;
+
+    int currentStars;
    
     public enum InputState
     {
@@ -30,6 +32,8 @@ public class MyRoomController : MonoBehaviour {
     void Start()
     {        
         cam = Camera.main;        
+        currentStars = SaveLoadMyRoom.instance.LoadStars();
+        MyRoomMainUIController.instance.SetCurrentStars(currentStars);
     }
 
 
@@ -89,9 +93,26 @@ public class MyRoomController : MonoBehaviour {
     public void ItemBought(MyRoomPlaceableItemController item)
     {        
         MyRoomPlaceableItemController newItem = (MyRoomPlaceableItemController)Instantiate(item, mousePos, item.transform.rotation);
-        selectedItem = newItem;        
-        currentInputState = InputState.PLACING;        
-    }    
-    
+        selectedItem = newItem;
+        SubtractStars(item.cost); 
+        currentInputState = InputState.PLACING;
+        MyRoomMainUIController.instance.SetCurrentStars(currentStars);
+    }
+
+    void SubtractStars(int numberToSubtract)
+    {
+        currentStars -= numberToSubtract;
+        SaveLoadMyRoom.instance.SaveStars(currentStars);
+    }
+
+
+    public bool CanAffordItem(int itemPrice)
+    {
+        if (currentStars >= itemPrice)
+        {
+            return true;
+        }
+        return false;
+    }
 
 }

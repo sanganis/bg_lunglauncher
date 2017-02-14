@@ -131,4 +131,15 @@ public class SaveLoadMyRoom : MonoBehaviour {
         return result;
     }
 
+
+    public int LoadStars()
+    {
+        return PlayerPrefs.GetInt("Stars");
+    }
+
+    public void SaveStars(int stars)
+    {
+        PlayerPrefs.SetInt("Stars",stars);
+    }
+
 }
