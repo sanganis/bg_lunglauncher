@@ -8,10 +8,16 @@ public class MyRoomPlaceableItemController : MonoBehaviour {
     public enum ItemID
     {
         HAT,
-        SUNGLASSES
+        SUNGLASSES,
+        BIKE,
+        CAT,
+        CHAIR,
+        DOG,
+        LAMP,
+        BALL
     }
 
-    public ItemID itemName;
+    public ItemID itemID;
 
 
     

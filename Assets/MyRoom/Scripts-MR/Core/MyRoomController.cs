@@ -33,12 +33,6 @@ public class MyRoomController : MonoBehaviour {
     }
 
 
-    void InstantiateMySavedItems()
-    {
-       
-
-
-    }
 
 
     void Update()
@@ -81,6 +75,7 @@ public class MyRoomController : MonoBehaviour {
     {
         if (Input.GetMouseButtonDown(0))
         {
+            SaveLoadMyRoom.instance.AddToMyItems((int)selectedItem.itemID, selectedItem.transform.position);
             currentInputState = InputState.VIEWING;
             selectedItem = null;
         }
@@ -94,9 +89,8 @@ public class MyRoomController : MonoBehaviour {
     public void ItemBought(MyRoomPlaceableItemController item)
     {        
         MyRoomPlaceableItemController newItem = (MyRoomPlaceableItemController)Instantiate(item, mousePos, item.transform.rotation);
-        selectedItem = newItem;
-        AddItemToOwnedList(item);
-        currentInputState = InputState.PLACING;
+        selectedItem = newItem;        
+        currentInputState = InputState.PLACING;        
     }    
     
 
