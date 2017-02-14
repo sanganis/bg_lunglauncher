@@ -71,6 +71,7 @@ public class MyRoomController : MonoBehaviour {
                 {
                     selectedItem = hit.transform.gameObject.GetComponent<MyRoomPlaceableItemController>();
                     currentInputState = InputState.PLACING;
+                    selectedItem.placing = true;
                 }
             }
        }
@@ -81,6 +82,7 @@ public class MyRoomController : MonoBehaviour {
         if (Input.GetMouseButtonDown(0))
         {
             SaveLoadMyRoom.instance.AddToMyItems((int)selectedItem.itemID, selectedItem.transform.position);
+            selectedItem.placing = false;
             currentInputState = InputState.VIEWING;
             selectedItem = null;
         }
@@ -96,6 +98,7 @@ public class MyRoomController : MonoBehaviour {
         MyRoomPlaceableItemController newItem = Instantiate(item, mousePos, item.transform.rotation);
         selectedItem = newItem;        
         currentInputState = InputState.PLACING;
+        selectedItem.placing = true;
         SubtractStars(item.cost);
         MyRoomMainUIController.instance.SetCurrentStars();
     }
