@@ -108,6 +108,7 @@ public class MyRoomController : MonoBehaviour {
                 currentInputState = InputState.VIEWING;
                 selectedItem = null;
             }
+            MyRoomSoundController.instance.PlaySound(0);
         }
         if (Input.GetMouseButtonDown(1))
         {
@@ -115,7 +116,8 @@ public class MyRoomController : MonoBehaviour {
             {
                 SaveLoadMyRoom.instance.RemoveFromMyItems((int)selectedItem.itemID, selectedItem.transform.position);                
                 currentInputState = InputState.VIEWING;
-                Destroy(selectedItem.gameObject);                
+                Destroy(selectedItem.gameObject);
+                MyRoomSoundController.instance.PlaySound(1);         
             }
         }
     }

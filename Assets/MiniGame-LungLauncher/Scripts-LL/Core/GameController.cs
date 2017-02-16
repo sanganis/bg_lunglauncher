@@ -71,7 +71,7 @@ public class GameController : MonoBehaviour {
     public void AddStarsToWallet()
     {
         int currentStars = PlayerPrefs.GetInt("Stars");
-        currentStars += CalculateScore();
+        currentStars += 1;
         PlayerPrefs.SetInt("Stars", currentStars);
         PlayerPrefs.Save();
     }
