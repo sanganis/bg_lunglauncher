@@ -36,7 +36,12 @@ public class MyRoomController : MonoBehaviour {
     void Start()
     {        
         cam = Camera.main;        
-        currentStars = SaveLoadMyRoom.instance.LoadStars();        
+        currentStars = SaveLoadMyRoom.instance.LoadStars();   
+        if(PlayerPrefs.HasKey("FirstRun") == false)
+        {
+            currentStars = 100;
+            PlayerPrefs.SetInt("FirstRun", 1);
+        }     
     }
 
 
