@@ -9,6 +9,8 @@ public class MyRoomController : MonoBehaviour {
 
     public MyRoomPlaceableItemController selectedItem;
 
+    public MyRoomPlayerController playerSelected;
+
     public MyRoomBackgroundController currentBackground;
 
     Camera cam;
@@ -67,30 +69,62 @@ public class MyRoomController : MonoBehaviour {
             RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
             if (hit.collider != null)
             {
-                if(hit.transform.gameObject.tag == "PlaceableItem")
+                if (hit.transform.gameObject.tag == "PlaceableItem")
                 {
                     selectedItem = hit.transform.gameObject.GetComponent<MyRoomPlaceableItemController>();
                     currentInputState = InputState.PLACING;
                     selectedItem.placing = true;
+                    SaveLoadMyRoom.instance.RemoveFromMyItems((int)selectedItem.itemID, selectedItem.transform.position);
+                }
+                if (hit.transform.gameObject.tag == "Player")
+                {
+                    playerSelected = hit.transform.gameObject.GetComponent<MyRoomPlayerController>();
+                    currentInputState = InputState.PLACING;
+                    playerSelected.placing = true;
                 }
             }
-       }
+        }       
     }
 
     void PlacementControls()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            SaveLoadMyRoom.instance.AddToMyItems((int)selectedItem.itemID, selectedItem.transform.position);
-            selectedItem.placing = false;
-            currentInputState = InputState.VIEWING;
-            selectedItem = null;
+            if (playerSelected)
+            {
+                playerSelected.placing = false;
+                currentInputState = InputState.VIEWING;
+                playerSelected = null;
+            }
+            else if (selectedItem)
+            {
+                SaveLoadMyRoom.instance.AddToMyItems((int)selectedItem.itemID, selectedItem.transform.position);
+                selectedItem.placing = false;
+                currentInputState = InputState.VIEWING;
+                selectedItem = null;
+            }
+        }
+        if (Input.GetMouseButtonDown(1))
+        {
+            if (selectedItem)
+            {
+                SaveLoadMyRoom.instance.RemoveFromMyItems((int)selectedItem.itemID, selectedItem.transform.position);                
+                currentInputState = InputState.VIEWING;
+                Destroy(selectedItem.gameObject);                
+            }
         }
     }
     
     void AttachItemToMouse()
     {
-        selectedItem.transform.position = mousePos;
+        if (playerSelected)
+        {
+            playerSelected.transform.position = mousePos;
+        }
+        else
+        {
+            selectedItem.transform.position = mousePos;
+        }
     }
 
     public void ItemBought(MyRoomPlaceableItemController item)
@@ -105,7 +139,8 @@ public class MyRoomController : MonoBehaviour {
 
     public void BackgroundBought(MyRoomBackgroundController background)
     {
-        MyRoomBackgroundController newBackground = Instantiate(background, Vector3.zero, background.transform.rotation);        
+        Vector3 pos = new Vector3(0, -5, 0);
+        MyRoomBackgroundController newBackground = Instantiate(background, pos, background.transform.rotation);        
         currentBackground = newBackground;
         SubtractStars(background.cost);
         SaveLoadMyRoom.instance.AddToMyBackground((int)background.backgroundID);

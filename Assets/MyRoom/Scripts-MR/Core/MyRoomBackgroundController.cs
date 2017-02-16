@@ -21,7 +21,8 @@ public class MyRoomBackgroundController : MonoBehaviour {
 
     void Start () {
         trans = GetComponent<RectTransform>();
-        trans.position = Vector3.zero;
+        Vector3 pos = new Vector3(0, -6, 0);
+        trans.position = pos;
 	}
 	
 }

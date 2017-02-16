@@ -27,57 +27,60 @@ public class MyRoomPlaceableItemController : MonoBehaviour {
     public bool placing;
 
     public bool itemScalesWithHeight;
-
+    float heightFactor;
+    float totalHeight = 15;
     float minScaleSize = 0.5f;
-    float maxScaleSize =  1.5f;
-    float scaleRate = 0.02f;
+    float maxScaleSize = 1f;
 
-    float lastScaledHeight;
 
-    
     void Start()
     {
         rend = GetComponentInChildren<SpriteRenderer>();
-    }
-
-
-    void Update()
-    {
-        if (placing && itemScalesWithHeight)
+        if (itemScalesWithHeight)
         {
             ScaleImageAccordingToHeight();
         }
     }
 
 
-    public void ScaleImageAccordingToHeight()
+    void Update()
     {
-        if(transform.position.y > lastScaledHeight)
-        {
-            transform.localScale = new Vector3(transform.localScale.x - scaleRate, transform.localScale.y - scaleRate, transform.localScale.z - scaleRate);
+        if (placing && itemScalesWithHeight)
+        {                       
+           ScaleImageAccordingToHeight();
+        }
+    }
 
-            if (transform.localScale.x < minScaleSize)
-            {
-                transform.localScale = new Vector3(minScaleSize, minScaleSize, minScaleSize);
-            }
-        }       
-        if (transform.position.y < lastScaledHeight)
+    void ScaleImageAccordingToHeight()
+    {
+        if (transform.position.y < 0)
         {
-            transform.localScale = new Vector3(transform.localScale.x + scaleRate, transform.localScale.y + scaleRate, transform.localScale.z + scaleRate);
-            if (transform.localScale.x > maxScaleSize)
-            {
-                transform.localScale = new Vector3(maxScaleSize, maxScaleSize, maxScaleSize);
-            }
-        }        
-        lastScaledHeight = transform.position.y;
+            heightFactor = (transform.position.y / 100) * ((totalHeight - transform.position.y) / 2);
+            Vector3 newScale = new Vector3(heightFactor, heightFactor, heightFactor);
+            newScale *= -1;
+            transform.localScale = newScale;
+            CalculateSpriteSortingOrder(newScale);            
+        }
+       
+            if(transform.localScale.x < minScaleSize)
+        {
+            transform.localScale = new Vector3(minScaleSize, minScaleSize, minScaleSize);
+        }
+            if(transform.localScale.x > maxScaleSize)
+        {
+            transform.localScale = new Vector3(maxScaleSize, maxScaleSize, maxScaleSize);
+        }
+        
+    }
+
+    void CalculateSpriteSortingOrder(Vector3 roomHeight)
+    {
+        int sortingOrder = Mathf.RoundToInt(roomHeight.x * 100);
+        rend.sortingOrder = sortingOrder;
     }
 
 
-    /* 
-     * make a method to convert the games local y dimension into a %, so I can more effectively do scaling and sprite layers
-    void CalculateRoomHeight()
-    {
 
-    }
-    */
+
+    
 }

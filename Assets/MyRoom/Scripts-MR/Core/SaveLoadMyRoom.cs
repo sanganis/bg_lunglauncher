@@ -42,7 +42,13 @@ public class SaveLoadMyRoom : MonoBehaviour {
         }
     }
 
-    
+    public void RemoveFromMyItems(int itemID, Vector3 position)
+    {
+        myItemsList.Remove(itemID);
+        myItemsPositionsList.Remove(position);
+        SaveMyItems();
+    }
+
     public void AddToMyItems(int itemID, Vector3 position)
     {
         myItemsList.Add(itemID);
