@@ -17,7 +17,11 @@ public class MyRoomPlaceableItemController : MonoBehaviour {
         BALL,
         BABYBUG,
         PETBUG,
-        TEDDYBEAR
+        TEDDYBEAR,
+        SHORTS_GREEN,
+        SKIRT_PINK,
+        TSHIRT_BG,
+        TSHIRT_TOC
     }
 
     public ItemID itemID;

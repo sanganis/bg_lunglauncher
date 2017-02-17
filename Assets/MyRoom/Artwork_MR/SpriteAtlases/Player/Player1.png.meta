@@ -14,6 +14,10 @@ TextureImporter:
     21300014: Hat_Cowboy
     21300016: PlayerKid
     21300018: PlayerKidBlink
+    21300020: Shorts_Green
+    21300022: Skirt_Pink
+    21300024: TShirt_BG
+    21300026: TShirt_TOC
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -100,11 +104,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1
-        y: 272
+        y: 269
         width: 291
         height: 100
       alignment: 9
-      pivot: {x: 0.5120275, y: 0.47}
+      pivot: {x: 0.51202726, y: 0.47000065}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: -1
@@ -113,11 +117,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1
-        y: 796
-        width: 400
-        height: 227
+        y: 793
+        width: 396
+        height: 230
       alignment: 9
-      pivot: {x: 0.5475, y: 0.7092511}
+      pivot: {x: 0.5505052, y: 0.6956516}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: -1
@@ -126,7 +130,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1
-        y: 374
+        y: 371
         width: 335
         height: 420
       alignment: 9
@@ -139,11 +143,63 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 294
-        y: 302
+        y: 299
         width: 186
         height: 70
       alignment: 9
       pivot: {x: 0.5531183, y: -3.6685715}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Shorts_Green
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 885
+        width: 78
+        height: 65
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5538461}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Skirt_Pink
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 952
+        width: 91
+        height: 71
+      alignment: 9
+      pivot: {x: 0.50549453, y: 0.5915493}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: TShirt_BG
+      rect:
+        serializedVersion: 2
+        x: 338
+        y: 651
+        width: 128
+        height: 140
+      alignment: 9
+      pivot: {x: 0.484375, y: 0.55}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: TShirt_TOC
+      rect:
+        serializedVersion: 2
+        x: 338
+        y: 509
+        width: 128
+        height: 140
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5642857}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: -1
