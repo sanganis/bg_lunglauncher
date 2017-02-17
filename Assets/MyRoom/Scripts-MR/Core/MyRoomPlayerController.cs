@@ -17,7 +17,7 @@ public class MyRoomPlayerController : MonoBehaviour {
     void Start()
     {
         rend = GetComponentsInChildren<SpriteRenderer>();        
-        ScaleImageAccordingToHeight();
+        //ScaleImageAccordingToHeight();
     }
 
     
@@ -25,7 +25,7 @@ public class MyRoomPlayerController : MonoBehaviour {
     {
         if (placing)
         {
-            ScaleImageAccordingToHeight();
+            //ScaleImageAccordingToHeight();
         }
     }
 

@@ -142,6 +142,7 @@ public class MyRoomController : MonoBehaviour {
         selectedItem.placing = true;
         SubtractStars(item.cost);
         MyRoomMainUIController.instance.SetCurrentStars();
+        MyRoomMainUIController.instance.ShopActive(false);
     }
 
     public void BackgroundBought(MyRoomBackgroundController background)

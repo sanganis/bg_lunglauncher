@@ -8,14 +8,23 @@ public class MyRoomMainUIController : MonoBehaviour {
 
     public static MyRoomMainUIController instance;
 
+    public GameObject shopPanel;
+    public GameObject shopMSButton;
+
     public Text stars;
     public GameObject notEnoughStarsNotification;
+
+
    
     void Awake()
     {
         instance = this;
     }
 
+    void Start()
+    {
+        SetCurrentStars();
+    }
    
 
     public void SetCurrentStars()
@@ -38,7 +47,16 @@ public class MyRoomMainUIController : MonoBehaviour {
         notEnoughStarsNotification.SetActive(false);       
     }
 
+    public void ClearAllItems()
+    {
+        SaveLoadMyRoom.instance.ClearRoom();
+    }
 
+    public void ShopActive(bool active)
+    {
+        shopPanel.SetActive(active);
+        shopMSButton.SetActive(!active);
+    }
 
     public void LoadLevel(int levelNumber)
     {

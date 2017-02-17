@@ -46,6 +46,11 @@ public class SaveLoadMyRoom : MonoBehaviour {
 
     public void ClearRoom()
     {
+        MyRoomPlaceableItemController[] myCurrentItems = FindObjectsOfType<MyRoomPlaceableItemController>();
+        for(int i = 0; i < myCurrentItems.Length; i++)
+        {
+            Destroy(myCurrentItems[i].gameObject);
+        }
         PlayerPrefs.DeleteKey("MyItems");
     }
 
