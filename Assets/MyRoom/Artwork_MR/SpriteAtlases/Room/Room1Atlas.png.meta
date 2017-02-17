@@ -13,6 +13,8 @@ TextureImporter:
     21300012: bike
     21300014: Pet
     21300016: PetBAby
+    21300018: CatRoom
+    21300020: DogRoom
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -87,8 +89,8 @@ TextureImporter:
       name: bike
       rect:
         serializedVersion: 2
-        x: 578
-        y: 1022
+        x: 1
+        y: 1118
         width: 373
         height: 232
       alignment: 9
@@ -97,15 +99,15 @@ TextureImporter:
       outline: []
       tessellationDetail: -1
     - serializedVersion: 2
-      name: Cat
+      name: CatRoom
       rect:
         serializedVersion: 2
         x: 1
-        y: 1023
-        width: 575
-        height: 584
+        y: 661
+        width: 301
+        height: 455
       alignment: 9
-      pivot: {x: 0.5426082, y: 0.38013732}
+      pivot: {x: 0.55813956, y: 0.13626374}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: -1
@@ -119,6 +121,19 @@ TextureImporter:
         height: 438
       alignment: 9
       pivot: {x: 0.4360696, y: 0.5913238}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: DogRoom
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1352
+        width: 396
+        height: 255
+      alignment: 9
+      pivot: {x: 0.41414142, y: 0.31372547}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: -1
@@ -139,7 +154,7 @@ TextureImporter:
       name: Pet
       rect:
         serializedVersion: 2
-        x: 578
+        x: 399
         y: 1256
         width: 393
         height: 351
@@ -152,8 +167,8 @@ TextureImporter:
       name: PetBAby
       rect:
         serializedVersion: 2
-        x: 1
-        y: 758
+        x: 376
+        y: 991
         width: 354
         height: 263
       alignment: 9
