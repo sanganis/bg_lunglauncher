@@ -53,7 +53,7 @@ public class SpawnerController : MonoBehaviour
 
     void Start()
     {
-        CheckAtLeastOneTriggerHasBeenSelected();
+        //CheckAtLeastOneTriggerHasBeenSelected();
         StartCoroutine("SpawnRandomEnemy");
         StartCoroutine("SpawnRandomPowerup");
         StartCoroutine("SpawnSkyObjects");        

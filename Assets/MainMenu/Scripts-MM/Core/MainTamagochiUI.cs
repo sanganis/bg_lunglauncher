@@ -28,4 +28,9 @@ public class MainTamagochiUI : MonoBehaviour {
     {
         setTriggersPanel.SetActive(true);
     }
+
+    public void Quit()
+    {
+        Application.Quit();
+    }
 }
