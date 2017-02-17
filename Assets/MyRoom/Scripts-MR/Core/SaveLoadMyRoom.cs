@@ -10,11 +10,12 @@ public class SaveLoadMyRoom : MonoBehaviour {
     public MyRoomPlaceableItemController[] allItems;
     public MyRoomBackgroundController[] allBackgrounds;
       
-    public List<int> myItemsList = new List<int>();
-
-    int savedBackground;
+    public List<int> myItemsList = new List<int>();   
 
     public List<Vector3> myItemsPositionsList = new List<Vector3>();
+    public List<Vector3> playerPositionList = new List<Vector3>();
+
+    int savedBackground;
 
 
     void Awake()
@@ -52,6 +53,9 @@ public class SaveLoadMyRoom : MonoBehaviour {
             Destroy(myCurrentItems[i].gameObject);
         }
         PlayerPrefs.DeleteKey("MyItems");
+        PlayerPrefs.DeleteKey("MyItemsPositions");
+        PlayerPrefs.DeleteKey("MyPlayerPosition");
+        MyRoomController.instance.FindPlayer().transform.position = new Vector3(4, -5, 0);
     }
 
     public void GiveMoney()
@@ -70,6 +74,18 @@ public class SaveLoadMyRoom : MonoBehaviour {
     {
         myItemsList.Add(itemID);
         myItemsPositionsList.Add(position);
+        SaveMyItems();
+    }
+
+    public void RemovePlayerPosition(Vector3 position)
+    {
+        playerPositionList.Remove(position);
+        SaveMyItems();
+    }
+
+    public void AddToPlayerPositions(Vector3 position)
+    {
+        playerPositionList.Add(position);
         SaveMyItems();
     }
 
@@ -97,7 +113,16 @@ public class SaveLoadMyRoom : MonoBehaviour {
             for (int i = 0; i < myItemsPositionsStorage.Length; i++)
             {
                 myItemsPositionsList.Add(myItemsPositionsStorage[i]);
-            }
+            }            
+        }
+
+        if (PlayerPrefs.HasKey("MyPlayerPosition"))
+        {
+            string playerPos = PlayerPrefs.GetString("MyPlayerPosition");
+            Vector3[] playerPosStorage;
+            playerPosStorage = DeserializeVector3Array(playerPos);
+            playerPositionList.Add(playerPosStorage[0]);
+            MyRoomController.instance.FindPlayer().transform.position = playerPositionList[0];
         }
 
         if (PlayerPrefs.HasKey("MyBackground"))
@@ -129,7 +154,7 @@ public class SaveLoadMyRoom : MonoBehaviour {
                 MyRoomBackgroundController bg = Instantiate(allBackgrounds[b], Vector3.zero, transform.rotation);
                 MyRoomController.instance.currentBackground = bg;
             }
-        }
+        }        
     }
 
 
@@ -151,14 +176,17 @@ public class SaveLoadMyRoom : MonoBehaviour {
             }
         }        
         PlayerPrefs.SetString("MyItems", tempSaveString);
-        tempSaveString = "";        
-        PlayerPrefs.SetString("MyItemsPositions", null);
-                
-        tempSaveString = SerializeVector3Array(myItemsPositionsList.ToArray());        
 
+              
+        PlayerPrefs.SetString("MyItemsPositions", null);                
+        tempSaveString = SerializeVector3Array(myItemsPositionsList.ToArray());  
         PlayerPrefs.SetString("MyItemsPositions", tempSaveString);
 
-        
+        PlayerPrefs.SetString("MyPlayerPosition", null);
+        tempSaveString = SerializeVector3Array(playerPositionList.ToArray());
+        PlayerPrefs.SetString("MyPlayerPosition", tempSaveString);
+
+
         PlayerPrefs.SetInt("MyBackground", savedBackground);
     }
 

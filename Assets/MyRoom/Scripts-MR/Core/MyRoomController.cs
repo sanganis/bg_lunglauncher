@@ -86,6 +86,7 @@ public class MyRoomController : MonoBehaviour {
                     playerSelected = hit.transform.gameObject.GetComponent<MyRoomPlayerController>();
                     currentInputState = InputState.PLACING;
                     playerSelected.placing = true;
+                    SaveLoadMyRoom.instance.RemovePlayerPosition(playerSelected.transform.position);
                 }
             }
         }       
@@ -97,8 +98,9 @@ public class MyRoomController : MonoBehaviour {
         {
             if (playerSelected)
             {
+                SaveLoadMyRoom.instance.AddToPlayerPositions(playerSelected.transform.position);
                 playerSelected.placing = false;
-                currentInputState = InputState.VIEWING;
+                currentInputState = InputState.VIEWING; 
                 playerSelected = null;
             }
             else if (selectedItem)
@@ -171,6 +173,11 @@ public class MyRoomController : MonoBehaviour {
         }
         MyRoomMainUIController.instance.CallFlashNotEnoughStars();
         return false;
+    }
+
+    public MyRoomPlayerController FindPlayer()
+    {
+        return GameObject.Find("MyPlayer").GetComponent<MyRoomPlayerController>();
     }
 
 }
