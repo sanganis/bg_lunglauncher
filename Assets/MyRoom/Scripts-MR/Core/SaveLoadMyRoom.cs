@@ -34,12 +34,24 @@ public class SaveLoadMyRoom : MonoBehaviour {
         // debug controls
         if (Input.GetKeyDown(KeyCode.C))
         {
-            PlayerPrefs.DeleteKey("MyItems");
+            ClearRoom();
+            //PlayerPrefs.DeleteKey("MyItems");
         }
         if (Input.GetKeyDown(KeyCode.M))
         {
-            MyRoomController.instance.currentStars += 100;
+            GiveMoney();
+            //MyRoomController.instance.currentStars += 100;
         }
+    }
+
+    public void ClearRoom()
+    {
+        PlayerPrefs.DeleteKey("MyItems");
+    }
+
+    public void GiveMoney()
+    {
+        MyRoomController.instance.currentStars += 100;
     }
 
     public void RemoveFromMyItems(int itemID, Vector3 position)

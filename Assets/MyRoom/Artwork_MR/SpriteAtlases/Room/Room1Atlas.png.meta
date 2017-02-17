@@ -15,6 +15,9 @@ TextureImporter:
     21300016: PetBAby
     21300018: CatRoom
     21300020: DogRoom
+    21300022: ShopLabels
+    21300024: ShopShelves
+    21300026: teddyBear
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -76,12 +79,12 @@ TextureImporter:
       name: ball
       rect:
         serializedVersion: 2
-        x: 746
-        y: 1886
-        width: 154
-        height: 161
+        x: 351
+        y: 1108
+        width: 322
+        height: 323
       alignment: 9
-      pivot: {x: 0.4999979, y: 0.49068165}
+      pivot: {x: 0.5077635, y: 0.53147525}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: -1
@@ -90,11 +93,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1
-        y: 1118
-        width: 373
-        height: 232
+        y: 1784
+        width: 400
+        height: 263
       alignment: 9
-      pivot: {x: 0.5201081, y: 0.45258704}
+      pivot: {x: 0.5275, y: 0.3079848}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: -1
@@ -102,25 +105,12 @@ TextureImporter:
       name: CatRoom
       rect:
         serializedVersion: 2
-        x: 1
-        y: 661
+        x: 675
+        y: 976
         width: 301
         height: 455
       alignment: 9
-      pivot: {x: 0.55813956, y: 0.13626374}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: Dog
-      rect:
-        serializedVersion: 2
-        x: 1
-        y: 1609
-        width: 743
-        height: 438
-      alignment: 9
-      pivot: {x: 0.4360696, y: 0.5913238}
+      pivot: {x: 0.55813926, y: 0.13626416}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: -1
@@ -128,12 +118,12 @@ TextureImporter:
       name: DogRoom
       rect:
         serializedVersion: 2
-        x: 1
-        y: 1352
+        x: 403
+        y: 1792
         width: 396
         height: 255
       alignment: 9
-      pivot: {x: 0.41414142, y: 0.31372547}
+      pivot: {x: 0.4141407, y: 0.31372425}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: -1
@@ -141,12 +131,12 @@ TextureImporter:
       name: lamp
       rect:
         serializedVersion: 2
-        x: 746
-        y: 1770
-        width: 93
-        height: 114
+        x: 797
+        y: 1454
+        width: 178
+        height: 296
       alignment: 9
-      pivot: {x: 0.4946209, y: 0.36842048}
+      pivot: {x: 0.5224719, y: 0.1554054}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: -1
@@ -154,12 +144,12 @@ TextureImporter:
       name: Pet
       rect:
         serializedVersion: 2
-        x: 399
-        y: 1256
-        width: 393
-        height: 351
+        x: 403
+        y: 1433
+        width: 392
+        height: 357
       alignment: 9
-      pivot: {x: 0.5496183, y: 0.2962963}
+      pivot: {x: 0.5382653, y: 0.31092438}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: -1
@@ -167,12 +157,12 @@ TextureImporter:
       name: PetBAby
       rect:
         serializedVersion: 2
-        x: 376
-        y: 991
-        width: 354
-        height: 263
+        x: 1
+        y: 1514
+        width: 369
+        height: 268
       alignment: 9
-      pivot: {x: 0.5141243, y: 0.20152092}
+      pivot: {x: 0.51490515, y: 0.20522387}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: -1
@@ -180,12 +170,25 @@ TextureImporter:
       name: Seat
       rect:
         serializedVersion: 2
-        x: 902
-        y: 1831
-        width: 101
-        height: 216
+        x: 801
+        y: 1752
+        width: 179
+        height: 295
       alignment: 9
-      pivot: {x: 0.504953, y: 0.6712969}
+      pivot: {x: 0.5083799, y: 0.29152542}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: teddyBear
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1095
+        width: 348
+        height: 417
+      alignment: 9
+      pivot: {x: 0.5114943, y: 0.36211032}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: -1
