@@ -8,6 +8,13 @@ public class MyRoomShopController : MonoBehaviour {
 
     public MyRoomBackgroundController[] backgrounds;
 
+    public static MyRoomShopController instance;
+
+    void Awake()
+    {
+        instance = this;
+    }
+
 
     public void BuyItem(int itemNumber)
     {
