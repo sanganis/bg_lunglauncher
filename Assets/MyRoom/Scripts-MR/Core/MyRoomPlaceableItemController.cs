@@ -14,7 +14,9 @@ public class MyRoomPlaceableItemController : MonoBehaviour {
         CHAIR,
         DOG,
         LAMP,
-        BALL
+        BALL,
+        BABYBUG,
+        PETBUG
     }
 
     public ItemID itemID;

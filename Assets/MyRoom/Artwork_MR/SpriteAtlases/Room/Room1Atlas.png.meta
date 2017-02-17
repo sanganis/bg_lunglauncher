@@ -11,6 +11,8 @@ TextureImporter:
     21300008: Dog
     21300010: ball
     21300012: bike
+    21300014: Pet
+    21300016: PetBAby
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -86,7 +88,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 578
-        y: 1375
+        y: 1022
         width: 373
         height: 232
       alignment: 9
@@ -130,6 +132,32 @@ TextureImporter:
         height: 114
       alignment: 9
       pivot: {x: 0.4946209, y: 0.36842048}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Pet
+      rect:
+        serializedVersion: 2
+        x: 578
+        y: 1256
+        width: 393
+        height: 351
+      alignment: 9
+      pivot: {x: 0.5496183, y: 0.2962963}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: PetBAby
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 758
+        width: 354
+        height: 263
+      alignment: 9
+      pivot: {x: 0.5141243, y: 0.20152092}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: -1
