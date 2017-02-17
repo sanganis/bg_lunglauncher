@@ -5,7 +5,6 @@ using UnityEngine.UI;
 public class SetTriggersPanel : MonoBehaviour
 {
 
-
     private Image[] buttonImages;
     private GameObject[] buttonsChecks;
     private string[] PrefKeys;
@@ -14,7 +13,6 @@ public class SetTriggersPanel : MonoBehaviour
 
     static public GameObject getChildGameObject(GameObject fromGameObject, string withName)
     {
-        //Author: Isaac Dart, June-13.
         Transform[] ts = fromGameObject.transform.GetComponentsInChildren<Transform>(true);
         foreach (Transform t in ts) if (t.gameObject.name == withName) return t.gameObject;
         return null;
@@ -33,11 +31,6 @@ public class SetTriggersPanel : MonoBehaviour
             PrefKeys[i] = buttons[i].name;
             SetButtonColor(i);
         }
-    }
-
-    void OnEnable()
-    {
-
     }
 
     public void SetTrigger(int triggerNumber)
