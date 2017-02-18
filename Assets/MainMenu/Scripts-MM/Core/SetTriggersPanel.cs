@@ -42,7 +42,7 @@ public class SetTriggersPanel : MonoBehaviour
 
     void SetButtonColor(int triggerNumber)
     {
-        if (!PlayerPrefs.HasKey(PrefKeys[triggerNumber]))
+        if (PlayerPrefs.HasKey(PrefKeys[triggerNumber]))
         {
             buttonImages[triggerNumber].color = new Color(0.714f, 1f, 0.647f, 1f);
             if (buttonsChecks[triggerNumber] != null) buttonsChecks[triggerNumber].SetActive(true);
