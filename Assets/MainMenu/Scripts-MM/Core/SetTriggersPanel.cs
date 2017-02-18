@@ -11,13 +11,6 @@ public class SetTriggersPanel : MonoBehaviour
 
     public GameObject[] buttons;
 
-    static public GameObject getChildGameObject(GameObject fromGameObject, string withName)
-    {
-        Transform[] ts = fromGameObject.transform.GetComponentsInChildren<Transform>(true);
-        foreach (Transform t in ts) if (t.gameObject.name == withName) return t.gameObject;
-        return null;
-    }
-
     void Start()
     {
         PrefKeys = new string[buttons.Length];
@@ -26,11 +19,19 @@ public class SetTriggersPanel : MonoBehaviour
         for (int i = 0; i < buttons.Length; i++)
         {
             buttonImages[i] = buttons[i].gameObject.GetComponent<Image>() as Image;
-            GameObject CheckBox = getChildGameObject(buttons[i].gameObject, "CheckBox") as GameObject;
-            if (CheckBox != null) buttonsChecks[i] = getChildGameObject(CheckBox, "Checked") as GameObject;
+            GameObject CheckBox = GetChildGameObject(buttons[i].gameObject, "CheckBox") as GameObject;
+            if (CheckBox != null) buttonsChecks[i] = GetChildGameObject(CheckBox, "Checked") as GameObject;
             PrefKeys[i] = buttons[i].name;
             SetButtonColor(i);
         }
+    }
+
+
+    static public GameObject GetChildGameObject(GameObject fromGameObject, string withName)
+    {
+        Transform[] ts = fromGameObject.transform.GetComponentsInChildren<Transform>(true);
+        foreach (Transform t in ts) if (t.gameObject.name == withName) return t.gameObject;
+        return null;
     }
 
     public void SetTrigger(int triggerNumber)
