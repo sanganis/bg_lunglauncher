@@ -23,11 +23,11 @@ public class MyRoomMainUIController : MonoBehaviour {
 
     void Start()
     {
-        SetCurrentStars();
+        ShowCurrentStars();
     }
    
 
-    public void SetCurrentStars()
+    public void ShowCurrentStars()
     {
         stars.text = MyRoomController.instance.currentStars.ToString();
     }

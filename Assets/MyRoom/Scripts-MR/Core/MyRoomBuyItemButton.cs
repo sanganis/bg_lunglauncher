@@ -1,8 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MyRoomBuyItemButton : MonoBehaviour {
+
+    public Text itemPriceText;
 
     public enum ItemID
     {
@@ -25,6 +28,17 @@ public class MyRoomBuyItemButton : MonoBehaviour {
 
     public ItemID itemID;
     
+
+    void Start()
+    {
+        SetButtonPrice();
+    }
+
+    void SetButtonPrice()
+    {
+        itemPriceText.text = MyRoomShopController.instance.items[(int)itemID].cost.ToString();
+    }
+
 
     public void BuyItem()
     {

@@ -57,7 +57,12 @@ public class MyRoomController : MonoBehaviour {
         else if (currentInputState == InputState.PLACING)
         {
             AttachItemToMouse();
+#if UNITY_STANDALONE || UNITY_EDITOR
             PlacementControls();
+#endif
+#if UNITY_ANDROID
+            TouchDetect();
+#endif
         }
     }
 
@@ -92,6 +97,33 @@ public class MyRoomController : MonoBehaviour {
         }       
     }
 
+    void TouchDetect()
+    {
+        Vector3 touchPosWorld;
+        if (Input.GetTouch(0).phase == TouchPhase.Ended)
+        {
+            touchPosWorld = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
+            Vector2 touchPosWorld2D = new Vector2(touchPosWorld.x, touchPosWorld.y);
+            RaycastHit2D hitInformation = Physics2D.Raycast(touchPosWorld2D, Camera.main.transform.forward);
+
+            if (playerSelected)
+            {
+                SaveLoadMyRoom.instance.AddToPlayerPositions(playerSelected.transform.position);
+                playerSelected.placing = false;
+                currentInputState = InputState.VIEWING;
+                playerSelected = null;
+            }
+            else if (selectedItem)
+            {
+                SaveLoadMyRoom.instance.AddToMyItems((int)selectedItem.itemID, selectedItem.transform.position);
+                selectedItem.placing = false;
+                currentInputState = InputState.VIEWING;
+                selectedItem = null;
+            }
+            MyRoomSoundController.instance.PlaySound(0);
+        }
+    }
+
     void PlacementControls()
     {
         if (Input.GetMouseButtonDown(0))
@@ -100,7 +132,7 @@ public class MyRoomController : MonoBehaviour {
             {
                 SaveLoadMyRoom.instance.AddToPlayerPositions(playerSelected.transform.position);
                 playerSelected.placing = false;
-                currentInputState = InputState.VIEWING; 
+                currentInputState = InputState.VIEWING;
                 playerSelected = null;
             }
             else if (selectedItem)
@@ -116,10 +148,10 @@ public class MyRoomController : MonoBehaviour {
         {
             if (selectedItem)
             {
-                SaveLoadMyRoom.instance.RemoveFromMyItems((int)selectedItem.itemID, selectedItem.transform.position);                
+                SaveLoadMyRoom.instance.RemoveFromMyItems((int)selectedItem.itemID, selectedItem.transform.position);
                 currentInputState = InputState.VIEWING;
                 Destroy(selectedItem.gameObject);
-                MyRoomSoundController.instance.PlaySound(1);         
+                MyRoomSoundController.instance.PlaySound(1);
             }
         }
     }
@@ -143,7 +175,7 @@ public class MyRoomController : MonoBehaviour {
         currentInputState = InputState.PLACING;
         selectedItem.placing = true;
         SubtractStars(item.cost);
-        MyRoomMainUIController.instance.SetCurrentStars();
+        MyRoomMainUIController.instance.ShowCurrentStars();
         MyRoomMainUIController.instance.ShopActive(false);
     }
 
@@ -154,7 +186,7 @@ public class MyRoomController : MonoBehaviour {
         currentBackground = newBackground;
         SubtractStars(background.cost);
         SaveLoadMyRoom.instance.AddToMyBackground((int)background.backgroundID);
-        MyRoomMainUIController.instance.SetCurrentStars();
+        MyRoomMainUIController.instance.ShowCurrentStars();
     }
 
 

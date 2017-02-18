@@ -61,6 +61,7 @@ public class SaveLoadMyRoom : MonoBehaviour {
     public void GiveMoney()
     {
         MyRoomController.instance.currentStars += 100;
+        MyRoomMainUIController.instance.ShowCurrentStars();
     }
 
     public void RemoveFromMyItems(int itemID, Vector3 position)
@@ -182,9 +183,17 @@ public class SaveLoadMyRoom : MonoBehaviour {
         tempSaveString = SerializeVector3Array(myItemsPositionsList.ToArray());  
         PlayerPrefs.SetString("MyItemsPositions", tempSaveString);
 
-        PlayerPrefs.SetString("MyPlayerPosition", null);
-        tempSaveString = SerializeVector3Array(playerPositionList.ToArray());
-        PlayerPrefs.SetString("MyPlayerPosition", tempSaveString);
+
+        if (playerPositionList.Count > 0)
+        {
+            PlayerPrefs.SetString("MyPlayerPosition", null);
+            tempSaveString = SerializeVector3Array(playerPositionList.ToArray());
+            PlayerPrefs.SetString("MyPlayerPosition", tempSaveString);
+        }
+        else
+        {
+            PlayerPrefs.DeleteKey("MyPlayerPosition");
+        }
 
 
         PlayerPrefs.SetInt("MyBackground", savedBackground);
